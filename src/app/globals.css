@@ -1,0 +1,1231 @@
+@import "tailwindcss";
+
+:root {
+  --background: #ffffff;
+  --foreground: #303030;
+  /* Liquid-glass buttons + nav + URL pill (single source) */
+  --liquid-glass-hover-scale: 1.15;
+
+  /* Base offset before pull-up; lockup is absolute so stage stays tall in flow — see --hero-pull-cards-up */
+  --hero-projects-gap: 0.35rem;
+
+  /*
+   * Pulls the project cards up to sit under the nav. The stage keeps aspect-ratio height in layout
+   * even though the lockup doesn’t contribute to flow, leaving a large white band; this offsets it.
+   */
+  --hero-pull-cards-up: clamp(3.85rem, 14.75vmin, 12.25rem);
+
+  /*
+   * After anchor(bottom) on the main paper, translateY pulls the lockup up onto the sheet (golden reference).
+   * Negative % = overlap with paper; only affects hero↔nav, not nav→cards.
+   */
+  --hero-lockup-overlap: -48%;
+}
+
+/* Mobile: more air between hero nav and project cards (smaller pull-up vs :root). */
+@media (max-width: 767px) {
+  :root {
+    --hero-pull-cards-up: clamp(3.1rem, 11vmin, 9.25rem);
+  }
+
+  /* Site-wide: more horizontal breathing room for text + hero on small screens */
+  .homepage-hero-canvas {
+    max-width: calc(100vw - 2.75rem);
+    padding-inline: clamp(1rem, 4vw, 1.5rem);
+  }
+
+  .fanny-ideations-scroll {
+    scroll-padding-inline: max(22px, env(safe-area-inset-left));
+  }
+
+  .fanny-ideations-scroll__track {
+    padding-inline: max(22px, env(safe-area-inset-left))
+      max(22px, env(safe-area-inset-right));
+  }
+}
+
+/*
+ * Tighter nav → project cards (larger pull-up).
+ * Start at 1367px so iPad Pro / tablet widths (1024–1366) keep the looser :root pull
+ * — at 1024px this was crushing the gap under the nav (see iPad Pro landscape).
+ */
+@media (min-width: 1367px) {
+  :root {
+    --hero-pull-cards-up: clamp(5.5rem, 19.5vmin, 16rem);
+  }
+}
+
+/* Super large desktop: ease pull-up so nav → cards has more breathing room. */
+@media (min-width: 1800px) {
+  :root {
+    --hero-pull-cards-up: clamp(4.75rem, 16.25vmin, 13.25rem);
+  }
+}
+
+/*
+ * Homepage hero — canonical composition (one layout, scaled).
+ * Art uses % of stage; type uses cqi from canvas. Lockup uses % of STAGE height only.
+ */
+.homepage-hero-canvas {
+  container-type: inline-size;
+  container-name: hero;
+  width: min(92vw, 80rem);
+  max-width: calc(100vw - 1.5rem);
+  margin-inline: auto;
+  padding-inline: clamp(0.5rem, 1.25vw, 1rem);
+  padding-bottom: 0;
+}
+
+/*
+ * Shorter frame than 1.22/1 so less dead space below the nav in layout flow (nav is absolute on paper).
+ * If art clips, nudge toward 1.45; if too much gap remains, toward 1.6.
+ */
+.homepage-hero-stage {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 1.52 / 1;
+  min-height: 15rem;
+  overflow: visible;
+}
+
+/* Art fills the stage; papers are % of this box */
+.homepage-hero-art {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  overflow: visible;
+  pointer-events: none;
+}
+
+.homepage-hero-art-glow {
+  position: absolute;
+  inset: -12% -8% auto -8%;
+  height: 125%;
+  z-index: 0;
+  pointer-events: none;
+  transform: translateY(-5%);
+  background: radial-gradient(
+    circle at 30% 20%,
+    rgba(255, 255, 255, 0.65),
+    rgba(255, 255, 255, 0.35) 45%,
+    rgba(255, 255, 255, 0.08) 100%
+  );
+}
+
+.homepage-hero-art-scene {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+}
+
+.homepage-hero-art-layer {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+/* Main paper: anchor for name/nav (visual bottom of sheet, not the tall stage box) */
+.homepage-hero-art-layer .hero-float-paper-b {
+  anchor-name: --hero-paper;
+}
+
+/*
+ * Site header lockup — CaseStudyShell + homepage hero.
+ * Name GIF: 150px on mobile only; sm / md match previous larger breakpoints.
+ */
+.site-header-name {
+  display: block;
+  background: transparent;
+  /* Stepped down from 150 / 180 / 220; latest −5%; name GIF slightly reduced */
+  width: 118px;
+  max-width: min(88vw, 118px);
+}
+
+@media (min-width: 640px) {
+  .site-header-name {
+    width: 140px;
+    max-width: min(88vw, 170px);
+  }
+}
+
+@media (min-width: 768px) {
+  .site-header-name {
+    width: 170px;
+  }
+}
+
+/* Knock out flat white in the GIF matte so only the lettering reads (blends with page/paper behind). */
+.site-header-name img {
+  display: block;
+  width: 100%;
+  height: auto;
+  mix-blend-mode: multiply;
+  background: transparent;
+}
+
+.site-header-tagline {
+  margin: 0;
+  font-family: var(--font-geist-sans), Arial, Helvetica, sans-serif;
+  font-size: 10px;
+  font-weight: 300;
+  line-height: 1.2;
+  letter-spacing: 0.5px;
+  color: #606060;
+}
+
+@media (min-width: 768px) {
+  .site-header-tagline {
+    font-size: 12px;
+  }
+}
+
+.site-header-nav {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  margin: 0;
+  margin-top: 0.75rem;
+  padding: 0;
+  text-align: center;
+  font-family: var(--font-geist-sans), Arial, Helvetica, sans-serif;
+  font-size: 9px;
+  font-weight: 300;
+  letter-spacing: 0.5px;
+  column-gap: 0.625rem;
+  row-gap: 0.5rem;
+}
+
+@media (min-width: 640px) {
+  .site-header-nav {
+    margin-top: 1rem;
+  }
+}
+
+@media (min-width: 768px) {
+  .site-header-nav {
+    /* Slightly tighter to tagline on desktop — nav sits a bit higher */
+    margin-top: 0.875rem;
+    font-size: 11px;
+  }
+}
+
+.site-header-nav a {
+  margin: 0;
+  font-weight: 700;
+}
+
+/*
+ * Name + nav: locked to the MAIN PAPER’s bottom edge (golden reference), not the viewport or stage bottom.
+ * Browsers with anchor(): top: anchor(bottom). Others: fallback top % of the art layer.
+ */
+.homepage-hero-lockup {
+  position: absolute;
+  bottom: auto;
+  left: 50%;
+  z-index: 40;
+  display: flex;
+  width: 100%;
+  max-width: min(42rem, 100%);
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  pointer-events: auto;
+  padding-bottom: 0;
+  /* Fallback when anchor() unavailable — approximates paper-bottom in the same frame */
+  top: 41%;
+  transform: translate(-50%, var(--hero-lockup-overlap));
+}
+
+@supports (top: anchor(bottom)) {
+  .homepage-hero-lockup {
+    top: anchor(bottom);
+    position-anchor: --hero-paper;
+    transform: translate(-50%, var(--hero-lockup-overlap));
+  }
+}
+
+/* Handwriting: cqi vs canvas — slightly lower coeff + max so mobile isn’t visually huge on the paper */
+.homepage-hero-canvas .handwritten-paper-visible {
+  font-size: clamp(0.5rem, 1.85cqi, 0.92rem);
+  line-height: 1.38;
+  letter-spacing: 0.04em;
+}
+
+@media (max-width: 479px) {
+  .homepage-hero-canvas .handwritten-paper-visible {
+    font-size: clamp(0.45rem, 1.65cqi, 0.82rem);
+  }
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
+}
+
+@layer components {
+  /* Shared body copy: home cards + case study pages */
+  .portfolio-copy {
+    @apply font-sans text-[12px] font-light leading-[18px] tracking-[0.3px] md:text-[12px] md:leading-[18px];
+  }
+
+  .portfolio-copy strong {
+    font-weight: 700;
+  }
+}
+
+/* Photography intro: Webflow `.heading-42` (shared.css) adds large margins — keep title ↔ subcopy tight + flush under header */
+.portfolio-copy > h1.heading-42 {
+  margin-top: 0 !important;
+  margin-bottom: 0 !important;
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+/* Global text-block standard: match About copy spacing */
+p,
+li,
+blockquote {
+  font-family: var(--font-geist-sans), Arial, Helvetica, sans-serif;
+  font-size: 12px;
+  font-weight: 300;
+  line-height: 18px;
+  letter-spacing: 0.3px;
+}
+
+body::before {
+  content: none;
+}
+
+.homepage {
+  cursor: none;
+}
+
+/* Hero handwritten animation: must not inherit global `p { font-size: 12px }`.
+   Homepage uses `.homepage-hero-canvas .handwritten-paper-visible` (container cqi). */
+.handwritten-paper-visible {
+  font-size: clamp(0.7rem, 2.5vw, 1.1rem);
+  font-weight: 400;
+  line-height: 1.35;
+  letter-spacing: 0.04em;
+}
+
+.homepage a,
+.homepage button,
+.homepage img {
+  cursor: none;
+}
+
+/* Links/buttons get UA `cursor: pointer`, which overrides inherited `none` — hide system cursor on desktop */
+@media screen and (min-width: 992px) {
+  .custom-cursor-site a,
+  .custom-cursor-site button,
+  .custom-cursor-site [role="button"],
+  .custom-cursor-site input[type="submit"],
+  .custom-cursor-site input:not([type="hidden"]),
+  .custom-cursor-site label[for] {
+    cursor: none !important;
+  }
+}
+
+.custom-cursor {
+  position: fixed;
+  left: 0;
+  top: 0;
+  z-index: 200;
+  width: 24px;
+  height: 24px;
+  border-radius: 9999px;
+  pointer-events: none;
+  border: 1px solid rgba(255, 255, 255, 0.68);
+  background:
+    radial-gradient(
+      130% 140% at 24% 0%,
+      rgba(255, 255, 255, 0.5) 0%,
+      rgba(255, 255, 255, 0.16) 48%,
+      rgba(255, 255, 255, 0.02) 100%
+    ),
+    linear-gradient(
+      180deg,
+      rgba(210, 216, 226, 0.38) 0%,
+      rgba(178, 186, 200, 0.28) 100%
+    );
+  box-shadow:
+    0 2px 8px rgba(54, 61, 74, 0.2),
+    inset 0 0 0.5px rgba(255, 255, 255, 0.75);
+  backdrop-filter: blur(10px) saturate(115%);
+  -webkit-backdrop-filter: blur(10px) saturate(115%);
+  transition:
+    opacity 120ms ease,
+    transform 180ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.custom-cursor--interactive {
+  /* Slightly brighter when hovering buttons/cards */
+  border-color: rgba(255, 255, 255, 0.88);
+}
+
+.liquid-glass-button {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  color: #2d3138;
+  border: 1px solid rgba(255, 255, 255, 0.58);
+  background:
+    radial-gradient(
+      120% 150% at 50% 0%,
+      rgba(255, 255, 255, 0.36) 0%,
+      rgba(255, 255, 255, 0.14) 45%,
+      rgba(255, 255, 255, 0) 100%
+    ),
+    linear-gradient(
+      180deg,
+      rgba(242, 245, 250, 0.46) 0%,
+      rgba(220, 226, 236, 0.4) 100%
+    );
+  backdrop-filter: blur(18px) saturate(120%);
+  -webkit-backdrop-filter: blur(18px) saturate(120%);
+  transform-origin: center;
+  -webkit-font-smoothing: antialiased;
+  transition:
+    transform 240ms cubic-bezier(0.22, 1, 0.36, 1),
+    background-color 240ms ease,
+    border-color 240ms ease;
+}
+
+.liquid-glass-button::before {
+  content: "";
+  position: absolute;
+  inset: 1px;
+  border-radius: inherit;
+  background: linear-gradient(
+    180deg,
+    rgba(255, 255, 255, 0.4) 0%,
+    rgba(255, 255, 255, 0.14) 46%,
+    rgba(255, 255, 255, 0.04) 100%
+  );
+  opacity: 1;
+  z-index: -1;
+  transition: opacity 240ms ease;
+}
+
+.liquid-glass-button:hover {
+  transform: scale(var(--liquid-glass-hover-scale));
+  border-color: rgba(255, 255, 255, 0.9);
+}
+
+.liquid-glass-button:hover::before {
+  opacity: 1;
+}
+
+.liquid-glass-pill {
+  border-radius: 9999px;
+  padding: 6px 12px;
+}
+
+.liquid-glass-nav {
+  color: rgba(28, 34, 40, 0.9);
+  border: 1px solid rgba(255, 255, 255, 0.78);
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+  transform-origin: center;
+  transition:
+    transform 240ms cubic-bezier(0.22, 1, 0.36, 1),
+    background-color 240ms ease,
+    border-color 240ms ease,
+    color 240ms ease,
+    box-shadow 240ms ease,
+    background 240ms ease;
+  background:
+    radial-gradient(
+      140% 170% at 18% 0%,
+      rgba(255, 255, 255, 0.72) 0%,
+      rgba(255, 255, 255, 0.2) 42%,
+      rgba(255, 255, 255, 0.02) 100%
+    ),
+    linear-gradient(
+      180deg,
+      rgba(255, 255, 255, 0.48) 0%,
+      rgba(239, 244, 250, 0.28) 55%,
+      rgba(231, 237, 246, 0.22) 100%
+    );
+  backdrop-filter: blur(22px) saturate(135%);
+  -webkit-backdrop-filter: blur(22px) saturate(135%);
+}
+
+.liquid-glass-nav::before {
+  content: "";
+  position: absolute;
+  inset: 1px;
+  border-radius: inherit;
+  background:
+    radial-gradient(
+      125% 80% at 50% -20%,
+      rgba(255, 255, 255, 0.75) 0%,
+      rgba(255, 255, 255, 0.1) 58%,
+      rgba(255, 255, 255, 0) 100%
+    ),
+    linear-gradient(
+      180deg,
+      rgba(255, 255, 255, 0.18) 0%,
+      rgba(255, 255, 255, 0.04) 100%
+    );
+  z-index: -1;
+}
+
+.liquid-glass-nav:hover {
+  transform: scale(var(--liquid-glass-hover-scale));
+  color: #1f2328;
+  border-color: rgba(255, 255, 255, 0.7);
+  box-shadow:
+    0 2px 6px rgba(0, 0, 0, 0.05),
+    0 4px 12px rgba(0, 0, 0, 0.08),
+    inset 0 1px 0 rgba(255, 255, 255, 0.6);
+  background:
+    radial-gradient(
+      120% 100% at 30% 20%,
+      rgba(255, 255, 255, 0.7) 0%,
+      rgba(255, 255, 255, 0.45) 35%,
+      rgba(245, 247, 250, 0.4) 70%,
+      rgba(235, 238, 244, 0.45) 100%
+    );
+}
+
+.liquid-glass-nav:hover::before {
+  background:
+    radial-gradient(
+      90% 60% at 35% 15%,
+      rgba(255, 255, 255, 0.85) 0%,
+      rgba(255, 255, 255, 0.3) 40%,
+      rgba(255, 255, 255, 0.08) 70%,
+      transparent 100%
+    );
+}
+
+/* Case study pull quote — liquid glass pill, no hover / motion (Fanny Sling, etc.) */
+.case-study-quote-pill.liquid-glass-pill {
+  padding: 1rem 1.35rem;
+}
+
+@media (min-width: 768px) {
+  .case-study-quote-pill.liquid-glass-pill {
+    padding: 1.35rem 2rem;
+  }
+}
+
+.case-study-quote-pill.liquid-glass-button,
+.case-study-quote-pill.liquid-glass-nav {
+  --liquid-glass-hover-scale: 1;
+  cursor: default;
+}
+
+.case-study-quote-pill.liquid-glass-button:hover,
+.case-study-quote-pill.liquid-glass-nav:hover {
+  transform: none;
+  color: rgba(28, 34, 40, 0.9);
+  border-color: rgba(255, 255, 255, 0.78);
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+  background:
+    radial-gradient(
+      140% 170% at 18% 0%,
+      rgba(255, 255, 255, 0.72) 0%,
+      rgba(255, 255, 255, 0.2) 42%,
+      rgba(255, 255, 255, 0.02) 100%
+    ),
+    linear-gradient(
+      180deg,
+      rgba(255, 255, 255, 0.48) 0%,
+      rgba(239, 244, 250, 0.28) 55%,
+      rgba(231, 237, 246, 0.22) 100%
+    );
+}
+
+.case-study-quote-pill.liquid-glass-nav:hover::before {
+  background:
+    radial-gradient(
+      125% 80% at 50% -20%,
+      rgba(255, 255, 255, 0.75) 0%,
+      rgba(255, 255, 255, 0.1) 58%,
+      rgba(255, 255, 255, 0) 100%
+    ),
+    linear-gradient(
+      180deg,
+      rgba(255, 255, 255, 0.18) 0%,
+      rgba(255, 255, 255, 0.04) 100%
+    );
+}
+
+/* Fanny Sling — neutral brief card (no wall / no yellow) */
+.fanny-sketch-inner {
+  border-radius: 3px;
+  background: #ffffff;
+  border: 1px solid rgba(48, 48, 48, 0.12);
+  box-shadow:
+    0 1px 0 rgba(255, 255, 255, 1) inset,
+    0 10px 28px rgba(0, 0, 0, 0.06),
+    0 3px 10px rgba(0, 0, 0, 0.04);
+  transform: rotate(-1.4deg);
+}
+
+/* Scotch-tape strip */
+.fanny-sketch-inner::before {
+  content: "";
+  position: absolute;
+  z-index: 2;
+  left: 50%;
+  top: -7px;
+  width: 52px;
+  height: 14px;
+  translate: -50% 0;
+  border-radius: 2px;
+  background: linear-gradient(
+    180deg,
+    rgba(255, 255, 255, 0.55) 0%,
+    rgba(245, 245, 240, 0.45) 100%
+  );
+  border: 1px solid rgba(0, 0, 0, 0.07);
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.07);
+  opacity: 0.95;
+  pointer-events: none;
+}
+
+@keyframes fanny-sketch-pop {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+    filter: blur(1.5px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+    filter: blur(0);
+  }
+}
+
+@keyframes fanny-sketch-line {
+  to {
+    transform: scaleX(1);
+  }
+}
+
+.fanny-sketch-row {
+  opacity: 0;
+}
+
+.fanny-sketch-row--on {
+  animation: fanny-sketch-pop 0.58s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+  animation-delay: var(--sketch-delay, 0ms);
+}
+
+.fanny-sketch-underline {
+  height: 2px;
+  width: min(7rem, 100%);
+  border-radius: 9999px;
+  background: rgba(48, 48, 48, 0.28);
+  transform: scaleX(0);
+  transform-origin: left center;
+}
+
+.fanny-sketch-row--on .fanny-sketch-underline {
+  animation: fanny-sketch-line 0.48s ease-out forwards;
+  animation-delay: calc(var(--sketch-delay, 0ms) + 95ms);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .fanny-sketch-inner {
+    transform: none;
+  }
+
+  .fanny-sketch-row {
+    opacity: 1;
+  }
+
+  .fanny-sketch-row--on {
+    animation: none;
+  }
+
+  .fanny-sketch-underline {
+    transform: scaleX(1);
+  }
+}
+
+/* Fanny Sling — Ideations: horizontal scroll row with peek of next card */
+.fanny-ideations-scroll {
+  width: 100%;
+  overflow-x: auto;
+  overflow-y: hidden;
+  -webkit-overflow-scrolling: touch;
+  overscroll-behavior-x: contain;
+  scroll-snap-type: x mandatory;
+  scroll-padding-inline: max(16px, env(safe-area-inset-left));
+  /* Scrollbar hidden — navigation uses circular liquid-glass controls */
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+.fanny-ideations-scroll::-webkit-scrollbar {
+  display: none;
+}
+
+.fanny-ideations-scroll__track {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  align-items: stretch;
+  gap: 12px;
+  width: max-content;
+  min-height: 0;
+  padding-block: 2px 10px;
+  padding-inline: max(16px, env(safe-area-inset-left)) max(16px, env(safe-area-inset-right));
+}
+
+.fanny-ideations-scroll__card {
+  flex: 0 0 auto;
+  scroll-snap-align: start;
+  scroll-snap-stop: always;
+  /* Nearly full-bleed width minus gutters + a slice of the next card (peek) */
+  width: calc(100vw - 5rem);
+  border-radius: 4px;
+  overflow: hidden;
+  background: #fff;
+  /* Subtle lift — shared by all ideation / case-study carousels */
+  box-shadow:
+    0 1px 2px rgba(48, 48, 48, 0.04),
+    0 4px 20px rgba(48, 48, 48, 0.07);
+}
+
+.fanny-ideations-scroll__card img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .fanny-ideations-scroll {
+    scroll-behavior: auto;
+  }
+}
+
+/* Ideations carousel — circular glass controls (subtler scale than default nav) */
+.liquid-glass-carousel-btn {
+  --liquid-glass-hover-scale: 1.08;
+  cursor: pointer;
+}
+
+/* Bar & Wine — Host Wine Freeze Cup V2: playful scroll story (cards + stagger) */
+@keyframes host-freeze-rise {
+  from {
+    opacity: 0;
+    transform: translateY(18px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.host-freeze-story__compare {
+  opacity: 0;
+  transform: translateY(12px);
+}
+
+.host-freeze-story--on .host-freeze-story__compare {
+  animation: host-freeze-rise 0.55s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+
+.host-freeze-story__catalog {
+  opacity: 0;
+  transform: translateY(14px);
+}
+
+.host-freeze-story--on .host-freeze-story__catalog {
+  animation: host-freeze-rise 0.55s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+  animation-delay: 0.42s;
+}
+
+.host-freeze-story__compare-frame {
+  border-radius: 0.5rem;
+  border: none;
+  outline: none;
+  background: transparent;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.host-freeze-story__compare-frame img {
+  display: block;
+  width: auto;
+  max-width: 100%;
+  height: auto;
+  max-height: min(52vh, 400px);
+  object-fit: contain;
+  border: none;
+  outline: none;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.host-freeze-story__grid {
+  display: grid;
+  gap: 0.75rem;
+  grid-template-columns: 1fr;
+}
+
+@media (min-width: 768px) {
+  .host-freeze-story__grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 1rem;
+  }
+
+  .host-freeze-story__card--wide {
+    grid-column: 1 / -1;
+  }
+}
+
+.host-freeze-story__card {
+  position: relative;
+  overflow: hidden;
+  border-radius: 0.6rem;
+  padding: 1rem 1rem 1.1rem;
+  opacity: 0;
+  transform: translateY(20px);
+  background: #fff;
+  border: 1px solid rgba(48, 48, 48, 0.1);
+  transition:
+    box-shadow 0.35s ease,
+    border-color 0.35s ease;
+}
+
+.host-freeze-story--on .host-freeze-story__card--problem.host-freeze-story__card--sticky {
+  animation: host-freeze-rise 0.62s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+
+.host-freeze-story--on .host-freeze-story__card--solution.host-freeze-story__card--sticky {
+  animation: host-freeze-rise 0.62s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+
+.host-freeze-story--on .host-freeze-story__card:nth-child(1) {
+  animation-delay: 0.1s;
+}
+
+.host-freeze-story--on .host-freeze-story__card:nth-child(2) {
+  animation-delay: 0.22s;
+}
+
+.host-freeze-story__card--sticky {
+  overflow: visible;
+  border-radius: 3px;
+  background: #fff;
+  border: 1px solid rgba(48, 48, 48, 0.09);
+  box-shadow:
+    0 1px 2px rgba(48, 48, 48, 0.04),
+    0 2px 8px rgba(48, 48, 48, 0.05);
+  padding: 1.15rem 1.05rem 1.2rem;
+}
+
+.host-freeze-story__card--sticky .host-freeze-story__card-head {
+  justify-content: flex-start;
+}
+
+.host-freeze-story__card-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+  margin-bottom: 0.65rem;
+}
+
+.host-freeze-story__pill {
+  font-family: var(--font-geist-sans), system-ui, sans-serif;
+  font-size: 9px;
+  font-weight: 800;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: #303030;
+  opacity: 0.85;
+}
+
+@media (min-width: 768px) {
+  .host-freeze-story__pill {
+    font-size: 10px;
+  }
+}
+
+.host-freeze-story__highlight {
+  font-weight: 700;
+  color: #8f3d4a;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .host-freeze-story__compare,
+  .host-freeze-story__catalog,
+  .host-freeze-story__card {
+    opacity: 1;
+    transform: none;
+    animation: none !important;
+  }
+
+}
+
+/* Fanny Sling — programmatic CMF swatches (vector-sharp, replaces legacy JPG) */
+.fanny-swatch--ripstop-black {
+  background-image:
+    linear-gradient(155deg, #2d2d2d 0%, #0f0f0f 100%),
+    repeating-linear-gradient(
+      0deg,
+      transparent,
+      transparent 3px,
+      rgba(255, 255, 255, 0.07) 3px,
+      rgba(255, 255, 255, 0.07) 4px
+    ),
+    repeating-linear-gradient(
+      90deg,
+      transparent,
+      transparent 3px,
+      rgba(255, 255, 255, 0.07) 3px,
+      rgba(255, 255, 255, 0.07) 4px
+    );
+  background-blend-mode: normal, multiply, multiply;
+}
+
+.fanny-swatch--ripstop-gray {
+  background-image:
+    linear-gradient(155deg, #6b6b6b 0%, #3d3d3d 100%),
+    repeating-linear-gradient(
+      0deg,
+      transparent,
+      transparent 3px,
+      rgba(255, 255, 255, 0.12) 3px,
+      rgba(255, 255, 255, 0.12) 4px
+    ),
+    repeating-linear-gradient(
+      90deg,
+      transparent,
+      transparent 3px,
+      rgba(255, 255, 255, 0.12) 3px,
+      rgba(255, 255, 255, 0.12) 4px
+    );
+  background-blend-mode: normal, multiply, multiply;
+}
+
+.fanny-swatch--teal {
+  background-image: linear-gradient(
+    145deg,
+    #14b8a6 0%,
+    #0d9488 38%,
+    #0f766e 100%
+  );
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.25);
+}
+
+.fanny-swatch--mesh {
+  background-color: #d4d4d0;
+  background-image:
+    radial-gradient(circle, rgba(48, 48, 48, 0.22) 1px, transparent 1.2px),
+    linear-gradient(180deg, #e8e8e4 0%, #c8c8c0 100%);
+  background-size:
+    5px 5px,
+    100% 100%;
+  background-blend-mode: multiply, normal;
+}
+
+.fanny-swatch--packcloth {
+  background-image: repeating-linear-gradient(
+      0deg,
+      rgba(255, 255, 255, 0.06),
+      rgba(255, 255, 255, 0.06) 1px,
+      transparent 1px,
+      transparent 2px
+    ),
+    repeating-linear-gradient(
+      90deg,
+      rgba(0, 0, 0, 0.04),
+      rgba(0, 0, 0, 0.04) 1px,
+      transparent 1px,
+      transparent 2px
+    ),
+    linear-gradient(168deg, #9ca3af 0%, #6b7280 100%);
+  background-size:
+    100% 100%,
+    100% 100%,
+    100% 100%;
+}
+
+.fanny-swatch--webbing {
+  background-image: repeating-linear-gradient(
+    180deg,
+    #1a1a1a,
+    #1a1a1a 4px,
+    #262626 4px,
+    #262626 8px
+  );
+  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.06);
+}
+
+.fanny-swatch--hypalon {
+  background-image: linear-gradient(165deg, #374151 0%, #1f2937 100%);
+  box-shadow:
+    inset 0 2px 6px rgba(0, 0, 0, 0.35),
+    inset 0 -1px 0 rgba(255, 255, 255, 0.08);
+  filter: saturate(0.95);
+}
+
+.fanny-swatch--zipper {
+  background-image:
+    repeating-linear-gradient(
+      128deg,
+      #2a2a2a,
+      #2a2a2a 2px,
+      #1a1a1a 2px,
+      #1a1a1a 4px
+    ),
+    linear-gradient(90deg, #3f3f46 0%, #27272a 100%);
+  background-size:
+    12px 12px,
+    100% 100%;
+}
+
+/* About: peer testimonial rows — .liquid-glass-pill uses 6px 12px; need more inset from rounded edge */
+.peer-name.liquid-glass-button.liquid-glass-pill {
+  padding: 0.65rem 0.875rem 0.65rem 2.35rem;
+}
+
+@media (min-width: 768px) {
+  .peer-name.liquid-glass-button.liquid-glass-pill {
+    padding: 0.75rem 1.1rem 0.75rem 3rem;
+  }
+}
+
+/* Peer +/- icon: playful spin + bounce when accordion toggles */
+@keyframes peer-icon-toggle {
+  0% {
+    transform: scale(0.35) rotate(-145deg);
+    opacity: 0.35;
+  }
+  42% {
+    transform: scale(1.28) rotate(14deg);
+    opacity: 1;
+  }
+  68% {
+    transform: scale(0.9) rotate(-6deg);
+  }
+  100% {
+    transform: scale(1) rotate(0deg);
+    opacity: 1;
+  }
+}
+
+.peer-icon-toggle {
+  animation: peer-icon-toggle 0.55s cubic-bezier(0.34, 1.56, 0.64, 1) both;
+  transform-origin: 50% 50%;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .peer-icon-toggle {
+    animation: none;
+  }
+}
+
+.hero-float-paper-a {
+  animation: heroFloatPaperA 9s ease-in-out infinite;
+}
+
+.hero-float-paper-b {
+  animation: heroFloatPaperB 10.5s ease-in-out infinite;
+}
+
+.hero-float-pen {
+  animation: heroFloatPen 8.6s ease-in-out infinite;
+}
+
+.hero-float-pen-image {
+  animation: heroFloatPen 8.6s ease-in-out infinite;
+}
+
+@keyframes heroFloatPaperA {
+  0%,
+  100% {
+    transform: translate3d(0, 0, 0) rotate(45deg);
+  }
+  50% {
+    transform: translate3d(0, -4px, 0) rotate(46deg);
+  }
+}
+
+@keyframes heroFloatPaperB {
+  0%,
+  100% {
+    transform: translate3d(0, 0, 0) rotate(45deg);
+  }
+  50% {
+    transform: translate3d(0, -4px, 0) rotate(46deg);
+  }
+}
+
+@keyframes heroFloatPen {
+  0%,
+  100% {
+    transform: translate3d(0, 0, 0) rotate(-35deg);
+  }
+  50% {
+    transform: translate3d(0, -3px, 0) rotate(-34deg);
+  }
+}
+
+/*
+ * Pen-on-paper: letter stays fixed in the layout; only a diagonal mask
+ * sweeps across to reveal ink (no translate/scale/opacity on the glyph).
+ */
+@keyframes pen-mask-write {
+  0% {
+    -webkit-mask-position: 108% 108%;
+    mask-position: 108% 108%;
+  }
+  100% {
+    -webkit-mask-position: -42% -42%;
+    mask-position: -42% -42%;
+  }
+}
+
+.pen-handwrite-glyph {
+  display: inline-block;
+  /* Moving soft edge ≈ marker width; body of glyph is fully opaque */
+  -webkit-mask-image: linear-gradient(
+    124deg,
+    #000 0%,
+    #000 82%,
+    rgba(0, 0, 0, 0.35) 93%,
+    transparent 100%
+  );
+  mask-image: linear-gradient(
+    124deg,
+    #000 0%,
+    #000 82%,
+    rgba(0, 0, 0, 0.35) 93%,
+    transparent 100%
+  );
+  -webkit-mask-size: 260% 260%;
+  mask-size: 260% 260%;
+  -webkit-mask-position: 108% 108%;
+  mask-position: 108% 108%;
+  -webkit-mask-repeat: no-repeat;
+  mask-repeat: no-repeat;
+  will-change: mask-position;
+  animation: pen-mask-write 0.15s linear forwards;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .pen-handwrite-glyph {
+    animation: none;
+    -webkit-mask-image: none;
+    mask-image: none;
+    -webkit-mask-position: 0 0;
+    mask-position: 0 0;
+    will-change: auto;
+  }
+}
+
+@media screen and (max-width: 991px) {
+  .custom-cursor {
+    display: none;
+  }
+
+  .homepage,
+  .homepage a,
+  .homepage button,
+  .homepage img,
+  .custom-cursor-site a,
+  .custom-cursor-site button,
+  .custom-cursor-site [role="button"],
+  .custom-cursor-site input[type="submit"],
+  .custom-cursor-site input:not([type="hidden"]),
+  .custom-cursor-site label[for] {
+    cursor: auto;
+  }
+}
+
+/*
+ * Post-login splash — CRT-style two phases (clip-path, not scale):
+ * 1) Vertical blanking → hold on bright horizontal line.
+ * 2) Quick horizontal collapse + short fade.
+ */
+body.login-splash-open {
+  overflow: hidden;
+}
+
+@keyframes login-splash-collapse {
+  0% {
+    clip-path: inset(0% 0% 0% 0%);
+    -webkit-clip-path: inset(0% 0% 0% 0%);
+    opacity: 1;
+  }
+  /*
+   * Phase A — top/bottom close: full raster → thin horizontal line (like CRT vertical collapse).
+   */
+  26% {
+    clip-path: inset(49% 0% 49% 0%);
+    -webkit-clip-path: inset(49% 0% 49% 0%);
+    opacity: 1;
+  }
+  /*
+   * Phase A′ — hold: same line so it reads clearly (phosphor “beam” moment).
+   */
+  56% {
+    clip-path: inset(49% 0% 49% 0%);
+    -webkit-clip-path: inset(49% 0% 49% 0%);
+    opacity: 1;
+  }
+  /*
+   * Phase B — horizontal shut: line snaps to center, then brief decay.
+   */
+  64% {
+    clip-path: inset(49% 50% 49% 50%);
+    -webkit-clip-path: inset(49% 50% 49% 50%);
+    opacity: 1;
+  }
+  78% {
+    clip-path: inset(50% 50% 50% 50%);
+    -webkit-clip-path: inset(50% 50% 50% 50%);
+    opacity: 0;
+  }
+  100% {
+    clip-path: inset(50% 50% 50% 50%);
+    -webkit-clip-path: inset(50% 50% 50% 50%);
+    opacity: 0;
+  }
+}
+
+@keyframes login-splash-collapse-reduced {
+  to {
+    opacity: 0;
+  }
+}
+
+.login-splash-overlay__logo-wrap {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1.5rem;
+}
+
+.login-splash-overlay__logo {
+  clip-path: inset(0% 0% 0% 0%);
+  -webkit-clip-path: inset(0% 0% 0% 0%);
+  contain: paint;
+  will-change: clip-path, opacity;
+  /* Tight timing; same keyframe structure */
+  animation: login-splash-collapse 1.35s linear forwards;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .login-splash-overlay__logo {
+    animation: login-splash-collapse-reduced 0.22s ease-out forwards;
+  }
+}
