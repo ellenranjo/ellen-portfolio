@@ -4,7 +4,19 @@ import { GATE_COOKIE_NAME, getExpectedGateCookieValue } from "@/lib/gate-token";
 import {
   getSigningSecret,
   getSitePassword,
+  isPasswordConfigured,
 } from "@/lib/site-gate";
+
+/**
+ * Health check: whether login can succeed (`SITE_PASSWORD` set). Middleware still enforces
+ * protection when false — users stay on /login until env is fixed.
+ */
+export async function GET() {
+  return NextResponse.json({
+    gateConfigured: isPasswordConfigured(),
+    cookieName: GATE_COOKIE_NAME,
+  });
+}
 
 export async function POST(request: Request) {
   const configured = getSitePassword();

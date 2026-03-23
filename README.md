@@ -34,3 +34,13 @@ You can check out [the Next.js GitHub repository](https://github.com/vercel/next
 The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
 
 Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+
+### Password gate (production)
+
+Protection is **fail-closed**: middleware always runs for matched routes. Without a valid **`portfolio_site_access`** cookie, requests are redirected to **`/login`**. If **`SITE_PASSWORD`** is missing in Vercel, nobody can complete login until you set it — the homepage is still not public.
+
+1. Vercel → your project → **Settings** → **Environment Variables**
+2. Add **`SITE_PASSWORD`** (and optionally **`SITE_ACCESS_SECRET`**) for **Production** (and **Preview** if needed)
+3. **Redeploy**
+
+Check `GET /api/site-access` — `gateConfigured: true` means login can succeed. Responses from middleware include **`X-Site-Gate-Middleware: 1`** and **`X-Site-Gate-Action`**: `public` | `allow` | `redirect`. Set **`SITE_GATE_DEBUG=1`** in Vercel to log `[site-gate]` lines in the deployment’s **Functions** logs.

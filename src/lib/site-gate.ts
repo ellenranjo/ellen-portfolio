@@ -16,22 +16,33 @@ export function getSigningSecret(): string {
   return pw ? `${pw}::portfolio-gate-signing` : "";
 }
 
-export function isGateEnabled(): boolean {
+/** True when `SITE_PASSWORD` is set (login can succeed). Does not mean the site is “open”. */
+export function isPasswordConfigured(): boolean {
   return Boolean(getSitePassword());
 }
 
+/** @deprecated use isPasswordConfigured */
+export function isGateEnabled(): boolean {
+  return isPasswordConfigured();
+}
+
 /**
- * True when the gate is off, or the request has a valid httpOnly gate cookie.
+ * True only when the httpOnly gate cookie matches the server signing secret.
+ * Fail-closed: if signing cannot be verified (no secret, bad cookie, etc.) → false.
+ * Never returns true just because the password env is missing.
  */
 export async function hasValidGateCookie(
   getCookie: (name: string) => string | undefined,
 ): Promise<boolean> {
-  if (!isGateEnabled()) return true;
   const signingSecret = getSigningSecret();
-  if (!signingSecret) return false;
+  if (!signingSecret) {
+    return false;
+  }
 
   const cookie = getCookie(GATE_COOKIE_NAME);
-  if (!cookie) return false;
+  if (!cookie) {
+    return false;
+  }
 
   const expected = await getExpectedGateCookieValue(signingSecret);
   return timingSafeEqualHex(cookie, expected);
