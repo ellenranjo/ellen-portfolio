@@ -33,6 +33,31 @@
     padding-inline: max(22px, env(safe-area-inset-left))
       max(22px, env(safe-area-inset-right));
   }
+
+  /*
+   * Mobile homepage overlap guard:
+   * - reduce lockup upward tuck
+   * - add real space under nav
+   * - force projects to start below lockup
+   */
+  .homepage-hero-lockup-flow {
+    z-index: 80;
+    margin-top: -0.5rem;
+    padding-bottom: 1.5rem;
+    isolation: isolate;
+    /* TEMP DEBUG */
+    outline: 2px solid rgba(255, 0, 0, 0.7);
+    background: rgba(255, 0, 0, 0.05);
+  }
+
+  .homepage-projects {
+    position: relative;
+    z-index: 1;
+    margin-top: max(var(--hero-projects-after-lockup), 2rem) !important;
+    /* TEMP DEBUG */
+    outline: 2px solid rgba(0, 102, 255, 0.7);
+    background: rgba(0, 102, 255, 0.05);
+  }
 }
 
 @media (min-width: 1024px) {
