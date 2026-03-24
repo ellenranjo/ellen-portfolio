@@ -199,7 +199,7 @@
  * Small positive margin = deliberate gap under the paper's bottom edge (matches reference).
  * Scales with cqi so the gap stays proportional as the paper composition scales with width.
  */
-.homepage-hero-lockup-flow {
+ .homepage-hero-lockup-flow {
   position: relative;
   z-index: 40;
   display: flex;
@@ -208,7 +208,7 @@
   flex-direction: column;
   align-items: center;
   margin-inline: auto;
-  margin-top: 1.5rem;
+  margin-top: clamp(0.75rem, 3cqi, 1.5rem);
   padding-bottom: max(0.25rem, env(safe-area-inset-bottom, 0px));
   text-align: center;
   pointer-events: auto;
