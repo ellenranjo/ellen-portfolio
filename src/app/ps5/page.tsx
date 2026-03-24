@@ -148,7 +148,7 @@ export default function Ps5Page() {
       <CsBleedImg src="/images/controllerlinework.svg" className="mb-0 mt-6 h-full w-full md:mt-10" />
       <CsBleedImg src={`${W}/5f11d33d1f068f9470d4dd3d_White%20floater%20Perspective%20small.jpg`} />
       <CaseStudyImageCarousel
-        className="mt-0 mb-10 w-full md:mb-20"
+        className="mt-3 mb-10 w-full md:mb-20"
         images={[
           { src: `${W}/5f10167f4f22923c7f158882_Close%20Up%201%20small.jpg`, alt: "PS5 controller close-up" },
           { src: "/images/Close%20Up%203.jpg", alt: "PS5 controller close-up 3" },
