@@ -1,4 +1,10 @@
 import type { ReactNode } from "react";
+import Image from "next/image";
+
+/** GIF/AVIF/SVG: skip optimizer (animation, already compressed, or vector). */
+function imageUnoptimized(src: string) {
+  return /\.(gif|avif|svg)(\?|$)/i.test(src);
+}
 
 /** Matches Spectacles 5 — golden standard for typography & layout */
 
@@ -69,39 +75,83 @@ export function CsIntroCol({
   return <div className={introCol[variant]}>{children}</div>;
 }
 
-/** Full-bleed media — default matches first hero image on Spectacles */
+/** Full-bleed media — below-the-fold by default; set `priority` only when above the fold. */
 export function CsBleedImg({
   src,
   className = "mt-0 h-full w-full",
+  priority = false,
 }: {
   src: string;
   className?: string;
+  priority?: boolean;
 }) {
-  return <img src={src} alt="" className={className} />;
+  return (
+    <Image
+      src={src}
+      alt=""
+      width={2400}
+      height={1600}
+      sizes="100vw"
+      className={`max-w-none ${className}`}
+      priority={priority}
+      loading={priority ? undefined : "lazy"}
+      decoding="async"
+      unoptimized={imageUnoptimized(src)}
+    />
+  );
 }
 
 /** Use when the next block is a title section (h2 + copy). */
-export function CsBleedImgBeforeTitle({ src }: { src: string }) {
-  return <img src={src} alt="" className="mb-10 h-full w-full md:mb-20" />;
+export function CsBleedImgBeforeTitle({
+  src,
+  priority = false,
+}: {
+  src: string;
+  priority?: boolean;
+}) {
+  return (
+    <Image
+      src={src}
+      alt=""
+      width={2400}
+      height={1600}
+      sizes="100vw"
+      className="mb-10 h-auto w-full max-w-none md:mb-20"
+      priority={priority}
+      loading={priority ? undefined : "lazy"}
+      decoding="async"
+      unoptimized={imageUnoptimized(src)}
+    />
+  );
 }
 
 /**
  * First full-bleed image after the intro header (`CsMax` + title + `CsIntroRow`).
- * Matches the vertical rhythm of `CsSection` `mt-10` → next full-bleed image.
+ * Usually LCP for the case study — `priority` defaults true.
  */
 export function CsBleedImgAfterIntro({
   src,
   className,
+  priority = true,
 }: {
   src: string;
   /** Appended after the standard after-intro spacing */
   className?: string;
+  /** Set false if this image is not the main above-the-fold hero */
+  priority?: boolean;
 }) {
   return (
-    <img
+    <Image
       src={src}
       alt=""
-      className={`mt-10 mb-10 h-full w-full md:mb-20${className ? ` ${className}` : ""}`}
+      width={2400}
+      height={1600}
+      sizes="100vw"
+      className={`mt-10 mb-10 h-auto w-full max-w-none md:mb-20${className ? ` ${className}` : ""}`}
+      priority={priority}
+      loading={priority ? undefined : "lazy"}
+      decoding="async"
+      unoptimized={imageUnoptimized(src)}
     />
   );
 }

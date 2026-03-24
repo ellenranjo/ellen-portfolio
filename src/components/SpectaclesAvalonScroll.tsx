@@ -62,9 +62,14 @@ export function SpectaclesAvalonScroll({
   const sectionRef = useRef<HTMLDivElement | null>(null);
   const videoRef = useRef<HTMLVideoElement | null>(null);
   const rafRef = useRef<number>(0);
+  /** Skip scroll-driven work until the section is near the viewport (saves main-thread cost). */
+  const sectionNearViewRef = useRef(false);
   const [duration, setDuration] = useState(0);
   const [progress, setProgress] = useState(0);
   const [videoReady, setVideoReady] = useState(false);
+  const [videoPreload, setVideoPreload] = useState<"none" | "metadata" | "auto">(
+    "metadata",
+  );
   const seekingRef = useRef(false);
 
   const onDurationReady = useCallback((v: HTMLVideoElement) => {
@@ -74,14 +79,47 @@ export function SpectaclesAvalonScroll({
     }
   }, []);
 
+  /* Promote preload + scroll sync only when user approaches this tall section */
+  useEffect(() => {
+    const el = sectionRef.current;
+    if (!el) return;
+    const io = new IntersectionObserver(
+      ([e]) => {
+        const on = !!(e?.isIntersecting);
+        sectionNearViewRef.current = on;
+        if (on) {
+          setVideoPreload("auto");
+          const v = videoRef.current;
+          if (v) {
+            v.preload = "auto";
+            try {
+              v.load();
+            } catch {
+              /* ignore */
+            }
+          }
+          requestAnimationFrame(() => {
+            const s = sectionRef.current;
+            if (s) setProgress(getProgress(s));
+          });
+        }
+      },
+      { rootMargin: "60% 0px 60% 0px", threshold: 0 },
+    );
+    io.observe(el);
+    return () => io.disconnect();
+  }, []);
+
   useEffect(() => {
     const update = () => {
       rafRef.current = 0;
       if (!sectionRef.current) return;
+      if (!sectionNearViewRef.current) return;
       setProgress(getProgress(sectionRef.current));
     };
 
     const onScroll = () => {
+      if (!sectionNearViewRef.current) return;
       if (rafRef.current) return;
       rafRef.current = window.requestAnimationFrame(update);
     };
@@ -149,23 +187,17 @@ export function SpectaclesAvalonScroll({
     }
   }, [progress, duration]);
 
-  /* Ensure video starts preloading on mobile Safari (which ignores preload="auto" sometimes) */
+  /* When section becomes active, nudge Safari to buffer (handled in IO above too) */
   useEffect(() => {
+    if (videoPreload !== "auto") return;
     const v = videoRef.current;
     if (!v) return;
-
-    const tryLoad = () => {
-      try {
-        v.load();
-      } catch {
-        /* ignore */
-      }
-    };
-
-    if (v.readyState < 2) {
-      tryLoad();
+    try {
+      v.load();
+    } catch {
+      /* ignore */
     }
-  }, []);
+  }, [videoPreload]);
 
   const sensorsStyle = getTextStyle(progress, 0.17, 0.31, 0.36);
   const computingStyle = getTextStyle(progress, 0.45, 0.6, 0.65);
@@ -184,7 +216,7 @@ export function SpectaclesAvalonScroll({
           className="h-full w-full object-contain xl:object-cover"
           playsInline
           muted
-          preload="auto"
+          preload={videoPreload}
           poster={POSTER_SRC}
           aria-hidden="true"
           onLoadedMetadata={(e) => onDurationReady(e.currentTarget)}
@@ -205,6 +237,8 @@ export function SpectaclesAvalonScroll({
             src={POSTER_SRC}
             alt=""
             aria-hidden="true"
+            decoding="async"
+            fetchPriority="low"
             className="absolute inset-0 z-[1] h-full w-full object-contain xl:object-cover"
           />
         ) : null}

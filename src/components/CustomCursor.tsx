@@ -27,7 +27,7 @@ export function CustomCursor() {
         !!target?.closest("a.group") ||
         !!target?.closest("a.liquid-glass-button");
 
-      if (!isVisible) setIsVisible(true);
+      setIsVisible(true);
       setIsInteractive((prev) => (prev === interactive ? prev : interactive));
       updateCursor(event.clientX, event.clientY, interactive);
     };
@@ -35,7 +35,7 @@ export function CustomCursor() {
     const handleLeaveWindow = () => setIsVisible(false);
     const handleEnterWindow = () => setIsVisible(true);
 
-    window.addEventListener("mousemove", handleMove);
+    window.addEventListener("mousemove", handleMove, { passive: true });
     window.addEventListener("mouseout", handleLeaveWindow);
     window.addEventListener("mouseover", handleEnterWindow);
 
@@ -44,7 +44,7 @@ export function CustomCursor() {
       window.removeEventListener("mouseout", handleLeaveWindow);
       window.removeEventListener("mouseover", handleEnterWindow);
     };
-  }, [isVisible]);
+  }, []);
 
   return (
     <div

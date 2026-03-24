@@ -305,6 +305,12 @@ body::before {
   cursor: none;
 }
 
+/* Below-the-fold project list: browser can defer layout/paint until near viewport */
+.homepage-projects {
+  content-visibility: auto;
+  contain-intrinsic-size: auto 720px;
+}
+
 /* Links/buttons get UA `cursor: pointer`, which overrides inherited `none` — hide system cursor on desktop */
 @media screen and (min-width: 992px) {
   .custom-cursor-site a,
@@ -1029,6 +1035,14 @@ body::before {
 
 .hero-float-pen-image {
   animation: heroFloatPen 8.6s ease-in-out infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero-float-paper-a,
+  .hero-float-paper-b,
+  .hero-float-pen-image {
+    animation: none;
+  }
 }
 
 @keyframes heroFloatPaperA {

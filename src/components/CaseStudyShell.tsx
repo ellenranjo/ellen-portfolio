@@ -1,4 +1,6 @@
 import type { ReactNode } from "react";
+import Image from "next/image";
+import { SITE_NAME_GIF_SRC } from "@/lib/site-assets";
 
 type CaseStudyShellProps = {
   children: ReactNode;
@@ -24,10 +26,14 @@ export function CaseStudyShell({
       >
         <div className="mx-auto flex flex-col items-center">
           <a href="/" className="site-header-name mb-0 block">
-            <img
-              src="/images/webflow/5dc8fae852f69fd0d2957908_MOSHED-2019-11-10-22-8-22.gif"
+            <Image
+              src={SITE_NAME_GIF_SRC}
               alt="Ellen Huynh"
+              width={220}
+              height={72}
               className="w-full"
+              loading="eager"
+              unoptimized
             />
           </a>
           <div className="site-header-tagline mt-0">industrial designer</div>

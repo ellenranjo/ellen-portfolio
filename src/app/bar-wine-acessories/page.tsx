@@ -125,6 +125,8 @@ export default function BarWineAccessoriesPage() {
         <img
           src={`${W}/5f6a596d09584402fd12ea11_BAG1.jpg`}
           alt=""
+          width={1600}
+          height={1066}
           className="mt-0 mb-0 block h-auto w-full"
           loading="lazy"
           decoding="async"
@@ -132,6 +134,8 @@ export default function BarWineAccessoriesPage() {
         <img
           src={`${W}/5f6a59ab1514cba28f1b0cf5_image%20(7).png`}
           alt="Wine opener product in context"
+          width={1600}
+          height={1066}
           className="mb-5 mt-0 block h-auto w-full md:mb-6"
           loading="lazy"
           decoding="async"

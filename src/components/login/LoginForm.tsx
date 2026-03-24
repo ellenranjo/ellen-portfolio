@@ -4,11 +4,10 @@ import { useRouter, useSearchParams } from "next/navigation";
 import { useCallback, useState, useTransition } from "react";
 import { PostLoginSplashOverlay } from "@/components/login/PostLoginSplashOverlay";
 import { safeInternalPath } from "@/lib/safe-redirect";
+import { SITE_NAME_GIF_SRC } from "@/lib/site-assets";
+import Image from "next/image";
 
 const CONTACT_EMAIL = "ellenxoonu@gmail.com";
-
-const NAME_GIF_SRC =
-  "/images/webflow/5dc8fae852f69fd0d2957908_MOSHED-2019-11-10-22-8-22.gif";
 
 export function LoginForm() {
   const router = useRouter();
@@ -51,7 +50,7 @@ export function LoginForm() {
     <>
       {showSplash ? (
         <PostLoginSplashOverlay
-          gifSrc={NAME_GIF_SRC}
+          gifSrc={SITE_NAME_GIF_SRC}
           onComplete={handleSplashComplete}
         />
       ) : null}
@@ -62,10 +61,14 @@ export function LoginForm() {
         noValidate
       >
       <a href="/" className="site-header-name mb-0 mx-auto block shrink-0">
-        <img
-          src={NAME_GIF_SRC}
+        <Image
+          src={SITE_NAME_GIF_SRC}
           alt="Ellen Huynh"
+          width={220}
+          height={72}
           className="w-full"
+          priority
+          unoptimized
         />
       </a>
 

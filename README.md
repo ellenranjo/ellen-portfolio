@@ -44,3 +44,16 @@ Protection is **fail-closed**: middleware always runs for matched routes. Withou
 3. **Redeploy**
 
 Check `GET /api/site-access` — `gateConfigured: true` means login can succeed. Responses from middleware include **`X-Site-Gate-Middleware: 1`** and **`X-Site-Gate-Action`**: `public` | `allow` | `redirect`. Set **`SITE_GATE_DEBUG=1`** in Vercel to log `[site-gate]` lines in the deployment’s **Functions** logs.
+
+### Performance (images & media)
+
+- **Next.js Image** (`next/image`) is used for case-study bleed images, homepage/project cards, about portrait, and shared header GIF (GIFs use `unoptimized` so animation is preserved).
+- **Priority loading** is limited to the homepage name GIF, login splash, and the first full-bleed image after each case-study intro (`CsBleedImgAfterIntro`).
+- **Photography grid** HTML is post-processed so the first image is `fetchpriority="high"` / `loading="eager"` and the rest use `loading="lazy"` + `decoding="async"`.
+- **Spectacles scroll video** uses `preload="metadata"` until the section nears the viewport, then switches to full load (reduces bandwidth before scroll).
+- **PS5 inline videos** use `preload="metadata"` (still autoplay when in view).
+- **Project card hover videos** use `preload="none"` and `poster` set to the static card image.
+- **Custom cursor** listeners use a stable `useEffect` dependency list and `passive: true` on `mousemove`.
+- **Optional next steps** (manual): re-encode very large files under `public/images/` (e.g. `Front.mp4` ~22MB) for mobile; consider replacing the header GIF with a short **MP4/WebM** loop for smaller bytes (same visual loop).
+
+Duplicate **`PS5 FINAL.gif`** / **`ps5-final.gif`** (if both exist): only **`ps5-final.mp4`** / **`ps5-final.gif`** are referenced in code — you can delete the unused duplicate after confirming locally.

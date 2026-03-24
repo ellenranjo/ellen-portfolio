@@ -1,5 +1,7 @@
+import Image from "next/image";
 import { HandwrittenPaperMessage } from "@/components/HandwrittenPaperMessage";
 import { ProjectCard } from "@/components/ProjectCard";
+import { SITE_NAME_GIF_SRC } from "@/lib/site-assets";
 
 type Project = {
   href: string;
@@ -72,11 +74,14 @@ export default function Home() {
                   <div className="hero-float-paper-b absolute left-[25%] top-[-16%] z-[2] w-[38%] rotate-[47deg] overflow-hidden bg-white shadow-[0_7px_16px_rgba(25,25,25,0.12)] aspect-[11/17]">
                     <HandwrittenPaperMessage />
                   </div>
-                  <img
+                  <Image
                     src="/Papermate2.png"
                     alt=""
-                    aria-hidden="true"
+                    width={320}
+                    height={160}
+                    sizes="22vw"
                     className="hero-float-pen-image absolute left-[60%] top-[20%] z-30 w-[22%] rotate-[-35deg] mix-blend-multiply"
+                    fetchPriority="low"
                   />
                 </div>
               </div>
@@ -86,10 +91,14 @@ export default function Home() {
           {/* Name → subtitle → nav: all in flow below the paper stack */}
           <div className="homepage-hero-lockup-flow">
             <a href="/" className="site-header-name mb-0">
-              <img
-                src="/images/webflow/5dc8fae852f69fd0d2957908_MOSHED-2019-11-10-22-8-22.gif"
+              <Image
+                src={SITE_NAME_GIF_SRC}
                 alt="Ellen Huynh"
+                width={220}
+                height={72}
                 className="w-full"
+                priority
+                unoptimized
               />
             </a>
             <div className="site-header-tagline">industrial designer</div>

@@ -117,7 +117,7 @@ export default function Ps5Page() {
           loop
           muted
           playsInline
-          preload="auto"
+          preload="metadata"
         >
           <source src="/images/paring_3.mp4" type="video/mp4" />
         </video>
@@ -130,7 +130,7 @@ export default function Ps5Page() {
           loop
           muted
           playsInline
-          preload="auto"
+          preload="metadata"
         >
           <source src="/images/Paddle%20Press.mp4" type="video/mp4" />
         </video>
@@ -176,7 +176,7 @@ export default function Ps5Page() {
         loop
         muted
         playsInline
-        preload="auto"
+        preload="metadata"
       >
         <source src="/images/ps5-final.mp4" type="video/mp4" />
       </video>
@@ -197,7 +197,7 @@ export default function Ps5Page() {
         loop
         muted
         playsInline
-        preload="auto"
+        preload="metadata"
       >
         <source src="/images/Front.mp4" type="video/mp4" />
       </video>

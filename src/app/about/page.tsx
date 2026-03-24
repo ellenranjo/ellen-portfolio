@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 import { PeerTestimonials } from "@/components/about/PeerTestimonials";
 import { CaseStudyShell } from "@/components/CaseStudyShell";
 import { aboutPeerTestimonials } from "@/data/aboutPeerTestimonials";
@@ -17,13 +18,15 @@ export default function AboutPage() {
       <div className="mx-auto w-full max-w-[940px] px-6 pb-6 font-sans md:px-10 md:pb-10">
         <div className="mt-2 grid grid-cols-1 gap-8 md:mt-4 md:grid-cols-[minmax(0,34%)_minmax(0,1fr)] md:items-stretch md:gap-10">
           <div className="image-69 relative mx-auto flex w-full max-w-[280px] min-h-[280px] flex-col overflow-hidden rounded-sm md:mx-0 md:max-w-none md:h-full md:min-h-0">
-            <img
+            <Image
               src={ABOUT_PORTRAIT}
               width={520}
               height={520}
               alt="Ellen Huynh"
               className="min-h-[280px] w-full flex-1 object-cover object-[center_22%] md:min-h-0"
               sizes="(max-width: 767px) 100vw, 34vw"
+              loading="lazy"
+              decoding="async"
             />
           </div>
 

@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { readFileSync } from "fs";
 import { join } from "path";
 import { CaseStudyShell } from "@/components/CaseStudyShell";
+import { optimizePhotographyGalleryHtml } from "@/lib/photography-gallery-html";
 
 const WEBFLOW_SHARED_CSS = "/images/webflow/css/ellen-huynh.webflow.shared.bbf26b8a1.css";
 
@@ -12,7 +13,8 @@ export const metadata: Metadata = {
 
 function getGalleryHtml() {
   const filePath = join(process.cwd(), "src", "data", "photography-gallery.html");
-  return readFileSync(filePath, "utf-8");
+  const raw = readFileSync(filePath, "utf-8");
+  return optimizePhotographyGalleryHtml(raw);
 }
 
 export default async function PhotographyPage() {

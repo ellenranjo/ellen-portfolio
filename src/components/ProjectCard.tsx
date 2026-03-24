@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import { useRef } from "react";
 
 type Project = {
@@ -35,10 +36,15 @@ export function ProjectCard({ project }: { project: Project }) {
       }}
     >
       <div className="relative aspect-video w-full overflow-hidden bg-transparent transition-colors duration-200 group-hover:bg-white group-active:bg-white">
-        <img
+        <Image
           src={project.image}
           alt={project.title}
-          className={`h-full w-full object-cover transition-opacity duration-200 group-hover:opacity-80 group-active:opacity-80 ${project.hoverMedia ? "group-hover:hidden" : ""}`}
+          fill
+          sizes="(max-width: 768px) 92vw, 66vw"
+          className={`object-cover transition-opacity duration-200 group-hover:opacity-80 group-active:opacity-80 ${project.hoverMedia ? "group-hover:hidden" : ""}`}
+          loading="lazy"
+          decoding="async"
+          unoptimized={/\.gif(\?|$)/i.test(project.image)}
         />
         {project.hoverMedia &&
           (hoverIsVideo ? (
@@ -48,14 +54,20 @@ export function ProjectCard({ project }: { project: Project }) {
               muted
               loop
               playsInline
-              preload="auto"
+              preload="none"
+              poster={project.image}
               className="hidden h-full w-full object-cover transition-opacity duration-200 group-hover:block group-hover:opacity-80"
             />
           ) : (
-            <img
+            <Image
               src={project.hoverMedia}
               alt={`${project.title} preview animation`}
-              className="hidden h-full w-full object-cover transition-opacity duration-200 group-hover:block group-hover:opacity-80"
+              fill
+              sizes="(max-width: 768px) 92vw, 66vw"
+              className="hidden object-cover transition-opacity duration-200 group-hover:block group-hover:opacity-80"
+              loading="lazy"
+              decoding="async"
+              unoptimized={/\.gif(\?|$)/i.test(project.hoverMedia)}
             />
           ))}
       </div>

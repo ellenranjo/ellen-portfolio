@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import { useCallback, useEffect, useRef, useState } from "react";
 import { createPortal } from "react-dom";
 
@@ -62,11 +63,15 @@ export function PostLoginSplashOverlay({
           className="login-splash-overlay__logo site-header-name shrink-0"
           onAnimationEnd={handleAnimationEnd}
         >
-          <img
+          <Image
             src={gifSrc}
             alt=""
+            width={220}
+            height={72}
             className="block w-full max-w-none"
             draggable={false}
+            priority
+            unoptimized
           />
         </div>
       </div>
