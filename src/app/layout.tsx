@@ -16,6 +16,9 @@ const geistMono = Geist_Mono({
 export const metadata: Metadata = {
   title: "Ellen Huynh | Designer",
   description: "Industrial design portfolio of Ellen Huynh.",
+  icons: {
+    icon: "/images/EH.png",
+  },
 };
 
 export default function RootLayout({
