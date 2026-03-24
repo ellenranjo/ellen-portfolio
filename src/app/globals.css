@@ -40,10 +40,17 @@
    * - add real space under nav
    * - force projects to start below lockup
    */
+  .homepage-hero {
+    /* Keep hero/nav clearly above first card stack on iOS Safari */
+    z-index: 30;
+    padding-bottom: 2rem;
+  }
+
   .homepage-hero-lockup-flow {
-    z-index: 80;
-    margin-top: -0.5rem;
-    padding-bottom: 1.5rem;
+    z-index: 90;
+    /* Mobile: no upward tuck; keep lockup fully in-flow under paper */
+    margin-top: 0.25rem;
+    padding-bottom: 0;
     isolation: isolate;
     /* TEMP DEBUG */
     outline: 2px solid rgba(255, 0, 0, 0.7);
@@ -53,7 +60,10 @@
   .homepage-projects {
     position: relative;
     z-index: 1;
-    margin-top: max(var(--hero-projects-after-lockup), 2rem) !important;
+    margin-top: 0 !important;
+    /* iOS Safari can misbehave with content-visibility near overlap boundaries */
+    content-visibility: visible;
+    contain-intrinsic-size: auto;
     /* TEMP DEBUG */
     outline: 2px solid rgba(0, 102, 255, 0.7);
     background: rgba(0, 102, 255, 0.05);
