@@ -151,6 +151,8 @@ export default function Ps5Page() {
         className="mt-0 mb-10 w-full md:mb-20"
         images={[
           { src: `${W}/5f10167f4f22923c7f158882_Close%20Up%201%20small.jpg`, alt: "PS5 controller close-up" },
+          { src: "/images/Close%20up%205.jpg", alt: "PS5 controller close-up detail" },
+          { src: "/images/Black%20ISO%20back.jpg", alt: "PS5 controller black ISO back view" },
           { src: `${W}/5f20ce24e75e6d2b2f3d360b_ps5%20controller%20concept%202.136.png`, alt: "PS5 controller concept render" },
         ]}
         regionLabel="PS5 controller detail images"
