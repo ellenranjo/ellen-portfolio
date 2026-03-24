@@ -319,12 +319,19 @@ body::before {
 
 /*
  * MOBILE OVERLAP GUARD — must come AFTER the global rules above so cascade wins.
- * On mobile: remove lockup upward tuck, add explicit space, raise stacking.
+ *
+ * Root cause of the gap: .homepage-hero-stage min-height (304px on iPhone) is much
+ * taller than the visual paper composition (~180-200px). Papers are absolutely
+ * positioned so they don't shrink the box — min-height creates ~100px of dead space
+ * below the papers. Fix: reduce stage min-height on mobile.
  */
 @media (max-width: 767px) {
   .homepage-hero {
     z-index: 30;
-    padding-bottom: 2.5rem;
+  }
+
+  .homepage-hero-stage {
+    min-height: 13rem;
   }
 
   .homepage-hero-lockup-flow {
