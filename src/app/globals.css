@@ -15,7 +15,8 @@
 
 @media (max-width: 767px) {
   :root {
-    --hero-projects-after-lockup: clamp(1rem, 4.2vw, 1.5rem);
+    /* Mobile: extra breathing room so first project cards never overlap nav tap targets. */
+    --hero-projects-after-lockup: clamp(1.75rem, 6vw, 2.5rem);
   }
 
   /* Site-wide: more horizontal breathing room for text + hero on small screens */
@@ -61,6 +62,8 @@
  * 1.25rem band) so the composition sits higher while notched devices still respect inset.
  */
 .homepage-hero {
+  position: relative;
+  z-index: 20;
   margin-top: clamp(-2.25rem, -3.25vw, -0.625rem);
   padding-top: env(safe-area-inset-top, 0px);
 }
@@ -307,6 +310,8 @@ body::before {
 
 /* Below-the-fold project list: browser can defer layout/paint until near viewport */
 .homepage-projects {
+  position: relative;
+  z-index: 1;
   content-visibility: auto;
   contain-intrinsic-size: auto 720px;
 }
