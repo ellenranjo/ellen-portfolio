@@ -328,7 +328,7 @@ body::before {
   }
 
   .homepage-hero-lockup-flow {
-    margin-top: 0.25rem;
+    margin-top: -1rem;
     z-index: 90;
     isolation: isolate;
   }
