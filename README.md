@@ -54,6 +54,4 @@ Check `GET /api/site-access` — `gateConfigured: true` means login can succeed.
 - **PS5 inline videos** use `preload="metadata"` (still autoplay when in view).
 - **Project card hover videos** use `preload="none"` and `poster` set to the static card image.
 - **Custom cursor** listeners use a stable `useEffect` dependency list and `passive: true` on `mousemove`.
-- **Optional next steps** (manual): re-encode very large files under `public/images/` (e.g. `Front.mp4` ~22MB) for mobile; consider replacing the header GIF with a short **MP4/WebM** loop for smaller bytes (same visual loop).
-
-Duplicate **`PS5 FINAL.gif`** / **`ps5-final.gif`** (if both exist): only **`ps5-final.mp4`** / **`ps5-final.gif`** are referenced in code — you can delete the unused duplicate after confirming locally.
+- **PS5 page videos** are re-encoded at two resolutions: 1920px (desktop) and 1280px (tablet/mobile). The `AutoPlayVideo` component picks the right source via `matchMedia` and uses `IntersectionObserver` to defer loading until near-viewport.

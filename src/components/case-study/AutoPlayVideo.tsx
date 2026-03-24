@@ -3,22 +3,29 @@
 import { useEffect, useRef, useState } from "react";
 
 type AutoPlayVideoProps = {
+  /** Desktop / default source */
   src: string;
+  /** Smaller source served on viewports <= 1024px (tablet & phone) */
+  mobileSrc?: string;
   poster?: string;
   className?: string;
   /** How far from the viewport to begin loading. Default "200% 0px" */
   rootMargin?: string;
 };
 
+const MOBILE_MQ = "(max-width: 1024px)";
+
 /**
- * Self-managing autoplay video:
- * 1. Shows poster image immediately (no bandwidth cost)
- * 2. When section enters rootMargin, sets preload="auto" and calls load()
- * 3. Once canplay fires, calls play() with Safari promise handling
- * 4. Fades video in over poster once actually playing
+ * Self-managing autoplay video with responsive source selection:
+ * 1. Picks mobileSrc or src based on viewport width at mount time
+ * 2. Shows poster as CSS background (zero video bandwidth initially)
+ * 3. IntersectionObserver triggers preload="auto" + load() when near viewport
+ * 4. Calls play() with Safari promise handling once canplay fires
+ * 5. Fades video in over poster once actually playing
  */
 export function AutoPlayVideo({
   src,
+  mobileSrc,
   poster,
   className,
   rootMargin = "200% 0px",
@@ -31,6 +38,11 @@ export function AutoPlayVideo({
     const wrap = wrapRef.current;
     const video = videoRef.current;
     if (!wrap || !video) return;
+
+    const resolvedSrc =
+      mobileSrc && window.matchMedia(MOBILE_MQ).matches ? mobileSrc : src;
+    const sourceEl = video.querySelector("source");
+    if (sourceEl) sourceEl.src = resolvedSrc;
 
     const io = new IntersectionObserver(
       ([entry]) => {
@@ -64,7 +76,7 @@ export function AutoPlayVideo({
       io.disconnect();
       video.removeEventListener("playing", onPlaying);
     };
-  }, [rootMargin]);
+  }, [src, mobileSrc, rootMargin]);
 
   return (
     <div

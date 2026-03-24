@@ -114,7 +114,8 @@ export default function Ps5Page() {
       <CsBleedImg src={`${W}/5f0d631fec956205d510c0a3_Black%20iso.jpg`} />
       <section className="relative w-full bg-[#181818] py-10 md:py-16">
         <AutoPlayVideo
-          src="/images/paring_3.mp4"
+          src="/images/paring_3-desktop.mp4"
+          mobileSrc="/images/paring_3-mobile.mp4"
           poster={`${W}/5f0d631fec956205d510c0a3_Black%20iso.jpg`}
           className="absolute left-1/2 top-1/2 z-[1] h-[80%] w-[80%] -translate-x-1/2 -translate-y-1/2 object-contain"
         />
@@ -122,7 +123,8 @@ export default function Ps5Page() {
       </section>
       <section className="relative mb-10 w-full bg-[#181818] py-10 md:mb-20 md:py-16">
         <AutoPlayVideo
-          src="/images/Paddle%20Press.mp4"
+          src="/images/Paddle%20Press-desktop.mp4"
+          mobileSrc="/images/Paddle%20Press-mobile.mp4"
           poster={`${W}/5f0d631fec956205d510c0a3_Black%20iso.jpg`}
           className="absolute left-0 top-1/2 z-[1] w-[80%] -translate-y-1/2 object-cover"
         />
@@ -176,6 +178,7 @@ export default function Ps5Page() {
         src="/images/ps5-final.mp4"
         poster="/images/ps5-poster.jpg"
         className="mb-10 mt-0 block h-full w-full object-cover [transform:translateZ(0)] [backface-visibility:hidden] md:mb-20"
+        rootMargin="300% 0px"
       />
       <CsSection>
         <CsH2>Visual Control Panel</CsH2>
@@ -189,7 +192,8 @@ export default function Ps5Page() {
         </CsBody>
       </CsSection>
       <AutoPlayVideo
-        src="/images/Front.mp4"
+        src="/images/Front-desktop.mp4"
+        mobileSrc="/images/Front-mobile.mp4"
         poster="/images/ps5-poster.jpg"
         className="mb-0 mt-0 block h-full w-full object-cover [transform:translateZ(0)] [backface-visibility:hidden]"
       />
