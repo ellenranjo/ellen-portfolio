@@ -200,8 +200,9 @@
 }
 
 /*
- * Name → subtitle → nav: normal flow directly under .homepage-hero-stage.
- * Small gap only (stage height already defines most of the vertical rhythm).
+ * Name → subtitle → nav: normal flow under .homepage-hero-stage.
+ * Slight negative margin tucks the lockup under the paper (subtle overlap); capped so
+ * it never exceeds -2rem and never weaker than -0.5rem — stable on phone / tablet / desktop.
  */
 .homepage-hero-lockup-flow {
   position: relative;
@@ -212,7 +213,7 @@
   flex-direction: column;
   align-items: center;
   margin-inline: auto;
-  margin-top: clamp(0.25rem, 1.25cqi, 0.75rem);
+  margin-top: clamp(-2rem, -1.25cqi, -0.5rem);
   padding-bottom: max(0.25rem, env(safe-area-inset-bottom, 0px));
   text-align: center;
   pointer-events: auto;
