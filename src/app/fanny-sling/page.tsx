@@ -74,7 +74,7 @@ export default function FannySlingPage() {
 
       <CsBleedImg
         src={`${W}/5db6711d19de5556e2f00d6e_momentfanny.jpg`}
-        className="mt-10 mb-10 h-auto w-[70%] md:mb-20"
+        className="mt-10 mb-10 ml-auto h-auto w-[70%] md:mb-20"
         priority
       />
 
