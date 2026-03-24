@@ -1,3 +1,4 @@
+import Image from "next/image";
 import {
   CsBody,
   CsH2,
@@ -61,12 +62,16 @@ export function FannySlingTechPack() {
 
       <figure className="fanny-tech-pack__figure mx-auto mt-0 w-full max-w-[min(100vw,1040px)] px-6 sm:px-5 md:px-6">
         <div className="fanny-tech-pack__frame overflow-hidden rounded-md">
-          <img
+          <Image
             src={SPEC_IMAGE}
             alt="Moment sling pattern: technical line drawing with panel dimensions, zipper run, and hardware callouts."
+            width={1040}
+            height={600}
+            sizes="(max-width: 768px) 90vw, 1040px"
             className="h-auto w-full"
             loading="lazy"
             decoding="async"
+            unoptimized
           />
         </div>
       </figure>

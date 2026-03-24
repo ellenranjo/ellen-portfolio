@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 import { CaseStudyShell } from "@/components/CaseStudyShell";
 import {
   CsBody,
@@ -122,20 +123,22 @@ export default function BarWineAccessoriesPage() {
       />
 
       <div className="flex w-full flex-col gap-0">
-        <img
+        <Image
           src={`${W}/5f6a596d09584402fd12ea11_BAG1.jpg`}
           alt=""
           width={1600}
           height={1066}
+          sizes="100vw"
           className="mt-0 mb-0 block h-auto w-full"
           loading="lazy"
           decoding="async"
         />
-        <img
+        <Image
           src={`${W}/5f6a59ab1514cba28f1b0cf5_image%20(7).png`}
           alt="Wine opener product in context"
           width={1600}
           height={1066}
+          sizes="100vw"
           className="mb-5 mt-0 block h-auto w-full md:mb-6"
           loading="lazy"
           decoding="async"

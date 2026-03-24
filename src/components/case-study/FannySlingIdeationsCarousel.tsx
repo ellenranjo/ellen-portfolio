@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import { useCallback, useEffect, useId, useRef, useState } from "react";
 
 function ChevronLeft({ className }: { className?: string }) {
@@ -194,9 +195,12 @@ export function FannySlingIdeationsCarousel({
         <div className="fanny-ideations-scroll__track">
           {images.map((img, i) => (
             <div key={img.src} className="fanny-ideations-scroll__card">
-              <img
+              <Image
                 src={img.src}
                 alt={img.alt ?? ""}
+                width={1200}
+                height={800}
+                sizes="(max-width: 479px) 65vw, 50vw"
                 loading={i === 0 ? "eager" : "lazy"}
                 decoding="async"
               />

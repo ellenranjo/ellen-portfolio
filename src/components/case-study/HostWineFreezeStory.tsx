@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import { useEffect, useRef, useState } from "react";
 import {
   csCopy,
@@ -7,6 +8,10 @@ import {
   csHeadingToBodyGapTop,
   csSectionWidth,
 } from "@/components/case-study/CaseStudyPrimitives";
+
+function isAnimated(src: string) {
+  return /\.(gif|avif|svg)(\?|$)/i.test(src);
+}
 
 type HostWineFreezeStoryProps = {
   /** Previous cup — visible part line / older mold */
@@ -68,11 +73,15 @@ export function HostWineFreezeStory({
               Old design
             </figcaption>
             <div className="host-freeze-story__compare-frame">
-              <img
+              <Image
                 src={oldDesignSrc}
                 alt="Host wine freeze cup — previous design with visible part line"
+                width={800}
+                height={800}
+                sizes="(max-width: 640px) 90vw, 40vw"
                 loading="lazy"
                 decoding="async"
+                unoptimized={isAnimated(oldDesignSrc)}
               />
             </div>
           </div>
@@ -89,11 +98,15 @@ export function HostWineFreezeStory({
               New design
             </figcaption>
             <div className="host-freeze-story__compare-frame">
-              <img
+              <Image
                 src={newDesignSrc}
                 alt="Host wine freeze cup — redesigned silhouette, improved weld and part line"
+                width={800}
+                height={800}
+                sizes="(max-width: 640px) 90vw, 40vw"
                 loading="lazy"
                 decoding="async"
+                unoptimized={isAnimated(newDesignSrc)}
               />
             </div>
           </div>
@@ -142,30 +155,42 @@ export function HostWineFreezeStory({
         }`}
       >
         <div className="host-freeze-story__catalog w-full">
-          <img
+          <Image
             src={catalogSrc}
             alt="True Brands catalog — Host wine freeze cup in retail context"
+            width={2400}
+            height={1600}
+            sizes="100vw"
             loading="lazy"
             decoding="async"
             className="block h-auto w-full max-w-none"
+            unoptimized={isAnimated(catalogSrc)}
           />
         </div>
         {designLoopSrc ? (
-          <img
+          <Image
             src={designLoopSrc}
             alt=""
+            width={2400}
+            height={1600}
+            sizes="100vw"
             loading="lazy"
             decoding="async"
             className="mt-0 block h-auto w-full max-w-none"
+            unoptimized={isAnimated(designLoopSrc)}
           />
         ) : null}
         {postDesignBleedSrc ? (
-          <img
+          <Image
             src={postDesignBleedSrc}
             alt=""
+            width={2400}
+            height={1600}
+            sizes="100vw"
             loading="lazy"
             decoding="async"
             className="mt-0 block h-auto w-full max-w-none"
+            unoptimized={isAnimated(postDesignBleedSrc)}
           />
         ) : null}
       </div>

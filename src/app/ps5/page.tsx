@@ -12,6 +12,7 @@ import {
   CsMax,
   CsSection,
 } from "@/components/case-study/CaseStudyPrimitives";
+import { CaseStudyImageCarousel } from "@/components/case-study/CaseStudyImageCarousel";
 
 export const metadata: Metadata = {
   title: "PlayStation 5 Controller",
@@ -118,6 +119,7 @@ export default function Ps5Page() {
           muted
           playsInline
           preload="metadata"
+          poster={`${W}/5f0d631fec956205d510c0a3_Black%20iso.jpg`}
         >
           <source src="/images/paring_3.mp4" type="video/mp4" />
         </video>
@@ -131,6 +133,7 @@ export default function Ps5Page() {
           muted
           playsInline
           preload="metadata"
+          poster={`${W}/5f0d631fec956205d510c0a3_Black%20iso.jpg`}
         >
           <source src="/images/Paddle%20Press.mp4" type="video/mp4" />
         </video>
@@ -144,10 +147,16 @@ export default function Ps5Page() {
       </CsSection>
       <CsBleedImg src="/images/controllerlinework.svg" className="mb-0 mt-6 h-full w-full md:mt-10" />
       <CsBleedImg src={`${W}/5f11d33d1f068f9470d4dd3d_White%20floater%20Perspective%20small.jpg`} />
-      <CsBleedImg src={`${W}/5f10167f4f22923c7f158882_Close%20Up%201%20small.jpg`} />
-      <CsBleedImg
-        src={`${W}/5f20ce24e75e6d2b2f3d360b_ps5%20controller%20concept%202.136.png`}
-        className="mb-10 mt-0 h-full w-full md:mb-20"
+      <CaseStudyImageCarousel
+        className="mt-0 mb-10 w-full md:mb-20"
+        images={[
+          { src: `${W}/5f10167f4f22923c7f158882_Close%20Up%201%20small.jpg`, alt: "PS5 controller close-up" },
+          { src: `${W}/5f20ce24e75e6d2b2f3d360b_ps5%20controller%20concept%202.136.png`, alt: "PS5 controller concept render" },
+        ]}
+        regionLabel="PS5 controller detail images"
+        scrollerLabel="Controller detail images — swipe or use arrow keys"
+        prevLabel="Previous controller image"
+        nextLabel="Next controller image"
       />
       <CsSection>
         <CsH2>User Interface</CsH2>
@@ -177,6 +186,7 @@ export default function Ps5Page() {
         muted
         playsInline
         preload="metadata"
+        poster="/images/ps5-poster.jpg"
       >
         <source src="/images/ps5-final.mp4" type="video/mp4" />
       </video>
@@ -198,6 +208,7 @@ export default function Ps5Page() {
         muted
         playsInline
         preload="metadata"
+        poster="/images/ps5-poster.jpg"
       >
         <source src="/images/Front.mp4" type="video/mp4" />
       </video>
