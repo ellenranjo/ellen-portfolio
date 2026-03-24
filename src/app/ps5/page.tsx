@@ -12,6 +12,7 @@ import {
   CsMax,
   CsSection,
 } from "@/components/case-study/CaseStudyPrimitives";
+import { AutoPlayVideo } from "@/components/case-study/AutoPlayVideo";
 import { CaseStudyImageCarousel } from "@/components/case-study/CaseStudyImageCarousel";
 
 export const metadata: Metadata = {
@@ -112,31 +113,19 @@ export default function Ps5Page() {
 
       <CsBleedImg src={`${W}/5f0d631fec956205d510c0a3_Black%20iso.jpg`} />
       <section className="relative w-full bg-[#181818] py-10 md:py-16">
-        <video
-          className="absolute left-1/2 top-1/2 z-[1] h-[80%] w-[80%] -translate-x-1/2 -translate-y-1/2 object-contain"
-          autoPlay
-          loop
-          muted
-          playsInline
-          preload="metadata"
+        <AutoPlayVideo
+          src="/images/paring_3.mp4"
           poster={`${W}/5f0d631fec956205d510c0a3_Black%20iso.jpg`}
-        >
-          <source src="/images/paring_3.mp4" type="video/mp4" />
-        </video>
+          className="absolute left-1/2 top-1/2 z-[1] h-[80%] w-[80%] -translate-x-1/2 -translate-y-1/2 object-contain"
+        />
         <div className="w-full pb-[56.25%]" />
       </section>
       <section className="relative mb-10 w-full bg-[#181818] py-10 md:mb-20 md:py-16">
-        <video
-          className="absolute left-0 top-1/2 z-[1] w-[80%] -translate-y-1/2 object-cover"
-          autoPlay
-          loop
-          muted
-          playsInline
-          preload="metadata"
+        <AutoPlayVideo
+          src="/images/Paddle%20Press.mp4"
           poster={`${W}/5f0d631fec956205d510c0a3_Black%20iso.jpg`}
-        >
-          <source src="/images/Paddle%20Press.mp4" type="video/mp4" />
-        </video>
+          className="absolute left-0 top-1/2 z-[1] w-[80%] -translate-y-1/2 object-cover"
+        />
         <div className="w-full pb-[56.25%]" />
       </section>
 
@@ -183,17 +172,11 @@ export default function Ps5Page() {
         src={`${W}/5f0e10e7693aa30ceb62e52b_Wireframe%20Figma.png`}
         className="mb-0 mt-0 block h-full w-full"
       />
-      <video
-        className="mb-10 mt-0 block h-full w-full object-cover [transform:translateZ(0)] [backface-visibility:hidden] md:mb-20"
-        autoPlay
-        loop
-        muted
-        playsInline
-        preload="metadata"
+      <AutoPlayVideo
+        src="/images/ps5-final.mp4"
         poster="/images/ps5-poster.jpg"
-      >
-        <source src="/images/ps5-final.mp4" type="video/mp4" />
-      </video>
+        className="mb-10 mt-0 block h-full w-full object-cover [transform:translateZ(0)] [backface-visibility:hidden] md:mb-20"
+      />
       <CsSection>
         <CsH2>Visual Control Panel</CsH2>
         <CsBody>
@@ -205,17 +188,11 @@ export default function Ps5Page() {
           life longer!
         </CsBody>
       </CsSection>
-      <video
-        className="mb-0 mt-0 block h-full w-full object-cover [transform:translateZ(0)] [backface-visibility:hidden]"
-        autoPlay
-        loop
-        muted
-        playsInline
-        preload="metadata"
+      <AutoPlayVideo
+        src="/images/Front.mp4"
         poster="/images/ps5-poster.jpg"
-      >
-        <source src="/images/Front.mp4" type="video/mp4" />
-      </video>
+        className="mb-0 mt-0 block h-full w-full object-cover [transform:translateZ(0)] [backface-visibility:hidden]"
+      />
 
       <CsBleedImgBeforeTitle src={`${W}/5f0d81071fd4121664e2ce27_Incontext%202.jpg`} />
 
