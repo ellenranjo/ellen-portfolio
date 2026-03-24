@@ -60,13 +60,18 @@
 }
 
 /*
- * Height from width via aspect-ratio, with a floor so short viewports (iPhone / iPad Safari)
- * still get enough room for the composition — uses svh, not vh, for mobile browser UI.
+ * Hero stage height sets where the name/nav lockup starts in document flow.
+ * Papers + pen are position:absolute inside this box, so they do NOT shrink it — only
+ * aspect-ratio + min-height do. A wide short ratio keeps the flow box closer to the
+ * visible composition (overflow: visible lets art extend past the box). Tweaking
+ * .homepage-hero-lockup-flow margin-top alone cannot remove a tall stage box.
  */
 .homepage-hero-stage {
   position: relative;
   width: 100%;
-  aspect-ratio: 1.52 / 1;
+  /* Was 1.52/1 — too tall on desktop: huge empty band before lockup. ~2.2/1 matches
+     paper stack + pen without relying on negative margins on the lockup. */
+  aspect-ratio: 2.2 / 1;
   min-height: max(15.5rem, min(36svh, 22rem));
   overflow: visible;
 }
@@ -195,11 +200,10 @@
 }
 
 /*
- * Name → subtitle → nav: one vertical stack in normal flow below the stage.
- * Small positive margin = deliberate gap under the paper's bottom edge (matches reference).
- * Scales with cqi so the gap stays proportional as the paper composition scales with width.
+ * Name → subtitle → nav: normal flow directly under .homepage-hero-stage.
+ * Small gap only (stage height already defines most of the vertical rhythm).
  */
- .homepage-hero-lockup-flow {
+.homepage-hero-lockup-flow {
   position: relative;
   z-index: 40;
   display: flex;
@@ -208,7 +212,7 @@
   flex-direction: column;
   align-items: center;
   margin-inline: auto;
-  margin-top: 1rem;
+  margin-top: clamp(0.25rem, 1.25cqi, 0.75rem);
   padding-bottom: max(0.25rem, env(safe-area-inset-bottom, 0px));
   text-align: center;
   pointer-events: auto;
