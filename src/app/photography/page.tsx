@@ -1,29 +1,25 @@
 import type { Metadata } from "next";
+import { readFileSync } from "fs";
+import { join } from "path";
 import { CaseStudyShell } from "@/components/CaseStudyShell";
-const WEBFLOW_SHARED_CSS =
-  "https://cdn.prod.website-files.com/5db14aa8083f4b2beca01d43/css/ellen-huynh.webflow.shared.bbf26b8a1.css";
-const LIVE_PHOTOGRAPHY_URL = "https://ellenhuynh.com/photography";
+
+const WEBFLOW_SHARED_CSS = "/images/webflow/css/ellen-huynh.webflow.shared.bbf26b8a1.css";
 
 export const metadata: Metadata = {
   title: "Photography | Ellen Huynh",
   description: "A collection of memories, experiences, and stories.",
 };
 
-async function getLiveGalleryHtml() {
-  const res = await fetch(LIVE_PHOTOGRAPHY_URL, { next: { revalidate: 3600 } });
-  const html = await res.text();
-  const match = html.match(
-    /<div class="container-40 w-container">[\s\S]*?<\/div><\/div>/,
-  );
-  return match?.[0] ?? "";
+function getGalleryHtml() {
+  const filePath = join(process.cwd(), "src", "data", "photography-gallery.html");
+  return readFileSync(filePath, "utf-8");
 }
 
 export default async function PhotographyPage() {
-  const galleryHtml = await getLiveGalleryHtml();
+  const galleryHtml = getGalleryHtml();
 
   return (
     <CaseStudyShell>
-      {/* Load the same Webflow styles used by live photography grid */}
       <link rel="stylesheet" href={WEBFLOW_SHARED_CSS} />
 
       <section className="portfolio-copy mx-auto w-full max-w-[940px] px-8 pt-0 md:px-10">

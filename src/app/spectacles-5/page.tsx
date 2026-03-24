@@ -59,7 +59,7 @@ export default function Spectacles5Page() {
         </CsIntroRow>
       </CsMax>
 
-      <CsBleedImgAfterIntro src="https://cdn.prod.website-files.com/5db14aa8083f4b2beca01d43/67831c928f24c07f419f620f_lensabl%20-%20front%20only.JPEG" />
+      <CsBleedImgAfterIntro src="/images/webflow/67831c928f24c07f419f620f_lensabl%20-%20front%20only.JPEG" />
 
       <CsSection first>
         <CsH2>The Hardware</CsH2>
@@ -71,10 +71,10 @@ export default function Spectacles5Page() {
           was produced for SPS Launch 2024.
         </CsBody>
       </CsSection>
-      <SpectaclesAvalonScroll localVideoSrc="/videos/240905_Animation_SPS_Final.mp4" />
+      <SpectaclesAvalonScroll />
 
       <CsBleedImg
-        src="https://cdn.prod.website-files.com/5db14aa8083f4b2beca01d43/6783055f13e73a399b2ba568_MyAI_WEB.avif"
+        src="/images/webflow/6783055f13e73a399b2ba568_MyAI_WEB.avif"
         className="h-full w-full"
       />
       <CsBleedImg
@@ -100,9 +100,9 @@ export default function Spectacles5Page() {
         </CsBody>
       </CsSection>
 
-      <CsBleedImg src="https://cdn.prod.website-files.com/5db14aa8083f4b2beca01d43/67906fcc1c3c3754a7feb875_IMG_6121.jpg" />
+      <CsBleedImg src="/images/webflow/67906fcc1c3c3754a7feb875_IMG_6121.jpg" />
       <CsBleedImg
-        src="https://cdn.prod.website-files.com/5db14aa8083f4b2beca01d43/67832d553298c602eb089afd_IMG_1896.JPG"
+        src="/images/webflow/67832d553298c602eb089afd_IMG_1896.JPG"
         className="mb-10 h-full w-full md:mb-20"
       />
 
@@ -122,7 +122,7 @@ export default function Spectacles5Page() {
         </CsBody>
       </CsSection>
 
-      <CsBleedImg src="https://cdn.prod.website-files.com/5db14aa8083f4b2beca01d43/67906fa493d11ffce60af299_IMG_6123.jpg" />
+      <CsBleedImg src="/images/webflow/67906fa493d11ffce60af299_IMG_6123.jpg" />
     </CaseStudyShell>
   );
 }

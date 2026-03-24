@@ -58,6 +58,6 @@ export const config = {
      * Exclude `/_next/*` (RSC, chunks, HMR). Extension rule skips most public static files.
      */
     "/",
-    "/((?!_next/|favicon.ico|.*\\.(?:svg|png|jpg|jpeg|gif|webp|ico|mp4|webm|woff2?)$).*)",
+    "/((?!_next/|favicon.ico|images/|.*\\.(?:svg|png|jpe?g|gif|webp|avif|ico|mp4|webm|woff2?|css)$).*)",
   ],
 };

@@ -4,7 +4,7 @@ import { CaseStudyShell } from "@/components/CaseStudyShell";
 import { aboutPeerTestimonials } from "@/data/aboutPeerTestimonials";
 
 const ABOUT_PORTRAIT =
-  "https://cdn.prod.website-files.com/5db14aa8083f4b2beca01d43/6786123ce4b833befb174169_IMG_1078.jpg";
+  "/images/webflow/6786123ce4b833befb174169_IMG_1078.jpg";
 
 export const metadata: Metadata = {
   title: "About | Ellen Huynh",

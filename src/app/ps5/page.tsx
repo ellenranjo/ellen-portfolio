@@ -18,7 +18,7 @@ export const metadata: Metadata = {
   description: "PlayStation 5 Controller concept by Ellen Huynh.",
 };
 
-const W = "https://cdn.prod.website-files.com/5db14aa8083f4b2beca01d43";
+const W = "/images/webflow";
 
 export default function Ps5Page() {
   return (

@@ -18,11 +18,11 @@ export const metadata: Metadata = {
 };
 
 const HERO =
-  "https://cdn.prod.website-files.com/5db14aa8083f4b2beca01d43/6405941859ee2c0de3f81ef2_220228_BROOKS_STILLS_ENCINO_GEN-Z_PRODUCT-STRAP_192.jpg";
+  "/images/webflow/6405941859ee2c0de3f81ef2_220228_BROOKS_STILLS_ENCINO_GEN-Z_PRODUCT-STRAP_192.jpg";
 const ROCK =
-  "https://cdn.prod.website-files.com/5db14aa8083f4b2beca01d43/64059d2008d407ecd8a92797_220302_BROOKS_STILLS_WEESHA-CLUB_STILL-LIFE_PRODUCT-ON-ROCK_009.jpg";
+  "/images/webflow/64059d2008d407ecd8a92797_220302_BROOKS_STILLS_WEESHA-CLUB_STILL-LIFE_PRODUCT-ON-ROCK_009.jpg";
 const PIXY2 =
-  "https://cdn.prod.website-files.com/5db14aa8083f4b2beca01d43/64059d2cbdf9c611d6aec5ed_pixy2.jpg";
+  "/images/webflow/64059d2cbdf9c611d6aec5ed_pixy2.jpg";
 
 const STRAP = "/images/Pixystrap.png";
 /** Local asset: `public/images/pixystrap2.png` */

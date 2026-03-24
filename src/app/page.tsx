@@ -13,7 +13,7 @@ const projects: Project[] = [
   {
     href: "/spectacles-5",
     image:
-      "https://cdn.prod.website-files.com/5db14aa8083f4b2beca01d43/6782ff4901019e74c253de80_Avalon%20cameras%20%26%20IR.JPEG",
+      "/images/webflow/6782ff4901019e74c253de80_Avalon%20cameras%20%26%20IR.JPEG",
     hoverMedia: "/spectacles-5-hover.gif",
     title: "Spectacles 5",
     details: [
@@ -24,7 +24,7 @@ const projects: Project[] = [
   {
     href: "/pixy",
     image:
-      "https://cdn.prod.website-files.com/5db14aa8083f4b2beca01d43/6405941859ee2c0de3f81ef2_220228_BROOKS_STILLS_ENCINO_GEN-Z_PRODUCT-STRAP_192.jpg",
+      "/images/webflow/6405941859ee2c0de3f81ef2_220228_BROOKS_STILLS_ENCINO_GEN-Z_PRODUCT-STRAP_192.jpg",
     title: "Pixy",
     details: ["Released Spring 2022", "Industrial Design, CMF, Packaging"],
   },
@@ -38,14 +38,14 @@ const projects: Project[] = [
   {
     href: "/fanny-sling",
     image:
-      "https://cdn.prod.website-files.com/5db14aa8083f4b2beca01d43/5db3a15713810c7d3a411309_Fanny-Sling.jpg",
+      "/images/webflow/5db3a15713810c7d3a411309_Fanny-Sling.jpg",
     title: "Photography Fanny Sling",
     details: ["Released Fall 2018", "Industrial Design, Soft Good"],
   },
   {
     href: "/bar-wine-acessories",
     image:
-      "https://cdn.prod.website-files.com/5db14aa8083f4b2beca01d43/62a0105fa86dd74ae28f7455_Penguin%20Hero.jpg",
+      "/images/webflow/62a0105fa86dd74ae28f7455_Penguin%20Hero.jpg",
     title: "True Brands",
     details: [
       "Released Fall/Summer 2018-19",
@@ -56,14 +56,10 @@ const projects: Project[] = [
 
 export default function Home() {
   return (
-    <main className="homepage min-h-screen bg-white text-[#303030]">
-      {/* Canonical hero: one composition — `.homepage-hero-canvas` is the scale reference (cqi). */}
-      <section
-        className="homepage-hero -mt-10 relative w-full overflow-visible bg-transparent"
-        style={{ clipPath: "inset(5% 0 -40% 0 round 0px)" }}
-      >
+    <main className="homepage bg-white text-[#303030]">
+      {/* Hero: art lives in the stage; name + nav are in normal flow below (real-device safe). */}
+      <section className="homepage-hero relative w-full overflow-visible bg-transparent pb-1">
         <div className="homepage-hero-canvas">
-          {/* Stage = layout frame; lockup is anchored to main paper bottom (see globals.css) */}
           <div className="homepage-hero-stage">
             <div className="homepage-hero-art">
               <div aria-hidden="true" className="homepage-hero-art-glow" />
@@ -82,51 +78,48 @@ export default function Home() {
                     aria-hidden="true"
                     className="hero-float-pen-image absolute left-[60%] top-[20%] z-30 w-[22%] rotate-[-35deg] mix-blend-multiply"
                   />
-
-                  {/* Lockup lives in art layer: CSS anchor → main paper bottom (golden reference), not stage bottom */}
-                  <div className="homepage-hero-lockup">
-                    <a href="/" className="site-header-name mb-0">
-                      <img
-                        src="https://cdn.prod.website-files.com/5db14aa8083f4b2beca01d43/5dc8fae852f69fd0d2957908_MOSHED-2019-11-10-22-8-22.gif"
-                        alt="Ellen Huynh"
-                        className="w-full"
-                      />
-                    </a>
-                    <div className="site-header-tagline">industrial designer</div>
-                    <nav className="site-header-nav">
-                      <a
-                        href="/"
-                        className="liquid-glass-button liquid-glass-pill liquid-glass-nav inline-block font-bold !no-underline"
-                      >
-                        work
-                      </a>
-                      <a
-                        href="/about"
-                        className="liquid-glass-button liquid-glass-pill liquid-glass-nav inline-block font-bold !no-underline"
-                      >
-                        about
-                      </a>
-                      <a
-                        href="/photography"
-                        className="liquid-glass-button liquid-glass-pill liquid-glass-nav inline-block font-bold !no-underline"
-                      >
-                        photography
-                      </a>
-                    </nav>
-                  </div>
                 </div>
               </div>
             </div>
+          </div>
+
+          {/* Name → subtitle → nav: all in flow below the paper stack */}
+          <div className="homepage-hero-lockup-flow">
+            <a href="/" className="site-header-name mb-0">
+              <img
+                src="/images/webflow/5dc8fae852f69fd0d2957908_MOSHED-2019-11-10-22-8-22.gif"
+                alt="Ellen Huynh"
+                className="w-full"
+              />
+            </a>
+            <div className="site-header-tagline">industrial designer</div>
+            <nav className="site-header-nav">
+              <a
+                href="/"
+                className="liquid-glass-button liquid-glass-pill liquid-glass-nav inline-block font-bold !no-underline"
+              >
+                work
+              </a>
+              <a
+                href="/about"
+                className="liquid-glass-button liquid-glass-pill liquid-glass-nav inline-block font-bold !no-underline"
+              >
+                about
+              </a>
+              <a
+                href="/photography"
+                className="liquid-glass-button liquid-glass-pill liquid-glass-nav inline-block font-bold !no-underline"
+              >
+                photography
+              </a>
+            </nav>
           </div>
         </div>
       </section>
 
       <section
         className="homepage-projects mx-auto w-full max-w-[90%] px-5 md:max-w-[85%] md:px-0 lg:max-w-[66%]"
-        style={{
-          marginTop:
-            "calc(var(--hero-projects-gap) - var(--hero-pull-cards-up))",
-        }}
+        style={{ marginTop: "var(--hero-projects-after-lockup)" }}
       >
         {projects.map((project) => (
           <ProjectCard key={project.href} project={project} />

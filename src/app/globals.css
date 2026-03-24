@@ -6,26 +6,16 @@
   /* Liquid-glass buttons + nav + URL pill (single source) */
   --liquid-glass-hover-scale: 1.15;
 
-  /* Base offset before pull-up; lockup is absolute so stage stays tall in flow — see --hero-pull-cards-up */
-  --hero-projects-gap: 0.35rem;
-
   /*
-   * Pulls the project cards up to sit under the nav. The stage keeps aspect-ratio height in layout
-   * even though the lockup doesn’t contribute to flow, leaving a large white band; this offsets it.
+   * Name + nav sit in normal flow below the hero stage (not absolute/anchor).
+   * Gap before project cards (section is outside hero container — use rem/vw, not cqi).
    */
-  --hero-pull-cards-up: clamp(3.85rem, 14.75vmin, 12.25rem);
-
-  /*
-   * After anchor(bottom) on the main paper, translateY pulls the lockup up onto the sheet (golden reference).
-   * Negative % = overlap with paper; only affects hero↔nav, not nav→cards.
-   */
-  --hero-lockup-overlap: -48%;
+  --hero-projects-after-lockup: clamp(0.875rem, 2.8vw, 1.75rem);
 }
 
-/* Mobile: more air between hero nav and project cards (smaller pull-up vs :root). */
 @media (max-width: 767px) {
   :root {
-    --hero-pull-cards-up: clamp(3.1rem, 11vmin, 9.25rem);
+    --hero-projects-after-lockup: clamp(1rem, 4.2vw, 1.5rem);
   }
 
   /* Site-wide: more horizontal breathing room for text + hero on small screens */
@@ -44,27 +34,14 @@
   }
 }
 
-/*
- * Tighter nav → project cards (larger pull-up).
- * Start at 1367px so iPad Pro / tablet widths (1024–1366) keep the looser :root pull
- * — at 1024px this was crushing the gap under the nav (see iPad Pro landscape).
- */
-@media (min-width: 1367px) {
+@media (min-width: 1024px) {
   :root {
-    --hero-pull-cards-up: clamp(5.5rem, 19.5vmin, 16rem);
-  }
-}
-
-/* Super large desktop: ease pull-up so nav → cards has more breathing room. */
-@media (min-width: 1800px) {
-  :root {
-    --hero-pull-cards-up: clamp(4.75rem, 16.25vmin, 13.25rem);
+    --hero-projects-after-lockup: clamp(1rem, 2vw, 2rem);
   }
 }
 
 /*
- * Homepage hero — canonical composition (one layout, scaled).
- * Art uses % of stage; type uses cqi from canvas. Lockup uses % of STAGE height only.
+ * Homepage hero — art in stage (aspect + min height); lockup in document flow below.
  */
 .homepage-hero-canvas {
   container-type: inline-size;
@@ -74,17 +51,23 @@
   margin-inline: auto;
   padding-inline: clamp(0.5rem, 1.25vw, 1rem);
   padding-bottom: 0;
+  isolation: isolate;
+}
+
+/* Safe area + top padding (replaces -mt-10) so content clears notches / Safari chrome */
+.homepage-hero {
+  padding-top: max(1.25rem, env(safe-area-inset-top, 0px));
 }
 
 /*
- * Shorter frame than 1.22/1 so less dead space below the nav in layout flow (nav is absolute on paper).
- * If art clips, nudge toward 1.45; if too much gap remains, toward 1.6.
+ * Height from width via aspect-ratio, with a floor so short viewports (iPhone / iPad Safari)
+ * still get enough room for the composition — uses svh, not vh, for mobile browser UI.
  */
 .homepage-hero-stage {
   position: relative;
   width: 100%;
   aspect-ratio: 1.52 / 1;
-  min-height: 15rem;
+  min-height: max(15.5rem, min(36svh, 22rem));
   overflow: visible;
 }
 
@@ -123,11 +106,6 @@
   position: relative;
   width: 100%;
   height: 100%;
-}
-
-/* Main paper: anchor for name/nav (visual bottom of sheet, not the tall stage box) */
-.homepage-hero-art-layer .hero-float-paper-b {
-  anchor-name: --hero-paper;
 }
 
 /*
@@ -217,33 +195,23 @@
 }
 
 /*
- * Name + nav: locked to the MAIN PAPER’s bottom edge (golden reference), not the viewport or stage bottom.
- * Browsers with anchor(): top: anchor(bottom). Others: fallback top % of the art layer.
+ * Name → subtitle → nav: one vertical stack in normal flow below the stage.
+ * Small positive margin = deliberate gap under the paper's bottom edge (matches reference).
+ * Scales with cqi so the gap stays proportional as the paper composition scales with width.
  */
-.homepage-hero-lockup {
-  position: absolute;
-  bottom: auto;
-  left: 50%;
+.homepage-hero-lockup-flow {
+  position: relative;
   z-index: 40;
   display: flex;
   width: 100%;
   max-width: min(42rem, 100%);
   flex-direction: column;
   align-items: center;
+  margin-inline: auto;
+  margin-top: clamp(0.75rem, 3cqi, 1.5rem);
+  padding-bottom: max(0.25rem, env(safe-area-inset-bottom, 0px));
   text-align: center;
   pointer-events: auto;
-  padding-bottom: 0;
-  /* Fallback when anchor() unavailable — approximates paper-bottom in the same frame */
-  top: 41%;
-  transform: translate(-50%, var(--hero-lockup-overlap));
-}
-
-@supports (top: anchor(bottom)) {
-  .homepage-hero-lockup {
-    top: anchor(bottom);
-    position-anchor: --hero-paper;
-    transform: translate(-50%, var(--hero-lockup-overlap));
-  }
 }
 
 /* Handwriting: cqi vs canvas — slightly lower coeff + max so mobile isn’t visually huge on the paper */
@@ -306,6 +274,9 @@ body::before {
 
 .homepage {
   cursor: none;
+  /* Dynamic viewport height: stable on mobile Safari vs 100vh + URL bar */
+  min-height: 100svh;
+  min-height: 100dvh;
 }
 
 /* Hero handwritten animation: must not inherit global `p { font-size: 12px }`.

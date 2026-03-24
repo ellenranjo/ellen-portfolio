@@ -8,7 +8,7 @@ import { safeInternalPath } from "@/lib/safe-redirect";
 const CONTACT_EMAIL = "ellenxoonu@gmail.com";
 
 const NAME_GIF_SRC =
-  "https://cdn.prod.website-files.com/5db14aa8083f4b2beca01d43/5dc8fae852f69fd0d2957908_MOSHED-2019-11-10-22-8-22.gif";
+  "/images/webflow/5dc8fae852f69fd0d2957908_MOSHED-2019-11-10-22-8-22.gif";
 
 export function LoginForm() {
   const router = useRouter();
