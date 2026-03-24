@@ -60,7 +60,7 @@ export default function Home() {
   return (
     <main className="homepage bg-white text-[#303030]">
       {/* Hero: art lives in the stage; name + nav are in normal flow below (real-device safe). */}
-      <section className="homepage-hero relative w-full overflow-visible bg-transparent pb-1">
+      <section className="homepage-hero relative w-full overflow-visible bg-transparent pb-10 md:pb-1">
         <div className="homepage-hero-canvas">
           <div className="homepage-hero-stage">
             <div className="homepage-hero-art">

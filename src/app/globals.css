@@ -34,40 +34,6 @@
       max(22px, env(safe-area-inset-right));
   }
 
-  /*
-   * Mobile homepage overlap guard:
-   * - reduce lockup upward tuck
-   * - add real space under nav
-   * - force projects to start below lockup
-   */
-  .homepage-hero {
-    /* Keep hero/nav clearly above first card stack on iOS Safari */
-    z-index: 30;
-    padding-bottom: 2rem;
-  }
-
-  .homepage-hero-lockup-flow {
-    z-index: 90;
-    /* Mobile: no upward tuck; keep lockup fully in-flow under paper */
-    margin-top: 0.25rem;
-    padding-bottom: 0;
-    isolation: isolate;
-    /* TEMP DEBUG */
-    outline: 2px solid rgba(255, 0, 0, 0.7);
-    background: rgba(255, 0, 0, 0.05);
-  }
-
-  .homepage-projects {
-    position: relative;
-    z-index: 1;
-    margin-top: 0 !important;
-    /* iOS Safari can misbehave with content-visibility near overlap boundaries */
-    content-visibility: visible;
-    contain-intrinsic-size: auto;
-    /* TEMP DEBUG */
-    outline: 2px solid rgba(0, 102, 255, 0.7);
-    background: rgba(0, 102, 255, 0.05);
-  }
 }
 
 @media (min-width: 1024px) {
@@ -349,6 +315,29 @@ body::before {
   z-index: 1;
   content-visibility: auto;
   contain-intrinsic-size: auto 720px;
+}
+
+/*
+ * MOBILE OVERLAP GUARD — must come AFTER the global rules above so cascade wins.
+ * On mobile: remove lockup upward tuck, add explicit space, raise stacking.
+ */
+@media (max-width: 767px) {
+  .homepage-hero {
+    z-index: 30;
+    padding-bottom: 2.5rem;
+  }
+
+  .homepage-hero-lockup-flow {
+    margin-top: 0.25rem;
+    z-index: 90;
+    isolation: isolate;
+  }
+
+  .homepage-projects {
+    z-index: 1;
+    content-visibility: visible;
+    contain-intrinsic-size: auto;
+  }
 }
 
 /* Links/buttons get UA `cursor: pointer`, which overrides inherited `none` — hide system cursor on desktop */
