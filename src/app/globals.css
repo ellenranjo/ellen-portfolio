@@ -54,9 +54,15 @@
   isolation: isolate;
 }
 
-/* Safe area + top padding (replaces -mt-10) so content clears notches / Safari chrome */
+/*
+ * Anchor hero to the viewport top: paper reads “cropped” above the fold.
+ * Negative margin pulls the whole section (canvas + stage + lockup) up together — does not
+ * change paper → name → nav spacing inside the canvas. Padding is safe-area only (no extra
+ * 1.25rem band) so the composition sits higher while notched devices still respect inset.
+ */
 .homepage-hero {
-  padding-top: max(1.25rem, env(safe-area-inset-top, 0px));
+  margin-top: clamp(-2.25rem, -3.25vw, -0.625rem);
+  padding-top: env(safe-area-inset-top, 0px);
 }
 
 /*
