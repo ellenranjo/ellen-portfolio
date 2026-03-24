@@ -72,7 +72,11 @@ export default function FannySlingPage() {
         </CsIntroRow>
       </CsMax>
 
-      <CsBleedImgAfterIntro src={`${W}/5db6711d19de5556e2f00d6e_momentfanny.jpg`} />
+      <CsBleedImg
+        src={`${W}/5db6711d19de5556e2f00d6e_momentfanny.jpg`}
+        className="mt-10 mb-10 h-auto w-[70%] md:mb-20"
+        priority
+      />
 
       <CsSection first>
         <FannySlingBriefSketch />
