@@ -50,6 +50,15 @@ export default function PixyPage() {
             <strong>Disciplines</strong>
             <br />
             Industrial Design, Packaging
+            <br />
+            <br />
+            <strong>Credits</strong>
+            <br />
+            Creative Director: Evan Spiegel
+            <br />
+            ID: Mathias Hintermann, Ellen Huynh
+            <br />
+            CMF: Kristina Marrero, Ten Arun
           </CsIntroCol>
 
           <CsIntroCol variant="right">
