@@ -42,6 +42,21 @@ export default function Spectacles5Page() {
             <strong>Disciplines</strong>
             <br />
             Industrial Design, CMF, Visualization, Animation, and Packaging.
+            <br />
+            <br />
+            <strong>Credits</strong>
+            <br />
+            Creative Director: Evan Spiegel
+            <br />
+            Industrial Design: Mathias Hintermann, Ellen Huynh
+            <br />
+            CMF: Mathias Hintermann, Ellen Huynh
+            <br />
+            Accessories &amp; Packaging Lead: Ellen Huynh
+            <br />
+            Surfacing: Danny Carlson
+            <br />
+            Rendering &amp; Animation: Ellen Huynh
           </CsIntroCol>
 
           <CsIntroCol variant="right">
