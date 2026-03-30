@@ -54,7 +54,7 @@ export default function BarWineAccessoriesPage() {
       </CsMax>
 
       <CaseStudyImageCarousel
-        className="mt-6 mb-12 w-full md:mt-8 md:mb-16"
+        className="carousel--contain mt-6 mb-12 w-full md:mt-8 md:mb-16"
         images={[
           {
             src: `${W}/62a00c160fc390082f47130c_Penguin-foil.gif`,
