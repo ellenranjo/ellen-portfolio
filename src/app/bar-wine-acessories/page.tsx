@@ -75,6 +75,7 @@ export default function BarWineAccessoriesPage() {
           {
             src: `${W}/62a017fb0fc390f598476841_eagle%20true%20zoo.jpg`,
             alt: "Baldwin the Eagle product",
+            style: { objectFit: "cover" },
           },
         ]}
         regionLabel="Wine and bar product images"
@@ -114,7 +115,7 @@ export default function BarWineAccessoriesPage() {
         className="mt-6 mb-3 w-full md:mt-8 md:mb-4"
         images={[
           { src: `${W}/62a03e18360ef619fcd63eda_koozie4.jpg`, alt: "Koozie variant" },
-          { src: `${W}/62a03e1ae115135dd56e8c28_koozie5.jpg`, alt: "Koozie variant" },
+          { src: `${W}/62a03e1ae115135dd56e8c28_koozie5.jpg`, alt: "Koozie variant", style: { objectFit: "contain" } },
         ]}
         regionLabel="Pinot the Penguin product images"
         scrollerLabel="Pinot product images — swipe or use arrow keys"

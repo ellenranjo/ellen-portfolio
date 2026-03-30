@@ -85,7 +85,7 @@ export function FannySlingIdeationsCarousel({
   prevLabel = defaultLabels.prev,
   nextLabel = defaultLabels.next,
 }: {
-  images: { src: string; alt?: string }[];
+  images: { src: string; alt?: string; style?: React.CSSProperties }[];
   className?: string;
   /** Accessible names — defaults match Ideations copy */
   regionLabel?: string;
@@ -203,6 +203,7 @@ export function FannySlingIdeationsCarousel({
                 sizes="(max-width: 479px) 65vw, 50vw"
                 loading={i === 0 ? "eager" : "lazy"}
                 decoding="async"
+                style={img.style}
               />
             </div>
           ))}
