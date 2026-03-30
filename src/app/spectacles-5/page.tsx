@@ -48,11 +48,9 @@ export default function Spectacles5Page() {
             <br />
             Creative Director: Evan Spiegel
             <br />
-            Industrial Design: Mathias Hintermann, Ellen Huynh
+            ID: Mathias Hintermann, Ellen Huynh
             <br />
             CMF: Mathias Hintermann, Ellen Huynh
-            <br />
-            Accessories &amp; Packaging Lead: Ellen Huynh
             <br />
             Surfacing: Danny Carlson
             <br />
