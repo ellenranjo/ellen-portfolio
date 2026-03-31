@@ -7,6 +7,8 @@ const DEBUG = process.env.SITE_GATE_DEBUG === "1";
 function withGateHeaders(res: NextResponse, action: "public" | "allow" | "redirect") {
   res.headers.set("X-Site-Gate-Middleware", "1");
   res.headers.set("X-Site-Gate-Action", action);
+
+  res.headers.set("Cache-Control", "no-store, no-cache, must-revalidate");
   return res;
 }
 
@@ -54,10 +56,11 @@ export async function middleware(request: NextRequest) {
 export const config = {
   matcher: [
     /*
-     * "/" must be listed explicitly — nested `.*` patterns often omit the homepage.
-     * Exclude `/_next/*` (RSC, chunks, HMR). Extension rule skips most public static files.
+     * Match ALL routes except:
+     * - static files
+     * - login page
+     * - api routes
      */
-    "/",
-    "/((?!_next/|favicon.ico|images/|.*\\.(?:svg|png|jpe?g|gif|webp|avif|ico|mp4|webm|woff2?|css)$).*)",
+    '/((?!_next|favicon.ico|login|api).*)',
   ],
 };
