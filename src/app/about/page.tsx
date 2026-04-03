@@ -59,6 +59,7 @@ export default function AboutPage() {
                 <em>Feel free to reach me here!</em>
               </strong>
               <br />
+              <br />
               <span className="mb-5 inline-flex flex-row flex-wrap items-center gap-3 md:mb-6 md:gap-4">
                 <a
                   href="mailto:ellenxoonu@gmail.com"
