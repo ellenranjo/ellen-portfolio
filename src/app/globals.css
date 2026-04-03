@@ -164,7 +164,7 @@
   font-weight: 500;
   line-height: 1.2;
   letter-spacing: 0.5px;
-  color: #606060;
+  color: #303030;
   text-transform: uppercase;
 }
 
@@ -210,29 +210,46 @@
   text-transform: uppercase;
 }
 
-.site-header-nav a::before,
-.site-header-nav a::after {
+/* Brackets are real spans so we don't clash with .liquid-glass-* ::before (glass layer). */
+.site-header-nav__bracket {
   display: inline-block;
+  overflow: hidden;
+  vertical-align: baseline;
   opacity: 0;
-  transition: opacity 0.2s ease, transform 0.2s ease;
+  max-width: 0;
+  transition:
+    opacity 0.2s ease,
+    max-width 0.2s ease,
+    margin 0.2s ease;
 }
 
-.site-header-nav a::before {
-  content: "[";
-  margin-right: 0.15em;
-  transform: translateX(0.25em);
+.site-header-nav__bracket--open {
+  margin-right: 0;
 }
 
-.site-header-nav a::after {
-  content: "]";
-  margin-left: 0.15em;
-  transform: translateX(-0.25em);
+.site-header-nav__bracket--close {
+  margin-left: 0;
 }
 
-.site-header-nav a:hover::before,
-.site-header-nav a:hover::after {
+.site-header-nav a:hover .site-header-nav__bracket {
   opacity: 1;
-  transform: translateX(0);
+  max-width: 0.55em;
+}
+
+.site-header-nav a:hover .site-header-nav__bracket--open {
+  margin-right: 0.08em;
+}
+
+.site-header-nav a:hover .site-header-nav__bracket--close {
+  margin-left: 0.08em;
+}
+
+.homepage-project-card-copy {
+  font-family: var(--font-space-grotesk), var(--font-geist-sans), system-ui, sans-serif;
+}
+
+.homepage-project-card-copy strong {
+  font-weight: 700;
 }
 
 /*

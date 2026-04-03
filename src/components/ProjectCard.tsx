@@ -71,8 +71,8 @@ export function ProjectCard({ project }: { project: Project }) {
             />
           ))}
       </div>
-      <div className="relative z-[1] mx-4 my-3 bg-transparent font-sans text-[9px] font-light leading-[15px] tracking-[0.5px] transition-colors duration-200 group-hover:bg-white group-active:bg-white md:mx-4 md:my-4 md:text-[11px] md:leading-[18px] lg:m-7">
-        <strong className="font-extrabold">{project.title}</strong>
+      <div className="homepage-project-card-copy relative z-[1] mx-4 my-3 bg-transparent text-[9px] font-light leading-[15px] tracking-[0.5px] transition-colors duration-200 group-hover:bg-white group-active:bg-white md:mx-4 md:my-4 md:text-[11px] md:leading-[18px] lg:m-7">
+        <strong className="font-bold">{project.title}</strong>
         <br />
         {project.details[0]}
         <br />

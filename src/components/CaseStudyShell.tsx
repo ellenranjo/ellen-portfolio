@@ -42,19 +42,37 @@ export function CaseStudyShell({
               href="/"
               className="liquid-glass-button liquid-glass-pill liquid-glass-nav inline-block font-bold !no-underline"
             >
-              work
+              <span className="site-header-nav__bracket site-header-nav__bracket--open" aria-hidden>
+                [
+              </span>
+              <span>work</span>
+              <span className="site-header-nav__bracket site-header-nav__bracket--close" aria-hidden>
+                ]
+              </span>
             </a>
             <a
               href="/about"
               className="liquid-glass-button liquid-glass-pill liquid-glass-nav inline-block font-bold !no-underline"
             >
-              about
+              <span className="site-header-nav__bracket site-header-nav__bracket--open" aria-hidden>
+                [
+              </span>
+              <span>about</span>
+              <span className="site-header-nav__bracket site-header-nav__bracket--close" aria-hidden>
+                ]
+              </span>
             </a>
             <a
               href="/photography"
               className="liquid-glass-button liquid-glass-pill liquid-glass-nav inline-block font-bold !no-underline"
             >
-              photography
+              <span className="site-header-nav__bracket site-header-nav__bracket--open" aria-hidden>
+                [
+              </span>
+              <span>photography</span>
+              <span className="site-header-nav__bracket site-header-nav__bracket--close" aria-hidden>
+                ]
+              </span>
             </a>
           </nav>
         </div>
