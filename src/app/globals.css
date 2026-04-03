@@ -1307,6 +1307,15 @@ body.login-splash-open {
   animation: resume-fade-in 0.25s ease-out;
 }
 
+@media screen and (min-width: 992px) {
+  .resume-modal-backdrop,
+  .resume-modal-backdrop *,
+  .resume-modal-backdrop a,
+  .resume-modal-backdrop button {
+    cursor: none !important;
+  }
+}
+
 .resume-modal-content {
   position: relative;
   display: flex;
