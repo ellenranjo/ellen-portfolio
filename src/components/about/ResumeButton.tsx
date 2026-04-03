@@ -1,7 +1,12 @@
 "use client";
 
+import dynamic from "next/dynamic";
 import { useState } from "react";
-import { ResumeModal } from "./ResumeModal";
+
+const ResumeModal = dynamic(() =>
+  import("./ResumeModal").then((m) => m.ResumeModal),
+  { ssr: false },
+);
 
 export function ResumeButton({ className }: { className?: string }) {
   const [open, setOpen] = useState(false);
