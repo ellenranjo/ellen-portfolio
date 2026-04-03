@@ -1291,3 +1291,105 @@ body.login-splash-open {
     animation: login-splash-collapse-reduced 0.22s ease-out forwards;
   }
 }
+
+/* ── Resume Modal ─────────────────────────────────────────── */
+
+.resume-modal-backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(0, 0, 0, 0.55);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  animation: resume-fade-in 0.25s ease-out;
+  cursor: auto;
+}
+
+.resume-modal-content {
+  display: flex;
+  flex-direction: column;
+  width: 90vw;
+  max-width: 680px;
+  height: 85vh;
+  max-height: 900px;
+  border-radius: 12px;
+  overflow: hidden;
+  background: #fff;
+  box-shadow:
+    0 8px 40px rgba(0, 0, 0, 0.25),
+    0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.resume-modal-toolbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+  padding: 0.625rem 1rem;
+  background: #fafafa;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+}
+
+.resume-modal-title {
+  font-family: var(--font-geist-sans, sans-serif);
+  font-size: 13px;
+  font-weight: 600;
+  color: #303030;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.resume-modal-actions {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  flex-shrink: 0;
+}
+
+.resume-modal-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  padding: 0.375rem 0.625rem;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  border-radius: 6px;
+  background: #fff;
+  color: #303030;
+  font-family: var(--font-geist-sans, sans-serif);
+  font-size: 12px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background 0.15s, border-color 0.15s;
+  text-decoration: none;
+}
+
+.resume-modal-btn:hover {
+  background: #f0f0f0;
+  border-color: rgba(0, 0, 0, 0.18);
+}
+
+.resume-modal-body {
+  flex: 1;
+  min-height: 0;
+  background: #e8e8e8;
+}
+
+.resume-modal-iframe {
+  display: block;
+  width: 100%;
+  height: 100%;
+  border: none;
+}
+
+@keyframes resume-fade-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}

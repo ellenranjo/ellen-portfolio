@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Image from "next/image";
 import { PeerTestimonials } from "@/components/about/PeerTestimonials";
+import { ResumeButton } from "@/components/about/ResumeButton";
 import { CaseStudyShell } from "@/components/CaseStudyShell";
 import { aboutPeerTestimonials } from "@/data/aboutPeerTestimonials";
 
@@ -73,9 +74,8 @@ export default function AboutPage() {
                 >
                   LinkedIn
                 </a>
+                <ResumeButton className="liquid-glass-button liquid-glass-pill liquid-glass-nav inline-block font-bold text-[9px] no-underline md:text-[11px]" />
               </span>
-              <br />
-              Please reach out to me for CV.
             </p>
           </div>
         </div>

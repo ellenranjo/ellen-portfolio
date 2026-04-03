@@ -61,6 +61,6 @@ export const config = {
      * - login page
      * - api routes
      */
-    '/((?!_next|favicon.ico|images|login|api).*)',
+    '/((?!_next|favicon\\.ico|images|login|api|Ellen-Huynh-Resume\\.pdf).*)',
   ],
 };
