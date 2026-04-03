@@ -52,7 +52,7 @@ export default function AboutPage() {
               <br />
               When I&apos;m not designing, you can find me cooking, sipping coffee,
               watching movies, or out on a run. I&apos;m currently training for my
-              second Marathon this March 2026.{"\u00A0"}☻
+              third Marathon.{"\u00A0"}☻
               <br />
               <br />
               <strong>
