@@ -2,17 +2,35 @@
 
 import { useEffect, useRef, useState } from "react";
 
+const DESKTOP_MQ = "(min-width: 992px)";
+
 export function CustomCursor() {
   const cursorRef = useRef<HTMLDivElement | null>(null);
   const [isInteractive, setIsInteractive] = useState(false);
   const [isVisible, setIsVisible] = useState(false);
+  const [enabled, setEnabled] = useState(false);
 
   useEffect(() => {
-    const supportsFinePointer =
-      typeof window !== "undefined" &&
-      window.matchMedia("(pointer: fine)").matches;
+    const pointerMq = window.matchMedia("(pointer: fine)");
+    const desktopMq = window.matchMedia(DESKTOP_MQ);
 
-    if (!supportsFinePointer) return;
+    const checkEnabled = () => setEnabled(pointerMq.matches && desktopMq.matches);
+    checkEnabled();
+
+    pointerMq.addEventListener("change", checkEnabled);
+    desktopMq.addEventListener("change", checkEnabled);
+
+    return () => {
+      pointerMq.removeEventListener("change", checkEnabled);
+      desktopMq.removeEventListener("change", checkEnabled);
+    };
+  }, []);
+
+  useEffect(() => {
+    if (!enabled) {
+      setIsVisible(false);
+      return;
+    }
 
     const updateCursor = (clientX: number, clientY: number, interactive: boolean) => {
       if (!cursorRef.current) return;
@@ -32,19 +50,19 @@ export function CustomCursor() {
       updateCursor(event.clientX, event.clientY, interactive);
     };
 
-    const handleLeaveWindow = () => setIsVisible(false);
-    const handleEnterWindow = () => setIsVisible(true);
+    const handleLeave = () => setIsVisible(false);
+    const handleEnter = () => setIsVisible(true);
 
     window.addEventListener("mousemove", handleMove, { passive: true });
-    window.addEventListener("mouseout", handleLeaveWindow);
-    window.addEventListener("mouseover", handleEnterWindow);
+    document.documentElement.addEventListener("mouseleave", handleLeave);
+    document.documentElement.addEventListener("mouseenter", handleEnter);
 
     return () => {
       window.removeEventListener("mousemove", handleMove);
-      window.removeEventListener("mouseout", handleLeaveWindow);
-      window.removeEventListener("mouseover", handleEnterWindow);
+      document.documentElement.removeEventListener("mouseleave", handleLeave);
+      document.documentElement.removeEventListener("mouseenter", handleEnter);
     };
-  }, []);
+  }, [enabled]);
 
   return (
     <div
