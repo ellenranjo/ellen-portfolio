@@ -159,12 +159,13 @@
 
 .site-header-tagline {
   margin: 0;
-  font-family: var(--font-geist-sans), Arial, Helvetica, sans-serif;
+  font-family: var(--font-space-grotesk), var(--font-geist-sans), Arial, Helvetica, sans-serif;
   font-size: 10px;
-  font-weight: 300;
+  font-weight: 500;
   line-height: 1.2;
   letter-spacing: 0.5px;
   color: #606060;
+  text-transform: uppercase;
 }
 
 @media (min-width: 768px) {
@@ -182,7 +183,7 @@
   margin-top: 0.75rem;
   padding: 0;
   text-align: center;
-  font-family: var(--font-geist-sans), Arial, Helvetica, sans-serif;
+  font-family: var(--font-space-grotesk), var(--font-geist-sans), Arial, Helvetica, sans-serif;
   font-size: 9px;
   font-weight: 300;
   letter-spacing: 0.5px;
@@ -198,7 +199,6 @@
 
 @media (min-width: 768px) {
   .site-header-nav {
-    /* Slightly tighter to tagline on desktop — nav sits a bit higher */
     margin-top: 0.875rem;
     font-size: 11px;
   }
@@ -207,6 +207,32 @@
 .site-header-nav a {
   margin: 0;
   font-weight: 700;
+  text-transform: uppercase;
+}
+
+.site-header-nav a::before,
+.site-header-nav a::after {
+  display: inline-block;
+  opacity: 0;
+  transition: opacity 0.2s ease, transform 0.2s ease;
+}
+
+.site-header-nav a::before {
+  content: "[";
+  margin-right: 0.15em;
+  transform: translateX(0.25em);
+}
+
+.site-header-nav a::after {
+  content: "]";
+  margin-left: 0.15em;
+  transform: translateX(-0.25em);
+}
+
+.site-header-nav a:hover::before,
+.site-header-nav a:hover::after {
+  opacity: 1;
+  transform: translateX(0);
 }
 
 /*
