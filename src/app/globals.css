@@ -221,7 +221,9 @@
 .site-header-nav button:hover .site-header-nav__label--rest,
 .site-header-nav button:focus-visible .site-header-nav__label--rest,
 .homepage-back-to-top:hover .site-header-nav__label--rest,
-.homepage-back-to-top:focus-visible .site-header-nav__label--rest {
+.homepage-back-to-top:focus-visible .site-header-nav__label--rest,
+.site-footer-more-work:hover .site-header-nav__label--rest,
+.site-footer-more-work:focus-visible .site-header-nav__label--rest {
   display: none;
 }
 
@@ -230,7 +232,9 @@
 .site-header-nav button:hover .site-header-nav__label--hover,
 .site-header-nav button:focus-visible .site-header-nav__label--hover,
 .homepage-back-to-top:hover .site-header-nav__label--hover,
-.homepage-back-to-top:focus-visible .site-header-nav__label--hover {
+.homepage-back-to-top:focus-visible .site-header-nav__label--hover,
+.site-footer-more-work:hover .site-header-nav__label--hover,
+.site-footer-more-work:focus-visible .site-header-nav__label--hover {
   display: inline;
 }
 

@@ -80,9 +80,17 @@ export function CaseStudyShell({
       <section className="mb-0 mt-6 text-center md:mt-8">
         <a
           href="/"
-          className="liquid-glass-button liquid-glass-pill liquid-glass-nav inline-block text-[9px] font-bold !no-underline md:text-[11px]"
+          className="site-footer-more-work liquid-glass-button liquid-glass-pill liquid-glass-nav inline-block text-[9px] font-bold !no-underline md:text-[11px]"
         >
-          More Selected Work
+          <span className="site-header-nav__label site-header-nav__label--rest">
+            more selected work
+          </span>
+          <span
+            className="site-header-nav__label site-header-nav__label--hover"
+            aria-hidden
+          >
+            [more selected work]
+          </span>
         </a>
         <div className="mb-[30px] mt-[10px] text-[65%] font-light leading-[15px]">
           ©2026 Ellen Huynh. All Rights Reserved.
