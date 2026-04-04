@@ -202,7 +202,8 @@
 }
 
 .homepage-project-card-copy {
-  font-family: var(--font-space-grotesk), var(--font-geist-sans), system-ui, sans-serif;
+  font-family: var(--font-space-grotesk), var(--font-geist-sans), Arial, Helvetica, sans-serif;
+  text-transform: uppercase;
 }
 
 .homepage-project-card-copy strong {
@@ -292,24 +293,24 @@ body::before {
   /* Dynamic viewport height: stable on mobile Safari vs 100vh + URL bar */
   min-height: 100svh;
   min-height: 100dvh;
-  /* Dotted field (reference: alejandromejias.com.au) */
+  /* Dotted field — tight spacing (reference: alejandromejias.com.au) */
   background-color: #fff;
   background-image: radial-gradient(
     circle at center,
-    rgba(48, 48, 48, 0.14) 0.55px,
-    transparent 0.65px
+    rgba(48, 48, 48, 0.13) 0.45px,
+    transparent 0.55px
   );
-  background-size: 24px 24px;
+  background-size: 12px 12px;
   background-position: 0 0;
 }
 
 @media (max-width: 767px) {
   .homepage {
-    background-size: 20px 20px;
+    background-size: 10px 10px;
     background-image: radial-gradient(
       circle at center,
-      rgba(48, 48, 48, 0.11) 0.5px,
-      transparent 0.6px
+      rgba(48, 48, 48, 0.11) 0.4px,
+      transparent 0.5px
     );
   }
 }
