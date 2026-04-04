@@ -1,5 +1,6 @@
 import type { ReactNode } from "react";
 import Image from "next/image";
+import { ResumeButton } from "@/components/about/ResumeButton";
 import { SITE_NAME_GIF_SRC } from "@/lib/site-assets";
 
 type CaseStudyShellProps = {
@@ -60,6 +61,7 @@ export function CaseStudyShell({
                 [about]
               </span>
             </a>
+            <ResumeButton className="liquid-glass-button liquid-glass-pill liquid-glass-nav inline-block font-bold !no-underline" />
             <a
               href="/photography"
               className="liquid-glass-button liquid-glass-pill liquid-glass-nav inline-block font-bold !no-underline"

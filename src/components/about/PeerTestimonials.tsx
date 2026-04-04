@@ -36,10 +36,10 @@ export function PeerTestimonials({ testimonials }: Props) {
               aria-expanded={isOpen}
               aria-controls={panelId}
               onClick={() => toggle(item.id)}
-              className="peer-name peer-accordion-trigger group flex w-full cursor-none items-center justify-between gap-3 text-left font-bold leading-snug md:gap-4"
+              className="peer-name peer-accordion-trigger group flex w-full cursor-none items-center justify-between gap-3 text-left leading-snug md:gap-4"
             >
               <div className="min-w-0 flex-1 font-sans text-[12px] md:text-[12px]">
-                <span className="block">{item.name}</span>
+                <span className="block font-bold">{item.name}</span>
                 <span className="mt-0.5 block font-light opacity-90">
                   {item.role}
                 </span>

@@ -1,4 +1,5 @@
 import Image from "next/image";
+import { ResumeButton } from "@/components/about/ResumeButton";
 import { HandwrittenPaperMessage } from "@/components/HandwrittenPaperMessage";
 import { ProjectCard } from "@/components/ProjectCard";
 import { SITE_NAME_GIF_SRC } from "@/lib/site-assets";
@@ -125,6 +126,7 @@ export default function Home() {
                   [about]
                 </span>
               </a>
+              <ResumeButton className="liquid-glass-button liquid-glass-pill liquid-glass-nav inline-block font-bold !no-underline" />
               <a
                 href="/photography"
                 className="liquid-glass-button liquid-glass-pill liquid-glass-nav inline-block font-bold !no-underline"

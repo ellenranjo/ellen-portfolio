@@ -200,9 +200,16 @@
   }
 }
 
-.site-header-nav a {
+.site-header-nav a,
+.site-header-nav button {
   margin: 0;
   font-weight: 700;
+}
+
+.site-header-nav button {
+  font-family: inherit;
+  font-size: inherit;
+  letter-spacing: inherit;
 }
 
 .site-header-nav__label--hover {
@@ -211,6 +218,8 @@
 
 .site-header-nav a:hover .site-header-nav__label--rest,
 .site-header-nav a:focus-visible .site-header-nav__label--rest,
+.site-header-nav button:hover .site-header-nav__label--rest,
+.site-header-nav button:focus-visible .site-header-nav__label--rest,
 .homepage-back-to-top:hover .site-header-nav__label--rest,
 .homepage-back-to-top:focus-visible .site-header-nav__label--rest {
   display: none;
@@ -218,6 +227,8 @@
 
 .site-header-nav a:hover .site-header-nav__label--hover,
 .site-header-nav a:focus-visible .site-header-nav__label--hover,
+.site-header-nav button:hover .site-header-nav__label--hover,
+.site-header-nav button:focus-visible .site-header-nav__label--hover,
 .homepage-back-to-top:hover .site-header-nav__label--hover,
 .homepage-back-to-top:focus-visible .site-header-nav__label--hover {
   display: inline;
@@ -408,36 +419,25 @@ body::before {
   left: 0;
   top: 0;
   z-index: 99999;
-  width: 24px;
-  height: 24px;
+  width: 12px;
+  height: 12px;
   border-radius: 9999px;
   pointer-events: none;
-  border: 1px solid rgba(255, 255, 255, 0.68);
-  background:
-    radial-gradient(
-      130% 140% at 24% 0%,
-      rgba(255, 255, 255, 0.5) 0%,
-      rgba(255, 255, 255, 0.16) 48%,
-      rgba(255, 255, 255, 0.02) 100%
-    ),
-    linear-gradient(
-      180deg,
-      rgba(210, 216, 226, 0.38) 0%,
-      rgba(178, 186, 200, 0.28) 100%
-    );
+  border: 1px solid rgba(31, 35, 40, 0.38);
+  background: #f0ff00;
   box-shadow:
-    0 2px 8px rgba(54, 61, 74, 0.2),
-    inset 0 0 0.5px rgba(255, 255, 255, 0.75);
-  backdrop-filter: blur(10px) saturate(115%);
-  -webkit-backdrop-filter: blur(10px) saturate(115%);
+    0 1px 5px rgba(200, 220, 60, 0.4),
+    inset 0 0 0 0.5px rgba(255, 255, 255, 0.35);
   transition:
     opacity 120ms ease,
     transform 180ms cubic-bezier(0.22, 1, 0.36, 1);
 }
 
 .custom-cursor--interactive {
-  /* Slightly brighter when hovering buttons/cards */
-  border-color: rgba(255, 255, 255, 0.88);
+  border-color: rgba(31, 35, 40, 0.58);
+  box-shadow:
+    0 2px 10px rgba(200, 220, 60, 0.55),
+    inset 0 0 0 0.5px rgba(255, 255, 255, 0.45);
 }
 
 .liquid-glass-button {
@@ -1110,7 +1110,8 @@ body::before {
 .peer-accordion-trigger.peer-name {
   margin: 0;
   padding: 0.65rem 0.75rem 0.65rem 1.25rem;
-  font: inherit;
+  font-family: inherit;
+  font-size: inherit;
   cursor: none;
   color: #303030;
   background: transparent;
