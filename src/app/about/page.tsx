@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 import Image from "next/image";
 import { PeerTestimonials } from "@/components/about/PeerTestimonials";
-import { ResumeButton } from "@/components/about/ResumeButton";
 import { CaseStudyShell } from "@/components/CaseStudyShell";
 import { aboutPeerTestimonials } from "@/data/aboutPeerTestimonials";
 
@@ -60,12 +59,20 @@ export default function AboutPage() {
               </strong>
               <br />
               <br />
-              <span className="mb-5 inline-flex flex-row flex-wrap items-center gap-3 md:mb-6 md:gap-4">
+              <span className="about-cta-links mb-5 inline-flex flex-row flex-wrap items-center gap-3 md:mb-6 md:gap-4">
                 <a
                   href="mailto:ellenxoonu@gmail.com"
                   className="liquid-glass-button liquid-glass-pill liquid-glass-nav inline-block font-bold text-[9px] no-underline md:text-[11px]"
                 >
-                  Email
+                  <span className="site-header-nav__label site-header-nav__label--rest">
+                    email
+                  </span>
+                  <span
+                    className="site-header-nav__label site-header-nav__label--hover"
+                    aria-hidden
+                  >
+                    [email]
+                  </span>
                 </a>
                 <a
                   href="https://www.linkedin.com/in/huynhellen/"
@@ -73,9 +80,16 @@ export default function AboutPage() {
                   rel="noreferrer"
                   className="liquid-glass-button liquid-glass-pill liquid-glass-nav inline-block font-bold text-[9px] no-underline md:text-[11px]"
                 >
-                  LinkedIn
+                  <span className="site-header-nav__label site-header-nav__label--rest">
+                    linkedin
+                  </span>
+                  <span
+                    className="site-header-nav__label site-header-nav__label--hover"
+                    aria-hidden
+                  >
+                    [linkedin]
+                  </span>
                 </a>
-                <ResumeButton className="liquid-glass-button liquid-glass-pill liquid-glass-nav inline-block font-bold text-[9px] no-underline md:text-[11px]" />
               </span>
             </p>
           </div>

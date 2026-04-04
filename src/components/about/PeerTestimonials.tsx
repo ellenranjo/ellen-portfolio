@@ -22,24 +22,24 @@ export function PeerTestimonials({ testimonials }: Props) {
   }, []);
 
   return (
-    <div className="flex flex-col gap-4">
+    <div className="peer-testimonials-list flex flex-col">
       {testimonials.map((item) => {
         const isOpen = !!open[item.id];
         const panelId = `${baseId}-panel-${item.id}`;
         const headerId = `${baseId}-header-${item.id}`;
 
         return (
-          <div key={item.id} className="peer-item mx-0">
+          <div key={item.id} className="peer-item">
             <button
               type="button"
               id={headerId}
               aria-expanded={isOpen}
               aria-controls={panelId}
               onClick={() => toggle(item.id)}
-              className="peer-name liquid-glass-button liquid-glass-pill liquid-glass-nav group flex w-full cursor-none items-center justify-between gap-3 text-left font-bold leading-snug [--liquid-glass-hover-scale:1.03] md:gap-4"
+              className="peer-name peer-accordion-trigger group flex w-full cursor-none items-center justify-between gap-3 text-left leading-snug md:gap-4"
             >
               <div className="min-w-0 flex-1 font-sans text-[12px] md:text-[12px]">
-                <span className="block">{item.name}</span>
+                <span className="block font-bold">{item.name}</span>
                 <span className="mt-0.5 block font-light opacity-90">
                   {item.role}
                 </span>

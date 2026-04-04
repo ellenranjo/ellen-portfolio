@@ -26,7 +26,7 @@ export default function Ps5Page() {
   return (
     <CaseStudyShell>
       <CsMax>
-        <CsH1>PS5 Controller (2020)</CsH1>
+        <CsH1>PS5 Controller [2020]</CsH1>
 
         <CsIntroRow>
           <CsIntroCol variant="wide">

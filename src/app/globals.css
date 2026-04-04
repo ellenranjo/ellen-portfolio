@@ -3,9 +3,6 @@
 :root {
   --background: #ffffff;
   --foreground: #303030;
-  /* Liquid-glass buttons + nav + URL pill (single source) */
-  --liquid-glass-hover-scale: 1.15;
-
   /*
    * Name + nav sit in normal flow below the hero stage (not absolute/anchor).
    * Gap before project cards (section is outside hero container — use rem/vw, not cqi).
@@ -198,15 +195,77 @@
 
 @media (min-width: 768px) {
   .site-header-nav {
-    /* Slightly tighter to tagline on desktop — nav sits a bit higher */
     margin-top: 0.875rem;
     font-size: 11px;
   }
 }
 
-.site-header-nav a {
+/* Header nav: no drop shadow on pills (default, glass hover, or lime hover) */
+.site-header-nav .liquid-glass-nav {
+  box-shadow: none;
+}
+
+.site-header-nav .liquid-glass-nav:hover {
+  box-shadow: none;
+}
+
+.site-header-nav
+  .liquid-glass-pill.liquid-glass-nav:not(.case-study-quote-pill):hover,
+.site-header-nav
+  .liquid-glass-pill.liquid-glass-nav:not(.case-study-quote-pill):focus-visible {
+  box-shadow: none;
+}
+
+.site-header-nav a,
+.site-header-nav button {
   margin: 0;
   font-weight: 700;
+}
+
+.site-header-nav button {
+  font-family: inherit;
+  font-size: inherit;
+  letter-spacing: inherit;
+}
+
+.site-header-nav__label--hover {
+  display: none;
+}
+
+.site-header-nav a:hover .site-header-nav__label--rest,
+.site-header-nav a:focus-visible .site-header-nav__label--rest,
+.site-header-nav button:hover .site-header-nav__label--rest,
+.site-header-nav button:focus-visible .site-header-nav__label--rest,
+.homepage-back-to-top:hover .site-header-nav__label--rest,
+.homepage-back-to-top:focus-visible .site-header-nav__label--rest,
+.site-footer-more-work:hover .site-header-nav__label--rest,
+.site-footer-more-work:focus-visible .site-header-nav__label--rest {
+  display: none;
+}
+
+.site-header-nav a:hover .site-header-nav__label--hover,
+.site-header-nav a:focus-visible .site-header-nav__label--hover,
+.site-header-nav button:hover .site-header-nav__label--hover,
+.site-header-nav button:focus-visible .site-header-nav__label--hover,
+.homepage-back-to-top:hover .site-header-nav__label--hover,
+.homepage-back-to-top:focus-visible .site-header-nav__label--hover,
+.site-footer-more-work:hover .site-header-nav__label--hover,
+.site-footer-more-work:focus-visible .site-header-nav__label--hover {
+  display: inline;
+}
+
+.about-cta-links a:hover .site-header-nav__label--rest,
+.about-cta-links a:focus-visible .site-header-nav__label--rest,
+.about-cta-links button:hover .site-header-nav__label--rest,
+.about-cta-links button:focus-visible .site-header-nav__label--rest {
+  display: none;
+}
+
+.about-cta-links a:hover .site-header-nav__label--hover,
+.about-cta-links a:focus-visible .site-header-nav__label--hover,
+.about-cta-links button:hover .site-header-nav__label--hover,
+.about-cta-links button:focus-visible .site-header-nav__label--hover {
+  display: inline;
 }
 
 /*
@@ -380,36 +439,45 @@ body::before {
   left: 0;
   top: 0;
   z-index: 99999;
-  width: 24px;
-  height: 24px;
+  width: 18px;
+  height: 18px;
   border-radius: 9999px;
   pointer-events: none;
-  border: 1px solid rgba(255, 255, 255, 0.68);
-  background:
-    radial-gradient(
-      130% 140% at 24% 0%,
-      rgba(255, 255, 255, 0.5) 0%,
-      rgba(255, 255, 255, 0.16) 48%,
-      rgba(255, 255, 255, 0.02) 100%
-    ),
-    linear-gradient(
-      180deg,
-      rgba(210, 216, 226, 0.38) 0%,
-      rgba(178, 186, 200, 0.28) 100%
-    );
-  box-shadow:
-    0 2px 8px rgba(54, 61, 74, 0.2),
-    inset 0 0 0.5px rgba(255, 255, 255, 0.75);
-  backdrop-filter: blur(10px) saturate(115%);
-  -webkit-backdrop-filter: blur(10px) saturate(115%);
+  border: none;
+  background: #f0ff00;
+  box-shadow: 0 1px 8px rgba(200, 220, 60, 0.45);
   transition:
     opacity 120ms ease,
     transform 180ms cubic-bezier(0.22, 1, 0.36, 1);
 }
 
 .custom-cursor--interactive {
-  /* Slightly brighter when hovering buttons/cards */
-  border-color: rgba(255, 255, 255, 0.88);
+  box-shadow: 0 2px 12px rgba(200, 220, 60, 0.55);
+}
+
+@keyframes la-time-pill-dot-pulse {
+  0%,
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.35;
+    transform: scale(0.85);
+  }
+}
+
+.la-time-pill-pulse-dot {
+  animation: la-time-pill-dot-pulse 1.5s ease-in-out infinite;
+  transform-origin: center;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .la-time-pill-pulse-dot {
+    animation: none;
+    opacity: 1;
+    transform: none;
+  }
 }
 
 .liquid-glass-button {
@@ -435,7 +503,6 @@ body::before {
   transform-origin: center;
   -webkit-font-smoothing: antialiased;
   transition:
-    transform 240ms cubic-bezier(0.22, 1, 0.36, 1),
     background-color 240ms ease,
     border-color 240ms ease;
 }
@@ -457,7 +524,6 @@ body::before {
 }
 
 .liquid-glass-button:hover {
-  transform: scale(var(--liquid-glass-hover-scale));
   border-color: rgba(255, 255, 255, 0.9);
 }
 
@@ -476,7 +542,6 @@ body::before {
   box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
   transform-origin: center;
   transition:
-    transform 240ms cubic-bezier(0.22, 1, 0.36, 1),
     background-color 240ms ease,
     border-color 240ms ease,
     color 240ms ease,
@@ -520,7 +585,6 @@ body::before {
 }
 
 .liquid-glass-nav:hover {
-  transform: scale(var(--liquid-glass-hover-scale));
   color: #1f2328;
   border-color: rgba(255, 255, 255, 0.7);
   box-shadow:
@@ -548,6 +612,40 @@ body::before {
     );
 }
 
+/*
+ * Pill + liquid-glass-nav: acid lime hover (#F0FF00), no gray ring.
+ * Applies to header nav, back-to-top, About CTAs, login submit, case study links, peers, etc.
+ * Pull-quote pills use .case-study-quote-pill and are excluded.
+ */
+.liquid-glass-pill.liquid-glass-nav:not(.case-study-quote-pill):hover,
+.liquid-glass-pill.liquid-glass-nav:not(.case-study-quote-pill):focus-visible {
+  color: #1f2328;
+  border-color: #f0ff00;
+  box-shadow: 0 2px 18px rgba(200, 220, 60, 0.35);
+  background: #f0ff00;
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
+}
+
+.liquid-glass-pill.liquid-glass-nav:not(.case-study-quote-pill):hover::before,
+.liquid-glass-pill.liquid-glass-nav:not(.case-study-quote-pill):focus-visible::before {
+  background: linear-gradient(
+    180deg,
+    rgba(255, 255, 255, 0.38) 0%,
+    transparent 60%
+  );
+  opacity: 1;
+}
+
+.liquid-glass-pill.liquid-glass-nav:not(.case-study-quote-pill):hover {
+  outline: none;
+}
+
+.liquid-glass-pill.liquid-glass-nav:not(.case-study-quote-pill):focus-visible {
+  outline: 2px solid #1f2328;
+  outline-offset: 3px;
+}
+
 /* Case study pull quote — liquid glass pill, no hover / motion (Fanny Sling, etc.) */
 .case-study-quote-pill.liquid-glass-pill {
   padding: 1rem 1.35rem;
@@ -561,7 +659,6 @@ body::before {
 
 .case-study-quote-pill.liquid-glass-button,
 .case-study-quote-pill.liquid-glass-nav {
-  --liquid-glass-hover-scale: 1;
   cursor: default;
 }
 
@@ -767,9 +864,8 @@ body::before {
   }
 }
 
-/* Ideations carousel — circular glass controls (subtler scale than default nav) */
+/* Ideations carousel — circular glass controls */
 .liquid-glass-carousel-btn {
-  --liquid-glass-hover-scale: 1.08;
   cursor: pointer;
 }
 
@@ -1046,14 +1142,52 @@ body::before {
     100% 100%;
 }
 
-/* About: peer testimonial rows — .liquid-glass-pill uses 6px 12px; need more inset from rounded edge */
-.peer-name.liquid-glass-button.liquid-glass-pill {
-  padding: 0.65rem 0.875rem 0.65rem 2.35rem;
+/* About: peer accordion — hairline between sections (above each row after the first) */
+.peer-testimonials-list .peer-item + .peer-item {
+  border-top: 1px solid rgba(48, 48, 48, 0.14);
+}
+
+.peer-accordion-trigger.peer-name {
+  margin: 0;
+  padding: 0.65rem 0.75rem 0.65rem 1.25rem;
+  font-family: inherit;
+  font-size: inherit;
+  cursor: none;
+  color: #303030;
+  background: transparent;
+  border: none;
+  border-radius: 0;
+  box-shadow: none;
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
+  transform: none !important;
+  transition: none;
+  position: relative;
+  isolation: auto;
+  overflow: visible;
+  -webkit-font-smoothing: antialiased;
+}
+
+.peer-accordion-trigger.peer-name::before {
+  content: none;
+}
+
+.peer-accordion-trigger.peer-name:hover {
+  transform: none !important;
+  background: #f0ff00;
+  color: #1f2328;
+}
+
+.peer-accordion-trigger.peer-name:focus-visible {
+  outline: 2px solid #1f2328;
+  outline-offset: -2px;
+  background: #f0ff00;
+  color: #1f2328;
 }
 
 @media (min-width: 768px) {
-  .peer-name.liquid-glass-button.liquid-glass-pill {
-    padding: 0.75rem 1.1rem 0.75rem 3rem;
+  .peer-accordion-trigger.peer-name {
+    padding: 0.75rem 1rem 0.75rem 1.5rem;
   }
 }
 
@@ -1350,12 +1484,11 @@ body.login-splash-open {
   backdrop-filter: blur(8px);
   -webkit-backdrop-filter: blur(8px);
   box-shadow: 0 1px 4px rgba(0, 0, 0, 0.12);
-  transition: background 0.15s, transform 0.15s;
+  transition: background 0.15s;
 }
 
 .resume-modal-close:hover {
   background: rgba(255, 255, 255, 1);
-  transform: scale(1.08);
 }
 
 .resume-modal-body {

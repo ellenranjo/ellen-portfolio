@@ -1,5 +1,6 @@
 import type { ReactNode } from "react";
 import Image from "next/image";
+import { ResumeButton } from "@/components/about/ResumeButton";
 import { SITE_NAME_GIF_SRC } from "@/lib/site-assets";
 
 type CaseStudyShellProps = {
@@ -42,19 +43,35 @@ export function CaseStudyShell({
               href="/"
               className="liquid-glass-button liquid-glass-pill liquid-glass-nav inline-block font-bold !no-underline"
             >
-              work
+              <span className="site-header-nav__label site-header-nav__label--rest">
+                work ©
+              </span>
+              <span className="site-header-nav__label site-header-nav__label--hover" aria-hidden>
+                [work ©]
+              </span>
             </a>
             <a
               href="/about"
               className="liquid-glass-button liquid-glass-pill liquid-glass-nav inline-block font-bold !no-underline"
             >
-              about
+              <span className="site-header-nav__label site-header-nav__label--rest">
+                about
+              </span>
+              <span className="site-header-nav__label site-header-nav__label--hover" aria-hidden>
+                [about]
+              </span>
             </a>
+            <ResumeButton className="liquid-glass-button liquid-glass-pill liquid-glass-nav inline-block font-bold !no-underline" />
             <a
               href="/photography"
               className="liquid-glass-button liquid-glass-pill liquid-glass-nav inline-block font-bold !no-underline"
             >
-              photography
+              <span className="site-header-nav__label site-header-nav__label--rest">
+                photography
+              </span>
+              <span className="site-header-nav__label site-header-nav__label--hover" aria-hidden>
+                [photography]
+              </span>
             </a>
           </nav>
         </div>
@@ -63,9 +80,17 @@ export function CaseStudyShell({
       <section className="mb-0 mt-6 text-center md:mt-8">
         <a
           href="/"
-          className="liquid-glass-button liquid-glass-pill liquid-glass-nav inline-block text-[9px] font-bold !no-underline md:text-[11px]"
+          className="site-footer-more-work liquid-glass-button liquid-glass-pill liquid-glass-nav inline-block text-[9px] font-bold !no-underline md:text-[11px]"
         >
-          More Selected Work
+          <span className="site-header-nav__label site-header-nav__label--rest">
+            more selected work
+          </span>
+          <span
+            className="site-header-nav__label site-header-nav__label--hover"
+            aria-hidden
+          >
+            [more selected work]
+          </span>
         </a>
         <div className="mb-[30px] mt-[10px] text-[65%] font-light leading-[15px]">
           ©2026 Ellen Huynh. All Rights Reserved.

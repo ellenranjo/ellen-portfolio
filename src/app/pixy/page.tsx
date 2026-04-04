@@ -32,7 +32,7 @@ export default function PixyPage() {
   return (
     <CaseStudyShell>
       <CsMax>
-        <CsH1>Pixy (2022)</CsH1>
+        <CsH1>Pixy [2022]</CsH1>
 
         <CsIntroRow>
           <CsIntroCol variant="wide">

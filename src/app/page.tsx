@@ -1,4 +1,5 @@
 import Image from "next/image";
+import { ResumeButton } from "@/components/about/ResumeButton";
 import { HandwrittenPaperMessage } from "@/components/HandwrittenPaperMessage";
 import { ProjectCard } from "@/components/ProjectCard";
 import { SITE_NAME_GIF_SRC } from "@/lib/site-assets";
@@ -58,7 +59,7 @@ const projects: Project[] = [
 
 export default function Home() {
   return (
-    <main className="homepage bg-white text-[#303030]">
+    <main id="top" className="homepage bg-white text-[#303030]">
       {/* Hero: art lives in the stage; name + nav are in normal flow below (real-device safe). */}
       <section className="homepage-hero relative w-full overflow-visible bg-transparent pb-1">
         <div className="homepage-hero-canvas">
@@ -107,19 +108,35 @@ export default function Home() {
                 href="/"
                 className="liquid-glass-button liquid-glass-pill liquid-glass-nav inline-block font-bold !no-underline"
               >
-                work
+                <span className="site-header-nav__label site-header-nav__label--rest">
+                  work ©
+                </span>
+                <span className="site-header-nav__label site-header-nav__label--hover" aria-hidden>
+                  [work ©]
+                </span>
               </a>
               <a
                 href="/about"
                 className="liquid-glass-button liquid-glass-pill liquid-glass-nav inline-block font-bold !no-underline"
               >
-                about
+                <span className="site-header-nav__label site-header-nav__label--rest">
+                  about
+                </span>
+                <span className="site-header-nav__label site-header-nav__label--hover" aria-hidden>
+                  [about]
+                </span>
               </a>
+              <ResumeButton className="liquid-glass-button liquid-glass-pill liquid-glass-nav inline-block font-bold !no-underline" />
               <a
                 href="/photography"
                 className="liquid-glass-button liquid-glass-pill liquid-glass-nav inline-block font-bold !no-underline"
               >
-                photography
+                <span className="site-header-nav__label site-header-nav__label--rest">
+                  photography
+                </span>
+                <span className="site-header-nav__label site-header-nav__label--hover" aria-hidden>
+                  [photography]
+                </span>
               </a>
             </nav>
           </div>
@@ -137,10 +154,15 @@ export default function Home() {
 
       <div className="mb-5 mt-10 text-center">
         <a
-          href="#"
-          className="liquid-glass-button liquid-glass-pill liquid-glass-nav inline-block text-[9px] font-bold md:text-[11px]"
+          href="#top"
+          className="homepage-back-to-top liquid-glass-button liquid-glass-pill liquid-glass-nav inline-block text-[9px] font-bold md:text-[11px] !no-underline"
         >
-          Back To Top
+          <span className="site-header-nav__label site-header-nav__label--rest">
+            back to top
+          </span>
+          <span className="site-header-nav__label site-header-nav__label--hover" aria-hidden>
+            [back to top]
+          </span>
         </a>
       </div>
 
@@ -150,7 +172,7 @@ export default function Home() {
             href="https://www.behance.net/ellenxoonu5d6e"
             target="_blank"
             rel="noreferrer"
-            className="hover:bg-[#face6a]"
+            className="hover:bg-[#F0FF00]"
           >
             Behance
           </a>{" "}
@@ -159,14 +181,14 @@ export default function Home() {
             href="https://www.linkedin.com/in/ellen-huynh-02504685/"
             target="_blank"
             rel="noreferrer"
-            className="hover:bg-[#face6a]"
+            className="hover:bg-[#F0FF00]"
           >
             Linkedin
           </a>{" "}
           //{" "}
           <a
             href="mailto:ellenxoonu@gmail.com?subject=Hello!"
-            className="hover:bg-[#face6a]"
+            className="hover:bg-[#F0FF00]"
           >
             Email
           </a>
