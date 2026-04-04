@@ -2,6 +2,7 @@ import { Analytics } from '@vercel/analytics/react';
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import { CustomCursor } from "@/components/CustomCursor";
+import { LosAngelesTimePill } from "@/components/LosAngelesTimePill";
 import "./globals.css";
 
 const geistSans = Geist({
@@ -35,6 +36,7 @@ export default function RootLayout({
     >
       <body className="custom-cursor-site min-h-full flex flex-col">
         <CustomCursor />
+        <LosAngelesTimePill className="pointer-events-none fixed z-[500] top-[max(0.75rem,env(safe-area-inset-top,0px))] right-[max(0.75rem,env(safe-area-inset-right,0px))] md:top-[max(1.25rem,env(safe-area-inset-top,0px))] md:right-[max(1.25rem,env(safe-area-inset-right,0px))]" />
         {children}
         <Analytics />
       </body>
