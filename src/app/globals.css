@@ -292,21 +292,25 @@ body::before {
   /* Dynamic viewport height: stable on mobile Safari vs 100vh + URL bar */
   min-height: 100svh;
   min-height: 100dvh;
-  /* Subtle square grid (reference: alejandromejias.com.au–style technical field) */
+  /* Dotted field (reference: alejandromejias.com.au) */
   background-color: #fff;
-  background-image:
-    linear-gradient(to right, rgba(48, 48, 48, 0.055) 1px, transparent 1px),
-    linear-gradient(to bottom, rgba(48, 48, 48, 0.055) 1px, transparent 1px);
-  background-size: 40px 40px;
-  background-position: -1px -1px;
+  background-image: radial-gradient(
+    circle at center,
+    rgba(48, 48, 48, 0.14) 0.55px,
+    transparent 0.65px
+  );
+  background-size: 24px 24px;
+  background-position: 0 0;
 }
 
 @media (max-width: 767px) {
   .homepage {
-    background-size: 32px 32px;
-    background-image:
-      linear-gradient(to right, rgba(48, 48, 48, 0.045) 1px, transparent 1px),
-      linear-gradient(to bottom, rgba(48, 48, 48, 0.045) 1px, transparent 1px);
+    background-size: 20px 20px;
+    background-image: radial-gradient(
+      circle at center,
+      rgba(48, 48, 48, 0.11) 0.5px,
+      transparent 0.6px
+    );
   }
 }
 
