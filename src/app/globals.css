@@ -204,6 +204,22 @@
   }
 }
 
+/* Header nav: no drop shadow on pills (default, glass hover, or lime hover) */
+.site-header-nav .liquid-glass-nav {
+  box-shadow: none;
+}
+
+.site-header-nav .liquid-glass-nav:hover {
+  box-shadow: none;
+}
+
+.site-header-nav
+  .liquid-glass-pill.liquid-glass-nav:not(.case-study-quote-pill):hover,
+.site-header-nav
+  .liquid-glass-pill.liquid-glass-nav:not(.case-study-quote-pill):focus-visible {
+  box-shadow: none;
+}
+
 .site-header-nav a,
 .site-header-nav button {
   margin: 0;
