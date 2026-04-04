@@ -155,13 +155,17 @@
 }
 
 .site-header-tagline {
+  display: inline-block;
   margin: 0;
+  padding: 0.2em 0.75em;
+  border-radius: 9999px;
   font-family: var(--font-geist-sans), Arial, Helvetica, sans-serif;
   font-size: 10px;
-  font-weight: 300;
+  font-weight: 500;
   line-height: 1.2;
   letter-spacing: 0.5px;
-  color: #606060;
+  color: #1f2328;
+  background: #f0ff00;
 }
 
 @media (min-width: 768px) {
