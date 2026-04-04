@@ -58,7 +58,7 @@ const projects: Project[] = [
 
 export default function Home() {
   return (
-    <main className="homepage bg-white text-[#303030]">
+    <main id="top" className="homepage bg-white text-[#303030]">
       {/* Hero: art lives in the stage; name + nav are in normal flow below (real-device safe). */}
       <section className="homepage-hero relative w-full overflow-visible bg-transparent pb-1">
         <div className="homepage-hero-canvas">
@@ -152,10 +152,15 @@ export default function Home() {
 
       <div className="mb-5 mt-10 text-center">
         <a
-          href="#"
-          className="liquid-glass-button liquid-glass-pill liquid-glass-nav inline-block text-[9px] font-bold md:text-[11px]"
+          href="#top"
+          className="homepage-back-to-top liquid-glass-button liquid-glass-pill liquid-glass-nav inline-block text-[9px] font-bold md:text-[11px] !no-underline"
         >
-          Back To Top
+          <span className="site-header-nav__label site-header-nav__label--rest">
+            back to top
+          </span>
+          <span className="site-header-nav__label site-header-nav__label--hover" aria-hidden>
+            [back to top]
+          </span>
         </a>
       </div>
 
@@ -165,7 +170,7 @@ export default function Home() {
             href="https://www.behance.net/ellenxoonu5d6e"
             target="_blank"
             rel="noreferrer"
-            className="hover:bg-[#DFFF00]"
+            className="hover:bg-[#F0FF00]"
           >
             Behance
           </a>{" "}
@@ -174,14 +179,14 @@ export default function Home() {
             href="https://www.linkedin.com/in/ellen-huynh-02504685/"
             target="_blank"
             rel="noreferrer"
-            className="hover:bg-[#DFFF00]"
+            className="hover:bg-[#F0FF00]"
           >
             Linkedin
           </a>{" "}
           //{" "}
           <a
             href="mailto:ellenxoonu@gmail.com?subject=Hello!"
-            className="hover:bg-[#DFFF00]"
+            className="hover:bg-[#F0FF00]"
           >
             Email
           </a>

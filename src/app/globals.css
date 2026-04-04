@@ -213,12 +213,16 @@
 }
 
 .site-header-nav a:hover .site-header-nav__label--rest,
-.site-header-nav a:focus-visible .site-header-nav__label--rest {
+.site-header-nav a:focus-visible .site-header-nav__label--rest,
+.homepage-back-to-top:hover .site-header-nav__label--rest,
+.homepage-back-to-top:focus-visible .site-header-nav__label--rest {
   display: none;
 }
 
 .site-header-nav a:hover .site-header-nav__label--hover,
-.site-header-nav a:focus-visible .site-header-nav__label--hover {
+.site-header-nav a:focus-visible .site-header-nav__label--hover,
+.homepage-back-to-top:hover .site-header-nav__label--hover,
+.homepage-back-to-top:focus-visible .site-header-nav__label--hover {
   display: inline;
 }
 
@@ -561,27 +565,38 @@ body::before {
     );
 }
 
-/* Header nav pills (home + case study shell): electric lime hover — matches footer accent */
-.site-header-nav .liquid-glass-nav:hover,
-.site-header-nav .liquid-glass-nav:focus-visible {
+/*
+ * Pill + liquid-glass-nav: acid lime hover (#F0FF00), no gray ring.
+ * Applies to header nav, back-to-top, About CTAs, login submit, case study links, peers, etc.
+ * Pull-quote pills use .case-study-quote-pill and are excluded.
+ */
+.liquid-glass-pill.liquid-glass-nav:not(.case-study-quote-pill):hover,
+.liquid-glass-pill.liquid-glass-nav:not(.case-study-quote-pill):focus-visible {
   color: #1f2328;
-  border-color: rgba(30, 35, 40, 0.22);
-  box-shadow:
-    0 2px 8px rgba(0, 0, 0, 0.1),
-    0 1px 0 rgba(255, 255, 255, 0.4) inset;
-  background: #dfff00;
+  border-color: #f0ff00;
+  box-shadow: 0 2px 18px rgba(200, 220, 60, 0.35);
+  background: #f0ff00;
   backdrop-filter: none;
   -webkit-backdrop-filter: none;
 }
 
-.site-header-nav .liquid-glass-nav:hover::before,
-.site-header-nav .liquid-glass-nav:focus-visible::before {
+.liquid-glass-pill.liquid-glass-nav:not(.case-study-quote-pill):hover::before,
+.liquid-glass-pill.liquid-glass-nav:not(.case-study-quote-pill):focus-visible::before {
   background: linear-gradient(
     180deg,
-    rgba(255, 255, 255, 0.35) 0%,
+    rgba(255, 255, 255, 0.38) 0%,
     transparent 60%
   );
   opacity: 1;
+}
+
+.liquid-glass-pill.liquid-glass-nav:not(.case-study-quote-pill):hover {
+  outline: none;
+}
+
+.liquid-glass-pill.liquid-glass-nav:not(.case-study-quote-pill):focus-visible {
+  outline: 2px solid #1f2328;
+  outline-offset: 3px;
 }
 
 /* Case study pull quote — liquid glass pill, no hover / motion (Fanny Sling, etc.) */
