@@ -22,7 +22,7 @@ export default function Spectacles5Page() {
   return (
     <CaseStudyShell>
       <CsMax>
-        <CsH1>Spectacles 5 (2024)</CsH1>
+        <CsH1>Spectacles 5 [2024]</CsH1>
 
         <CsIntroRow>
           <CsIntroCol variant="wide">

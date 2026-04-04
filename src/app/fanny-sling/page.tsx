@@ -27,7 +27,7 @@ export default function FannySlingPage() {
   return (
     <CaseStudyShell>
       <CsMax>
-        <CsH1>Photography Gear Sling (2018)</CsH1>
+        <CsH1>Photography Gear Sling [2018]</CsH1>
 
         <CsIntroRow>
           <CsIntroCol variant="wide">
