@@ -37,8 +37,12 @@ export function LosAngelesTimePill({ className = "" }: { className?: string }) {
           : "Current time in Los Angeles, California"
       }
     >
-      <span className="tabular-nums">
-        Los Angeles[CA]{" "}
+      <span className="inline-flex items-center gap-1 tabular-nums md:gap-1.5">
+        <span>Los Angeles[CA]</span>
+        <span
+          className="la-time-pill-pulse-dot inline-block size-[5px] shrink-0 rounded-full bg-[#1f2328] md:size-1.5"
+          aria-hidden
+        />
         <span aria-live="polite">{time ?? "—"}</span>
       </span>
     </div>

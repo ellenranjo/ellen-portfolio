@@ -455,6 +455,31 @@ body::before {
   box-shadow: 0 2px 12px rgba(200, 220, 60, 0.55);
 }
 
+@keyframes la-time-pill-dot-pulse {
+  0%,
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.35;
+    transform: scale(0.85);
+  }
+}
+
+.la-time-pill-pulse-dot {
+  animation: la-time-pill-dot-pulse 1.5s ease-in-out infinite;
+  transform-origin: center;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .la-time-pill-pulse-dot {
+    animation: none;
+    opacity: 1;
+    transform: none;
+  }
+}
+
 .liquid-glass-button {
   position: relative;
   isolation: isolate;
