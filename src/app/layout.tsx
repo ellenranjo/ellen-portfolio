@@ -36,8 +36,14 @@ export default function RootLayout({
     >
       <body className="custom-cursor-site min-h-full flex flex-col">
         <CustomCursor />
-        <LosAngelesTimePill className="pointer-events-none fixed z-[500] top-[max(0.75rem,env(safe-area-inset-top,0px))] right-[max(0.75rem,env(safe-area-inset-right,0px))] md:top-[max(1.25rem,env(safe-area-inset-top,0px))] md:right-[max(1.25rem,env(safe-area-inset-right,0px))]" />
-        {children}
+        <div className="relative min-h-full w-full flex-1">
+          <div
+            className="pointer-events-none absolute z-[500] top-[max(0.75rem,env(safe-area-inset-top,0px))] right-[max(0.75rem,env(safe-area-inset-right,0px))] md:top-[max(1.25rem,env(safe-area-inset-top,0px))] md:right-[max(1.25rem,env(safe-area-inset-right,0px))]"
+          >
+            <LosAngelesTimePill />
+          </div>
+          {children}
+        </div>
         <Analytics />
       </body>
     </html>
