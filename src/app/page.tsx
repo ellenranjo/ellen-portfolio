@@ -101,42 +101,38 @@ export default function Home() {
                 unoptimized
               />
             </a>
-            <div className="site-header-tagline">industrial designer</div>
             <nav className="site-header-nav">
               <a
                 href="/"
                 className="liquid-glass-button liquid-glass-pill liquid-glass-nav inline-block font-bold !no-underline"
               >
-                <span className="site-header-nav__bracket site-header-nav__bracket--open" aria-hidden>
-                  [
+                <span className="site-header-nav__label site-header-nav__label--rest">
+                  work
                 </span>
-                <span>work</span>
-                <span className="site-header-nav__bracket site-header-nav__bracket--close" aria-hidden>
-                  ]
+                <span className="site-header-nav__label site-header-nav__label--hover" aria-hidden>
+                  [work]
                 </span>
               </a>
               <a
                 href="/about"
                 className="liquid-glass-button liquid-glass-pill liquid-glass-nav inline-block font-bold !no-underline"
               >
-                <span className="site-header-nav__bracket site-header-nav__bracket--open" aria-hidden>
-                  [
+                <span className="site-header-nav__label site-header-nav__label--rest">
+                  about
                 </span>
-                <span>about</span>
-                <span className="site-header-nav__bracket site-header-nav__bracket--close" aria-hidden>
-                  ]
+                <span className="site-header-nav__label site-header-nav__label--hover" aria-hidden>
+                  [about]
                 </span>
               </a>
               <a
                 href="/photography"
                 className="liquid-glass-button liquid-glass-pill liquid-glass-nav inline-block font-bold !no-underline"
               >
-                <span className="site-header-nav__bracket site-header-nav__bracket--open" aria-hidden>
-                  [
+                <span className="site-header-nav__label site-header-nav__label--rest">
+                  photography
                 </span>
-                <span>photography</span>
-                <span className="site-header-nav__bracket site-header-nav__bracket--close" aria-hidden>
-                  ]
+                <span className="site-header-nav__label site-header-nav__label--hover" aria-hidden>
+                  [photography]
                 </span>
               </a>
             </nav>

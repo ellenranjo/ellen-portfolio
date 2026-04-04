@@ -157,30 +157,13 @@
   background: transparent;
 }
 
-.site-header-tagline {
-  margin: 0;
-  font-family: var(--font-space-grotesk), var(--font-geist-sans), Arial, Helvetica, sans-serif;
-  font-size: 10px;
-  font-weight: 500;
-  line-height: 1.2;
-  letter-spacing: 0.5px;
-  color: #303030;
-  text-transform: uppercase;
-}
-
-@media (min-width: 768px) {
-  .site-header-tagline {
-    font-size: 12px;
-  }
-}
-
 .site-header-nav {
   display: flex;
   flex-wrap: wrap;
   align-items: center;
   justify-content: center;
   margin: 0;
-  margin-top: 0.75rem;
+  margin-top: 0.625rem;
   padding: 0;
   text-align: center;
   font-family: var(--font-space-grotesk), var(--font-geist-sans), Arial, Helvetica, sans-serif;
@@ -191,15 +174,9 @@
   row-gap: 0.5rem;
 }
 
-@media (min-width: 640px) {
-  .site-header-nav {
-    margin-top: -1.5rem;
-  }
-}
-
 @media (min-width: 768px) {
   .site-header-nav {
-    margin-top: 0.875rem;
+    margin-top: 0.75rem;
     font-size: 11px;
   }
 }
@@ -210,38 +187,18 @@
   text-transform: uppercase;
 }
 
-/* Brackets are real spans so we don't clash with .liquid-glass-* ::before (glass layer). */
-.site-header-nav__bracket {
-  display: inline-block;
-  overflow: hidden;
-  vertical-align: baseline;
-  opacity: 0;
-  max-width: 0;
-  transition:
-    opacity 0.2s ease,
-    max-width 0.2s ease,
-    margin 0.2s ease;
+.site-header-nav__label--hover {
+  display: none;
 }
 
-.site-header-nav__bracket--open {
-  margin-right: 0;
+.site-header-nav a:hover .site-header-nav__label--rest,
+.site-header-nav a:focus-visible .site-header-nav__label--rest {
+  display: none;
 }
 
-.site-header-nav__bracket--close {
-  margin-left: 0;
-}
-
-.site-header-nav a:hover .site-header-nav__bracket {
-  opacity: 1;
-  max-width: 0.55em;
-}
-
-.site-header-nav a:hover .site-header-nav__bracket--open {
-  margin-right: 0.08em;
-}
-
-.site-header-nav a:hover .site-header-nav__bracket--close {
-  margin-left: 0.08em;
+.site-header-nav a:hover .site-header-nav__label--hover,
+.site-header-nav a:focus-visible .site-header-nav__label--hover {
+  display: inline;
 }
 
 .homepage-project-card-copy {
