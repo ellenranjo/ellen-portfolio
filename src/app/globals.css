@@ -157,16 +157,32 @@
   background: transparent;
 }
 
+.site-header-tagline {
+  margin: 0;
+  font-family: var(--font-geist-sans), Arial, Helvetica, sans-serif;
+  font-size: 10px;
+  font-weight: 300;
+  line-height: 1.2;
+  letter-spacing: 0.5px;
+  color: #606060;
+}
+
+@media (min-width: 768px) {
+  .site-header-tagline {
+    font-size: 12px;
+  }
+}
+
 .site-header-nav {
   display: flex;
   flex-wrap: wrap;
   align-items: center;
   justify-content: center;
   margin: 0;
-  margin-top: 0.625rem;
+  margin-top: 0.75rem;
   padding: 0;
   text-align: center;
-  font-family: var(--font-space-grotesk), var(--font-geist-sans), Arial, Helvetica, sans-serif;
+  font-family: var(--font-geist-sans), Arial, Helvetica, sans-serif;
   font-size: 9px;
   font-weight: 300;
   letter-spacing: 0.5px;
@@ -174,39 +190,21 @@
   row-gap: 0.5rem;
 }
 
+@media (min-width: 640px) {
+  .site-header-nav {
+    margin-top: -1.5rem;
+  }
+}
+
 @media (min-width: 768px) {
   .site-header-nav {
-    margin-top: 0.75rem;
+    margin-top: 0.875rem;
     font-size: 11px;
   }
 }
 
 .site-header-nav a {
   margin: 0;
-  font-weight: 700;
-  text-transform: uppercase;
-}
-
-.site-header-nav__label--hover {
-  display: none;
-}
-
-.site-header-nav a:hover .site-header-nav__label--rest,
-.site-header-nav a:focus-visible .site-header-nav__label--rest {
-  display: none;
-}
-
-.site-header-nav a:hover .site-header-nav__label--hover,
-.site-header-nav a:focus-visible .site-header-nav__label--hover {
-  display: inline;
-}
-
-.homepage-project-card-copy {
-  font-family: var(--font-space-grotesk), var(--font-geist-sans), Arial, Helvetica, sans-serif;
-  text-transform: uppercase;
-}
-
-.homepage-project-card-copy strong {
   font-weight: 700;
 }
 
@@ -293,26 +291,6 @@ body::before {
   /* Dynamic viewport height: stable on mobile Safari vs 100vh + URL bar */
   min-height: 100svh;
   min-height: 100dvh;
-  /* Dotted field — tight spacing (reference: alejandromejias.com.au) */
-  background-color: #fff;
-  background-image: radial-gradient(
-    circle at center,
-    rgba(48, 48, 48, 0.13) 0.45px,
-    transparent 0.55px
-  );
-  background-size: 12px 12px;
-  background-position: 0 0;
-}
-
-@media (max-width: 767px) {
-  .homepage {
-    background-size: 10px 10px;
-    background-image: radial-gradient(
-      circle at center,
-      rgba(48, 48, 48, 0.11) 0.4px,
-      transparent 0.5px
-    );
-  }
 }
 
 /* Hero handwritten animation: must not inherit global `p { font-size: 12px }`.
@@ -400,7 +378,7 @@ body::before {
   position: fixed;
   left: 0;
   top: 0;
-  z-index: 99999;
+  z-index: 200;
   width: 24px;
   height: 24px;
   border-radius: 9999px;
@@ -1326,15 +1304,6 @@ body.login-splash-open {
   backdrop-filter: blur(8px);
   -webkit-backdrop-filter: blur(8px);
   animation: resume-fade-in 0.25s ease-out;
-}
-
-@media screen and (min-width: 992px) {
-  .resume-modal-backdrop,
-  .resume-modal-backdrop *,
-  .resume-modal-backdrop a,
-  .resume-modal-backdrop button {
-    cursor: none !important;
-  }
 }
 
 .resume-modal-content {

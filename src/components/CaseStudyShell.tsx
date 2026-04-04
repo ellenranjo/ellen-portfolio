@@ -36,39 +36,25 @@ export function CaseStudyShell({
               unoptimized
             />
           </a>
+          <div className="site-header-tagline mt-0">industrial designer</div>
           <nav className="site-header-nav">
             <a
               href="/"
               className="liquid-glass-button liquid-glass-pill liquid-glass-nav inline-block font-bold !no-underline"
             >
-              <span className="site-header-nav__label site-header-nav__label--rest">
-                work
-              </span>
-              <span className="site-header-nav__label site-header-nav__label--hover" aria-hidden>
-                [work]
-              </span>
+              work
             </a>
             <a
               href="/about"
               className="liquid-glass-button liquid-glass-pill liquid-glass-nav inline-block font-bold !no-underline"
             >
-              <span className="site-header-nav__label site-header-nav__label--rest">
-                about
-              </span>
-              <span className="site-header-nav__label site-header-nav__label--hover" aria-hidden>
-                [about]
-              </span>
+              about
             </a>
             <a
               href="/photography"
               className="liquid-glass-button liquid-glass-pill liquid-glass-nav inline-block font-bold !no-underline"
             >
-              <span className="site-header-nav__label site-header-nav__label--rest">
-                photography
-              </span>
-              <span className="site-header-nav__label site-header-nav__label--hover" aria-hidden>
-                [photography]
-              </span>
+              photography
             </a>
           </nav>
         </div>
