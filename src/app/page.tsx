@@ -107,19 +107,34 @@ export default function Home() {
                 href="/"
                 className="liquid-glass-button liquid-glass-pill liquid-glass-nav inline-block font-bold !no-underline"
               >
-                work
+                <span className="site-header-nav__label site-header-nav__label--rest">
+                  work ©
+                </span>
+                <span className="site-header-nav__label site-header-nav__label--hover" aria-hidden>
+                  [work ©]
+                </span>
               </a>
               <a
                 href="/about"
                 className="liquid-glass-button liquid-glass-pill liquid-glass-nav inline-block font-bold !no-underline"
               >
-                about
+                <span className="site-header-nav__label site-header-nav__label--rest">
+                  about
+                </span>
+                <span className="site-header-nav__label site-header-nav__label--hover" aria-hidden>
+                  [about]
+                </span>
               </a>
               <a
                 href="/photography"
                 className="liquid-glass-button liquid-glass-pill liquid-glass-nav inline-block font-bold !no-underline"
               >
-                photography
+                <span className="site-header-nav__label site-header-nav__label--rest">
+                  photography
+                </span>
+                <span className="site-header-nav__label site-header-nav__label--hover" aria-hidden>
+                  [photography]
+                </span>
               </a>
             </nav>
           </div>
@@ -150,7 +165,7 @@ export default function Home() {
             href="https://www.behance.net/ellenxoonu5d6e"
             target="_blank"
             rel="noreferrer"
-            className="hover:bg-[#face6a]"
+            className="hover:bg-[#DFFF00]"
           >
             Behance
           </a>{" "}
@@ -159,14 +174,14 @@ export default function Home() {
             href="https://www.linkedin.com/in/ellen-huynh-02504685/"
             target="_blank"
             rel="noreferrer"
-            className="hover:bg-[#face6a]"
+            className="hover:bg-[#DFFF00]"
           >
             Linkedin
           </a>{" "}
           //{" "}
           <a
             href="mailto:ellenxoonu@gmail.com?subject=Hello!"
-            className="hover:bg-[#face6a]"
+            className="hover:bg-[#DFFF00]"
           >
             Email
           </a>
