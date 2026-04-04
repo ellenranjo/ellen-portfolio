@@ -226,6 +226,20 @@
   display: inline;
 }
 
+.about-cta-links a:hover .site-header-nav__label--rest,
+.about-cta-links a:focus-visible .site-header-nav__label--rest,
+.about-cta-links button:hover .site-header-nav__label--rest,
+.about-cta-links button:focus-visible .site-header-nav__label--rest {
+  display: none;
+}
+
+.about-cta-links a:hover .site-header-nav__label--hover,
+.about-cta-links a:focus-visible .site-header-nav__label--hover,
+.about-cta-links button:hover .site-header-nav__label--hover,
+.about-cta-links button:focus-visible .site-header-nav__label--hover {
+  display: inline;
+}
+
 /*
  * Name → subtitle → nav: normal flow under .homepage-hero-stage.
  * Slight negative margin tucks the lockup under the paper (subtle overlap); capped so
@@ -1097,14 +1111,51 @@ body::before {
     100% 100%;
 }
 
-/* About: peer testimonial rows — .liquid-glass-pill uses 6px 12px; need more inset from rounded edge */
-.peer-name.liquid-glass-button.liquid-glass-pill {
-  padding: 0.65rem 0.875rem 0.65rem 2.35rem;
+/* About: peer accordion — hairline between sections (above each row after the first) */
+.peer-testimonials-list .peer-item + .peer-item {
+  border-top: 1px solid rgba(48, 48, 48, 0.14);
+}
+
+.peer-accordion-trigger.peer-name {
+  margin: 0;
+  padding: 0.65rem 0.75rem 0.65rem 1.25rem;
+  font: inherit;
+  cursor: none;
+  color: #303030;
+  background: transparent;
+  border: none;
+  border-radius: 0;
+  box-shadow: none;
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
+  transform: none !important;
+  transition: none;
+  position: relative;
+  isolation: auto;
+  overflow: visible;
+  -webkit-font-smoothing: antialiased;
+}
+
+.peer-accordion-trigger.peer-name::before {
+  content: none;
+}
+
+.peer-accordion-trigger.peer-name:hover {
+  transform: none !important;
+  background: #f0ff00;
+  color: #1f2328;
+}
+
+.peer-accordion-trigger.peer-name:focus-visible {
+  outline: 2px solid #1f2328;
+  outline-offset: -2px;
+  background: #f0ff00;
+  color: #1f2328;
 }
 
 @media (min-width: 768px) {
-  .peer-name.liquid-glass-button.liquid-glass-pill {
-    padding: 0.75rem 1.1rem 0.75rem 3rem;
+  .peer-accordion-trigger.peer-name {
+    padding: 0.75rem 1rem 0.75rem 1.5rem;
   }
 }
 

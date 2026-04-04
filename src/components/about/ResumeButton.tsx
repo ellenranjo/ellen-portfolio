@@ -18,7 +18,15 @@ export function ResumeButton({ className }: { className?: string }) {
         onClick={() => setOpen(true)}
         className={className}
       >
-        Resume
+        <span className="site-header-nav__label site-header-nav__label--rest">
+          resume
+        </span>
+        <span
+          className="site-header-nav__label site-header-nav__label--hover"
+          aria-hidden
+        >
+          [resume]
+        </span>
       </button>
       {open && <ResumeModal onClose={() => setOpen(false)} />}
     </>
