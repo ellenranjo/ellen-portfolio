@@ -15,12 +15,24 @@ const geistMono = Geist_Mono({
   subsets: ["latin"],
 });
 
+function siteOrigin(): URL {
+  if (process.env.NEXT_PUBLIC_SITE_URL) {
+    try {
+      return new URL(process.env.NEXT_PUBLIC_SITE_URL);
+    } catch {
+      /* fall through */
+    }
+  }
+  if (process.env.VERCEL_URL) {
+    return new URL(`https://${process.env.VERCEL_URL}`);
+  }
+  return new URL("http://localhost:3000");
+}
+
 export const metadata: Metadata = {
+  metadataBase: siteOrigin(),
   title: "Ellen Huynh | Designer",
   description: "Industrial design portfolio of Ellen Huynh.",
-  icons: {
-    icon: "/images/EH.png",
-  },
 };
 
 
