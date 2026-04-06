@@ -1551,6 +1551,58 @@ body.login-splash-open {
   background: #fff;
 }
 
+/* iPad / iPhone: native PDF via <embed> (WebKit); PDF.js canvas is unreliable in all iOS browsers */
+.resume-modal-body--native {
+  display: flex;
+  flex: 1;
+  min-height: 0;
+  flex-direction: column;
+  padding-top: 1rem;
+}
+
+.resume-modal-native {
+  display: flex;
+  flex: 1;
+  min-height: 0;
+  width: 100%;
+  flex-direction: column;
+  align-items: stretch;
+  gap: 0.65rem;
+}
+
+.resume-modal-native-open {
+  flex-shrink: 0;
+  align-self: center;
+  padding: 0.4rem 1rem;
+  border-radius: 999px;
+  background: #f0ff00;
+  color: #1f2328;
+  font-family: var(--font-geist-sans, sans-serif);
+  font-size: 12px;
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.resume-modal-native-open:active {
+  opacity: 0.9;
+}
+
+.resume-modal-native-embed-wrap {
+  flex: 1;
+  min-height: 58vh;
+  width: 100%;
+}
+
+.resume-modal-native-embed {
+  display: block;
+  width: 100%;
+  min-height: 58vh;
+  height: min(70vh, 720px);
+  border: 0;
+  border-radius: 4px;
+  background: #e8e8e8;
+}
+
 .resume-modal-bottom {
   display: flex;
   align-items: center;

@@ -4,6 +4,7 @@ import {
   useCallback,
   useEffect,
   useLayoutEffect,
+  useMemo,
   useRef,
   useState,
 } from "react";
@@ -12,10 +13,20 @@ import { Document, Page, pdfjs } from "react-pdf";
 import "react-pdf/dist/Page/AnnotationLayer.css";
 import "react-pdf/dist/Page/TextLayer.css";
 
-/** Same-origin worker — Safari / iPadOS often block cross-origin PDF.js workers (e.g. unpkg). */
+/** Same-origin worker — desktop / Android canvas path only. */
 pdfjs.GlobalWorkerOptions.workerSrc = "/pdf.worker.min.mjs";
 
 const RESUME_PDF = "/Ellen-Huynh-Resume.pdf";
+
+/**
+ * iPhone / iPod, iPad (incl. “desktop” UA), and any iPadOS reporting as Mac + touch.
+ * Chrome on iPad still uses WebKit — PDF.js canvas is unreliable; use native viewer.
+ */
+function isAppleTouchDevice(): boolean {
+  if (typeof navigator === "undefined") return false;
+  if (/iPad|iPhone|iPod/i.test(navigator.userAgent)) return true;
+  return navigator.platform === "MacIntel" && navigator.maxTouchPoints > 1;
+}
 
 function CloseIcon() {
   return (
@@ -44,12 +55,41 @@ function DownloadIcon() {
   );
 }
 
+function NativePdfViewer({ pdfUrl }: { pdfUrl: string }) {
+  return (
+    <div className="resume-modal-native">
+      <a
+        href={pdfUrl}
+        target="_blank"
+        rel="noreferrer"
+        className="resume-modal-native-open"
+      >
+        Open full screen
+      </a>
+      {/* WebKit (Safari / Chrome on iPad): native PDF via embed; PDF.js canvas is unreliable */}
+      <div
+        className="resume-modal-native-embed-wrap"
+        role="region"
+        aria-label="Resume PDF preview"
+      >
+        <embed src={pdfUrl} type="application/pdf" className="resume-modal-native-embed" />
+      </div>
+    </div>
+  );
+}
+
 export function ResumeModal({ onClose }: { onClose: () => void }) {
   const backdropRef = useRef<HTMLDivElement>(null);
   const contentRef = useRef<HTMLDivElement>(null);
+  const [useNativeViewer] = useState(isAppleTouchDevice);
   const [numPages, setNumPages] = useState(0);
   const [containerWidth, setContainerWidth] = useState(0);
   const [loadError, setLoadError] = useState(false);
+
+  const absolutePdfUrl = useMemo(() => {
+    if (typeof window === "undefined") return "";
+    return new URL(RESUME_PDF, window.location.origin).href;
+  }, []);
 
   const handleKeyDown = useCallback(
     (e: KeyboardEvent) => {
@@ -69,6 +109,7 @@ export function ResumeModal({ onClose }: { onClose: () => void }) {
   }, [handleKeyDown]);
 
   useLayoutEffect(() => {
+    if (useNativeViewer) return;
     const el = contentRef.current;
     if (!el) return;
     const measure = () => {
@@ -84,7 +125,7 @@ export function ResumeModal({ onClose }: { onClose: () => void }) {
     });
     ro.observe(el);
     return () => ro.disconnect();
-  }, []);
+  }, [useNativeViewer]);
 
   const handleBackdropClick = (e: React.MouseEvent) => {
     if (e.target === backdropRef.current) onClose();
@@ -121,8 +162,16 @@ export function ResumeModal({ onClose }: { onClose: () => void }) {
           <CloseIcon />
         </button>
 
-        <div className="resume-modal-body">
-          {loadError ? (
+        <div
+          className={
+            useNativeViewer
+              ? "resume-modal-body resume-modal-body--native"
+              : "resume-modal-body"
+          }
+        >
+          {useNativeViewer && absolutePdfUrl ? (
+            <NativePdfViewer pdfUrl={absolutePdfUrl} />
+          ) : loadError ? (
             <div className="resume-modal-fallback">
               <p className="resume-modal-fallback__note">
                 Preview couldn&apos;t load here. Use the viewer below or
@@ -167,14 +216,16 @@ export function ResumeModal({ onClose }: { onClose: () => void }) {
 
         <div className="resume-modal-bottom">
           <a
-            href={RESUME_PDF}
-            download="Ellen Huynh Resume.pdf"
+            href={useNativeViewer && absolutePdfUrl ? absolutePdfUrl : RESUME_PDF}
+            download={useNativeViewer ? undefined : "Ellen Huynh Resume.pdf"}
             className="resume-modal-download"
             target="_blank"
             rel="noreferrer"
           >
             <DownloadIcon />
-            <span>Download Resume</span>
+            <span>
+              {useNativeViewer ? "Open / save resume" : "Download Resume"}
+            </span>
           </a>
         </div>
       </div>
