@@ -5,11 +5,13 @@ import { Suspense } from "react";
 import { LoginForm } from "@/components/login/LoginForm";
 import { PasswordGateShell } from "@/components/PasswordGateShell";
 import { hasValidGateCookie } from "@/lib/site-gate";
+import { siteIcons } from "@/lib/site-icons";
 
 export const metadata: Metadata = {
   title: "Enter password | Ellen Huynh",
   description: "Password protected portfolio access.",
   robots: { index: false, follow: false },
+  icons: siteIcons,
 };
 
 function LoginFormFallback() {

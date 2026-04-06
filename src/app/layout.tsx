@@ -3,6 +3,7 @@ import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import { CustomCursor } from "@/components/CustomCursor";
 import { LosAngelesTimePill } from "@/components/LosAngelesTimePill";
+import { siteIcons } from "@/lib/site-icons";
 import "./globals.css";
 
 const geistSans = Geist({
@@ -33,6 +34,7 @@ export const metadata: Metadata = {
   metadataBase: siteOrigin(),
   title: "Ellen Huynh | Designer",
   description: "Industrial design portfolio of Ellen Huynh.",
+  icons: siteIcons,
 };
 
 
