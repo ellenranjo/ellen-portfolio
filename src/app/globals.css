@@ -1524,6 +1524,33 @@ body.login-splash-open {
   color: #888;
 }
 
+.resume-modal-fallback {
+  display: flex;
+  width: 100%;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+  min-height: 200px;
+}
+
+.resume-modal-fallback__note {
+  margin: 0;
+  max-width: 28rem;
+  text-align: center;
+  font-family: var(--font-geist-sans, sans-serif);
+  font-size: 13px;
+  line-height: 1.45;
+  color: #555;
+}
+
+.resume-modal-fallback__iframe {
+  width: 100%;
+  min-height: min(70vh, 720px);
+  border: 0;
+  border-radius: 4px;
+  background: #fff;
+}
+
 .resume-modal-bottom {
   display: flex;
   align-items: center;
