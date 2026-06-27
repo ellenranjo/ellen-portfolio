@@ -14,8 +14,7 @@ type Project = {
   details: string[];
 };
 
-const SPECS_AR_VIDEO =
-  "https://web-platform.snap.com/vod/fdtlyqzgdb9e/5SDH54dmIAQux18t0JtoF6/ff107ab0c2a3c8306561f2e1fc52bbf7/SNAP_SPECS_MEISEL_15s_CGI_4k_16x9_GENERIC_Web_2.m3u8";
+const SPECS_AR_VIDEO = "/images/specs-ar-glasses/homepage-meisel-16x9.mp4";
 
 const projects: Project[] = [
   {

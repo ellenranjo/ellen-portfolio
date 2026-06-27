@@ -21,7 +21,7 @@ export const metadata: Metadata = {
 };
 
 const FRONT_FRAME_VIDEO =
-  "https://web-platform.snap.com/vod/o1znirz7lzo4/O8zo83WDFA8Cxi88h46Nu/4875743dab9a03b21339da83c00a6b17/SPECS27_Front_Frame_Rotating_View_1.m3u8";
+  "/images/specs-ar-glasses/front-frame-rotating-view.mp4";
 const INSTAGRAM_VIDEO = "/images/specs-ar-glasses/instagram-video.mp4";
 const INSTAGRAM_VIDEO_2 = "/images/specs-ar-glasses/instagram-video-2.mp4";
 const HERO_STILLS = [
@@ -39,10 +39,9 @@ const HERO_STILL_LABELS = [
   "Side view",
   "Three-quarter view",
 ] as const;
-const CASE_INSERTED_VIDEO =
-  "https://web-platform.snap.com/vod/o1znirz7lzo4/2EIYkeE4rsU5nR7fqXD1ys/cc50638e5dd476443a1c89d44c699888/SPECS27_Case_Inserted.m3u8";
+const CASE_INSERTED_VIDEO = "/images/specs-ar-glasses/case-inserted.mp4";
 const FRONTVIEW_LED_VIDEO =
-  "https://web-platform.snap.com/vod/o1znirz7lzo4/NCByXZ7gHk4tnPb1CL0IO/7fd8e280d60c1d062affa79eed0f8d8c/260527_Frontview_Recording_LED__2_.m3u8";
+  "/images/specs-ar-glasses/frontview-recording-led.mp4";
 
 export default function SpecsArGlassesPage() {
   return (
