@@ -124,7 +124,13 @@ export default function SpecsArGlassesPage() {
 
       <SpecsInsetVideoAfterIntro src={FRONT_FRAME_VIDEO} />
 
-      <SpecsInsetImgCarousel sources={HERO_STILLS} labels={HERO_STILL_LABELS} />
+      <SpecsInsetImgCarousel
+        sources={HERO_STILLS}
+        labels={HERO_STILL_LABELS}
+        regionLabel="Product views carousel"
+        prevLabel="Previous product view"
+        nextLabel="Next product view"
+      />
 
       <CsSection first>
         <CsH2>The Hardware</CsH2>
@@ -181,6 +187,9 @@ export default function SpecsArGlassesPage() {
         sources={INCONTEXT_STILLS}
         labels={INCONTEXT_STILL_LABELS}
         dimensions={INCONTEXT_STILL_DIMENSIONS}
+        regionLabel="In context photography carousel"
+        prevLabel="Previous in context photo"
+        nextLabel="Next in context photo"
       />
     </CaseStudyShell>
   );
