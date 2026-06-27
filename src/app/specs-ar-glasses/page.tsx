@@ -25,10 +25,19 @@ const FRONT_FRAME_VIDEO =
 const INSTAGRAM_VIDEO = "/images/specs-ar-glasses/instagram-video.mp4";
 const INSTAGRAM_VIDEO_2 = "/images/specs-ar-glasses/instagram-video-2.mp4";
 const HERO_STILLS = [
+  "/images/specs-ar-glasses/260527-front-view-folded-shadow.png",
   "/images/specs-ar-glasses/260522-frontview-2.png",
+  "/images/specs-ar-glasses/260527-frontview-tinted-1.png",
   "/images/specs-ar-glasses/260527-sideview-1.png",
   "/images/specs-ar-glasses/2605023-3-4-view-3.png",
-  "/images/specs-ar-glasses/260527-front-view-folded-shadow.png",
+] as const;
+
+const HERO_STILL_LABELS = [
+  "Folded view",
+  "Front view",
+  "Tinted front view",
+  "Side view",
+  "Three-quarter view",
 ] as const;
 const CASE_INSERTED_VIDEO =
   "https://web-platform.snap.com/vod/o1znirz7lzo4/2EIYkeE4rsU5nR7fqXD1ys/cc50638e5dd476443a1c89d44c699888/SPECS27_Case_Inserted.m3u8";
@@ -92,7 +101,7 @@ export default function SpecsArGlassesPage() {
 
       <SpecsInsetVideoAfterIntro src={FRONT_FRAME_VIDEO} />
 
-      <SpecsInsetImgCarousel sources={HERO_STILLS} />
+      <SpecsInsetImgCarousel sources={HERO_STILLS} labels={HERO_STILL_LABELS} />
 
       <CsSection first>
         <CsH2>The Hardware</CsH2>

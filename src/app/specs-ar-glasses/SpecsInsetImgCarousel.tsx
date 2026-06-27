@@ -4,16 +4,16 @@ import Image from "next/image";
 import { useState } from "react";
 import { specsInsetShell } from "./SpecsInsetImg";
 
-const IMG_WIDTH = 1024;
-const IMG_HEIGHT = 639;
-
-const THUMB_LABELS = ["Front view", "Side view", "Three-quarter view", "Folded view"];
+const IMG_WIDTH = 3805;
+const IMG_HEIGHT = 2378;
 
 export function SpecsInsetImgCarousel({
   sources,
+  labels,
   className = "mb-10 md:mb-20",
 }: {
   sources: readonly string[];
+  labels?: readonly string[];
   className?: string;
 }) {
   const [active, setActive] = useState(0);
@@ -27,7 +27,7 @@ export function SpecsInsetImgCarousel({
         <Image
           key={current}
           src={current}
-          alt={THUMB_LABELS[active] ?? "SPECS product view"}
+          alt={labels?.[active] ?? `SPECS product view ${active + 1}`}
           width={IMG_WIDTH}
           height={IMG_HEIGHT}
           sizes="70vw"
@@ -51,7 +51,7 @@ export function SpecsInsetImgCarousel({
               type="button"
               role="tab"
               aria-selected={selected}
-              aria-label={THUMB_LABELS[i] ?? `View ${i + 1}`}
+              aria-label={labels?.[i] ?? `View ${i + 1}`}
               onClick={() => setActive(i)}
               className={`flex h-8 w-10 shrink-0 items-center justify-center border-0 bg-transparent p-0 transition-opacity duration-200 md:h-10 md:w-12 ${
                 selected ? "opacity-100" : "opacity-30 hover:opacity-55"

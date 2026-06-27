@@ -4,8 +4,8 @@ import Image from "next/image";
 export const specsInsetShell = "mx-auto w-[70%]";
 
 /** Product stills — serve originals, no optimizer recompression */
-const SPECS_IMG_WIDTH = 1024;
-const SPECS_IMG_HEIGHT = 639;
+const SPECS_IMG_WIDTH = 3805;
+const SPECS_IMG_HEIGHT = 2378;
 
 export function SpecsInsetImgAfterIntro({ src }: { src: string }) {
   return (
