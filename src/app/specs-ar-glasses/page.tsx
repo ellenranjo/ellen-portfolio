@@ -13,6 +13,7 @@ import {
   SpecsInsetVideo,
   SpecsInsetVideoAfterIntro,
 } from "./SpecsInsetVideo";
+import { SpecsInsetImg } from "./SpecsInsetImg";
 
 export const metadata: Metadata = {
   title: "SPECS AR Glasses",
@@ -22,6 +23,13 @@ export const metadata: Metadata = {
 const FRONT_FRAME_VIDEO =
   "https://web-platform.snap.com/vod/o1znirz7lzo4/O8zo83WDFA8Cxi88h46Nu/4875743dab9a03b21339da83c00a6b17/SPECS27_Front_Frame_Rotating_View_1.m3u8";
 const INSTAGRAM_VIDEO = "/images/specs-ar-glasses/instagram-video.mp4";
+const INSTAGRAM_VIDEO_2 = "/images/specs-ar-glasses/instagram-video-2.mp4";
+const HERO_STILLS = [
+  "/images/specs-ar-glasses/260522-frontview-2.png",
+  "/images/specs-ar-glasses/260527-sideview-1.png",
+  "/images/specs-ar-glasses/2605023-3-4-view-3.png",
+  "/images/specs-ar-glasses/260527-front-view-folded-shadow.png",
+] as const;
 const CASE_INSERTED_VIDEO =
   "https://web-platform.snap.com/vod/o1znirz7lzo4/2EIYkeE4rsU5nR7fqXD1ys/cc50638e5dd476443a1c89d44c699888/SPECS27_Case_Inserted.m3u8";
 const FRONTVIEW_LED_VIDEO =
@@ -84,6 +92,10 @@ export default function SpecsArGlassesPage() {
 
       <SpecsInsetVideoAfterIntro src={FRONT_FRAME_VIDEO} />
 
+      {HERO_STILLS.map((src) => (
+        <SpecsInsetImg key={src} src={src} className="mb-10 md:mb-20" />
+      ))}
+
       <CsSection first>
         <CsH2>The Hardware</CsH2>
         <CsBody extrabold>
@@ -96,6 +108,7 @@ export default function SpecsArGlassesPage() {
       </CsSection>
 
       <SpecsInsetVideo src={INSTAGRAM_VIDEO} className="mt-0" />
+      <SpecsInsetVideo src={INSTAGRAM_VIDEO_2} className="mb-10 md:mb-20" />
 
       <CsSection className="mt-10">
         <CsH2>Charging Ecosystem</CsH2>
