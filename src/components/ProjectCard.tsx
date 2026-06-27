@@ -1,18 +1,90 @@
 "use client";
 
 import Image from "next/image";
-import { useRef } from "react";
+import { useEffect, useRef } from "react";
 
 type Project = {
   href: string;
   image: string;
   hoverMedia?: string;
+  /** Autoplay loop video (mp4 or HLS) shown in place of the static image */
+  primaryVideo?: string;
+  /** object-position for primaryVideo crop inside aspect-video (default: center) */
+  videoObjectPosition?: string;
   title: string;
   details: string[];
 };
 
 function isVideo(src: string) {
   return /\.(mp4|webm|mov)(\?|$)/i.test(src);
+}
+
+function isHls(src: string) {
+  return /\.m3u8(\?|$)/i.test(src);
+}
+
+function PrimaryVideo({
+  src,
+  poster,
+  objectPosition = "center",
+  className,
+}: {
+  src: string;
+  poster: string;
+  objectPosition?: string;
+  className?: string;
+}) {
+  const videoRef = useRef<HTMLVideoElement>(null);
+
+  useEffect(() => {
+    const video = videoRef.current;
+    if (!video) return;
+
+    let hls: { destroy: () => void } | null = null;
+    let cancelled = false;
+
+    const play = () => {
+      video.play().catch(() => {});
+    };
+
+    if (isHls(src)) {
+      if (video.canPlayType("application/vnd.apple.mpegurl")) {
+        video.src = src;
+        video.addEventListener("loadedmetadata", play, { once: true });
+      } else {
+        import("hls.js").then(({ default: Hls }) => {
+          if (cancelled || !Hls.isSupported()) return;
+          const instance = new Hls();
+          hls = instance;
+          instance.loadSource(src);
+          instance.attachMedia(video);
+          instance.on(Hls.Events.MANIFEST_PARSED, play);
+        });
+      }
+    } else {
+      video.src = src;
+      video.addEventListener("loadedmetadata", play, { once: true });
+    }
+
+    return () => {
+      cancelled = true;
+      hls?.destroy();
+    };
+  }, [src]);
+
+  return (
+    <video
+      ref={videoRef}
+      poster={poster}
+      muted
+      loop
+      playsInline
+      autoPlay
+      preload="auto"
+      className={className}
+      style={{ objectPosition }}
+    />
+  );
 }
 
 function disciplinePills(detailLine: string | undefined) {
@@ -45,16 +117,25 @@ export function ProjectCard({ project }: { project: Project }) {
       }}
     >
       <div className="relative aspect-video w-full overflow-hidden bg-transparent transition-colors duration-200 group-hover:bg-white group-active:bg-white">
-        <Image
-          src={project.image}
-          alt={project.title}
-          fill
-          sizes="(max-width: 768px) 92vw, 66vw"
-          className={`object-cover transition-opacity duration-200 group-hover:opacity-80 group-active:opacity-80 ${project.hoverMedia ? "group-hover:hidden" : ""}`}
-          loading="lazy"
-          decoding="async"
-          unoptimized={/\.gif(\?|$)/i.test(project.image)}
-        />
+        {project.primaryVideo ? (
+          <PrimaryVideo
+            src={project.primaryVideo}
+            poster={project.image}
+            objectPosition={project.videoObjectPosition}
+            className="absolute inset-0 h-full w-full object-cover transition-opacity duration-200 group-hover:opacity-80 group-active:opacity-80"
+          />
+        ) : (
+          <Image
+            src={project.image}
+            alt={project.title}
+            fill
+            sizes="(max-width: 768px) 92vw, 66vw"
+            className={`object-cover transition-opacity duration-200 group-hover:opacity-80 group-active:opacity-80 ${project.hoverMedia ? "group-hover:hidden" : ""}`}
+            loading="lazy"
+            decoding="async"
+            unoptimized={/\.gif(\?|$)/i.test(project.image)}
+          />
+        )}
         {project.hoverMedia &&
           (hoverIsVideo ? (
             <video

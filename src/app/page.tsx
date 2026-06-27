@@ -8,20 +8,23 @@ type Project = {
   href: string;
   image: string;
   hoverMedia?: string;
+  primaryVideo?: string;
+  videoObjectPosition?: string;
   title: string;
   details: string[];
 };
+
+const SPECS_AR_VIDEO =
+  "https://web-platform.snap.com/vod/fdtlyqzgdb9e/4taa89INID1xKaNWyRESXJ/dfe0f9e4a5e5536f333f371910b83693/SNAP_SPECS_MEISEL_15s_CGI_4x5_GENERIC.m3u8";
 
 const projects: Project[] = [
   {
     href: "/specs-ar-glasses",
     image: "/images/Specs-Table.png",
-    hoverMedia: "/images/Front-desktop.mp4",
+    primaryVideo: SPECS_AR_VIDEO,
+    videoObjectPosition: "center 38%",
     title: "SPECS AR Glasses",
-    details: [
-      "Released June 2026",
-      "Industrial Design, CMF, Packaging, Animation",
-    ],
+    details: ["Released June 2026", "Industrial Design, CMF, Packaging"],
   },
   {
     href: "/spectacles-5",
