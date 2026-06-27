@@ -53,13 +53,10 @@ export default function SpecsArGlassesPage() {
           <CsIntroCol variant="wide">
             <strong>SPECS - Wireless AR Glasses</strong>
             <br />
-            SPECS are a standalone wearable computer that blend the digital and
-            physical worlds through lightweight, see-through glasses. Designed for
-            real life, the form factor packs advanced sensors, a see-through
-            display, and high-performance AI into a sleek frame crafted from
-            Swiss TR90 polymer — weighing just 132 grams at 47mm. A neutral front
-            frame and ergonomic temples are designed to fit a wide range of face
-            sizes and shapes for all-day wear.
+            A standalone augmented reality platform that integrates waveguide
+            optics, onboard computing, AI, advanced sensing, and hand tracking
+            into a compact form factor. Designed to deliver immersive spatial
+            experiences while maintaining comfort, durability, and wearability.
           </CsIntroCol>
 
           <CsIntroCol variant="mid">
@@ -105,11 +102,16 @@ export default function SpecsArGlassesPage() {
       <CsSection first>
         <CsH2>The Hardware</CsH2>
         <CsBody extrabold>
-          <strong>Responsibilities</strong> Design support on front frame design,
-          ergonomic wearability, and contributed to the design architecture of
-          the device. Lead Designer for all accessories and packaging associated
-          with SPECS. Responsible for rendered images and animation produced for
-          launch.
+          <strong>Responsibilities</strong> Contributed to the industrial design
+          of SPECS AR glasses, guiding product styling, ergonomics, and
+          wearability from concept through production. Collaborated with product,
+          engineering, human factors, and manufacturing to streamline fit studies,
+          evaluate hinge concepts, validate comfort across diverse users, and
+          integrate complex computing hardware into a compact wearable form factor.
+          Defined the charging interface on the glasses, seamlessly integrating
+          functional charging features into the product&apos;s design language as a
+          distinctive aesthetic detail while establishing the foundation for the
+          broader charging ecosystem.
         </CsBody>
       </CsSection>
 
@@ -119,16 +121,11 @@ export default function SpecsArGlassesPage() {
       <CsSection className="mt-10">
         <CsH2>Charging Ecosystem</CsH2>
         <CsBody extrabold>
-          <strong>Responsibilities</strong> Led CMF direction across the frame,
-          temples, and touch surfaces — balancing a premium matte-gloss black
-          finish with durable Swiss TR90 polymer.
-          <br />
-          <strong>Materials</strong> Lightweight TR90 frame construction with
-          carefully tuned surface finishes for everyday wear and durability.
-          <br />
-          <strong>Details</strong> Subtle brand integration, sensor housing
-          treatments, and color-accurate lens tints designed to complement the
-          see-through waveguide display.
+          <strong>Responsibilities</strong> Led the industrial design of the
+          complete charging ecosystem and accessories for Specs, including the
+          charging case and charging cable/data cable. Defined a cohesive
+          accessory experience that extended the product language while addressing
+          usability, durability, manufacturing, and everyday portability.
         </CsBody>
       </CsSection>
 
