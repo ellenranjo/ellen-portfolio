@@ -14,6 +14,16 @@ type Project = {
 
 const projects: Project[] = [
   {
+    href: "/specs-ar-glasses",
+    image: "/images/Specs-Table.png",
+    hoverMedia: "/images/Front-desktop.mp4",
+    title: "SPECS AR Glasses",
+    details: [
+      "Released June 2026",
+      "Industrial Design, CMF, Packaging, Animation",
+    ],
+  },
+  {
     href: "/spectacles-5",
     image:
       "/images/webflow/6782ff4901019e74c253de80_Avalon%20cameras%20%26%20IR.JPEG",
