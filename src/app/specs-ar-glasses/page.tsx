@@ -1,8 +1,6 @@
 import type { Metadata } from "next";
 import { CaseStudyShell } from "@/components/CaseStudyShell";
 import {
-  CsBleedImg,
-  CsBleedImgAfterIntro,
   CsBody,
   CsH1,
   CsH2,
@@ -11,11 +9,15 @@ import {
   CsMax,
   CsSection,
 } from "@/components/case-study/CaseStudyPrimitives";
+import { SpecsInsetImg } from "./SpecsInsetImg";
+import { SpecsInsetVideoAfterIntro } from "./SpecsInsetVideoAfterIntro";
 
 export const metadata: Metadata = {
   title: "SPECS AR Glasses",
   description: "SPECS AR Glasses case study by Ellen Huynh.",
 };
+
+const FRAME_ROTATE_VIDEO = "/images/specs-ar-glasses/frame-rotate.mp4";
 
 export default function SpecsArGlassesPage() {
   return (
@@ -46,13 +48,15 @@ export default function SpecsArGlassesPage() {
             <br />
             Creative Director: Evan Spiegel
             <br />
-            ID: Mathias Hintermann, Ellen Huynh
+            ID Lead Glasses: Mathias Hintermann
             <br />
-            CMF: Mathias Hintermann, Ellen Huynh
+            ID Accessories Lead: Ellen Huynh
             <br />
-            Surfacing: Danny Carlson
+            Charging Ecosystem Lead: Ellen Huynh
             <br />
-            Rendering &amp; Animation: Ellen Huynh
+            Surfacing: Emin Abranians
+            <br />
+            3D Visuals: Baron &amp; Baron
           </CsIntroCol>
 
           <CsIntroCol variant="right">
@@ -70,7 +74,7 @@ export default function SpecsArGlassesPage() {
         </CsIntroRow>
       </CsMax>
 
-      <CsBleedImgAfterIntro src="/images/Specs-Table.png" />
+      <SpecsInsetVideoAfterIntro src={FRAME_ROTATE_VIDEO} />
 
       <CsSection first>
         <CsH2>The Hardware</CsH2>
@@ -83,10 +87,7 @@ export default function SpecsArGlassesPage() {
         </CsBody>
       </CsSection>
 
-      <CsBleedImg
-        src="/images/Specs-Table.png"
-        className="h-full w-full"
-      />
+      <SpecsInsetImg src="/images/Specs-Table.png" className="mt-0" />
 
       <CsSection>
         <CsH2>CMF</CsH2>
@@ -104,9 +105,9 @@ export default function SpecsArGlassesPage() {
         </CsBody>
       </CsSection>
 
-      <CsBleedImg
+      <SpecsInsetImg
         src="/images/Specs-Table.png"
-        className="mb-10 h-full w-full md:mb-20"
+        className="mb-10 md:mb-20"
       />
 
       <CsSection>
@@ -124,7 +125,7 @@ export default function SpecsArGlassesPage() {
         </CsBody>
       </CsSection>
 
-      <CsBleedImg src="/images/Specs-Table.png" />
+      <SpecsInsetImg src="/images/Specs-Table.png" className="mb-10 md:mb-20" />
     </CaseStudyShell>
   );
 }
