@@ -13,7 +13,7 @@ import {
   SpecsInsetVideo,
   SpecsInsetVideoAfterIntro,
 } from "./SpecsInsetVideo";
-import { SpecsInsetImgStack } from "./SpecsInsetImg";
+import { SpecsInsetImgCarousel } from "./SpecsInsetImgCarousel";
 
 export const metadata: Metadata = {
   title: "SPECS AR Glasses",
@@ -92,7 +92,7 @@ export default function SpecsArGlassesPage() {
 
       <SpecsInsetVideoAfterIntro src={FRONT_FRAME_VIDEO} />
 
-      <SpecsInsetImgStack sources={HERO_STILLS} />
+      <SpecsInsetImgCarousel sources={HERO_STILLS} />
 
       <CsSection first>
         <CsH2>The Hardware</CsH2>
@@ -105,7 +105,7 @@ export default function SpecsArGlassesPage() {
         </CsBody>
       </CsSection>
 
-      <SpecsInsetVideo src={INSTAGRAM_VIDEO} className="mt-0" />
+      <SpecsInsetVideo src={INSTAGRAM_VIDEO} className="mt-0 mb-10 md:mb-20" />
       <SpecsInsetVideo src={INSTAGRAM_VIDEO_2} className="mb-10 md:mb-20" />
 
       <CsSection className="mt-10">
