@@ -96,7 +96,7 @@ export default function SpecsArGlassesPage() {
             <br />
             Creative Director: Evan Spiegel
             <br />
-            ID Lead Glasses: Mathias Hintermann
+            ID Glasses Lead: Mathias Hintermann
             <br />
             ID Accessories Lead: Ellen Huynh
             <br />
@@ -104,7 +104,7 @@ export default function SpecsArGlassesPage() {
             <br />
             Surfacing: Emin Abranians
             <br />
-            3D Visuals: Baron &amp; Baron
+            3D Visuals: Baron &amp; Baron, Heeju Kim
           </CsIntroCol>
 
           <CsIntroCol variant="right">
