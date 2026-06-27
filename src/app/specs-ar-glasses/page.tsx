@@ -9,15 +9,23 @@ import {
   CsMax,
   CsSection,
 } from "@/components/case-study/CaseStudyPrimitives";
-import { SpecsInsetImg } from "./SpecsInsetImg";
-import { SpecsInsetVideoAfterIntro } from "./SpecsInsetVideoAfterIntro";
+import {
+  SpecsInsetVideo,
+  SpecsInsetVideoAfterIntro,
+} from "./SpecsInsetVideo";
 
 export const metadata: Metadata = {
   title: "SPECS AR Glasses",
   description: "SPECS AR Glasses case study by Ellen Huynh.",
 };
 
-const FRAME_ROTATE_VIDEO = "/images/specs-ar-glasses/frame-rotate.mp4";
+const FRONT_FRAME_VIDEO =
+  "https://web-platform.snap.com/vod/o1znirz7lzo4/O8zo83WDFA8Cxi88h46Nu/4875743dab9a03b21339da83c00a6b17/SPECS27_Front_Frame_Rotating_View_1.m3u8";
+const INSTAGRAM_VIDEO = "/images/specs-ar-glasses/instagram-video.mp4";
+const CASE_INSERTED_VIDEO =
+  "https://web-platform.snap.com/vod/o1znirz7lzo4/2EIYkeE4rsU5nR7fqXD1ys/cc50638e5dd476443a1c89d44c699888/SPECS27_Case_Inserted.m3u8";
+const FRONTVIEW_LED_VIDEO =
+  "https://web-platform.snap.com/vod/o1znirz7lzo4/NCByXZ7gHk4tnPb1CL0IO/7fd8e280d60c1d062affa79eed0f8d8c/260527_Frontview_Recording_LED__2_.m3u8";
 
 export default function SpecsArGlassesPage() {
   return (
@@ -74,7 +82,7 @@ export default function SpecsArGlassesPage() {
         </CsIntroRow>
       </CsMax>
 
-      <SpecsInsetVideoAfterIntro src={FRAME_ROTATE_VIDEO} />
+      <SpecsInsetVideoAfterIntro src={FRONT_FRAME_VIDEO} />
 
       <CsSection first>
         <CsH2>The Hardware</CsH2>
@@ -87,10 +95,10 @@ export default function SpecsArGlassesPage() {
         </CsBody>
       </CsSection>
 
-      <SpecsInsetImg src="/images/Specs-Table.png" className="mt-0" />
+      <SpecsInsetVideo src={INSTAGRAM_VIDEO} className="mt-0" />
 
-      <CsSection>
-        <CsH2>CMF</CsH2>
+      <CsSection className="mt-10">
+        <CsH2>Charging Ecosystem</CsH2>
         <CsBody extrabold>
           <strong>Responsibilities</strong> Led CMF direction across the frame,
           temples, and touch surfaces — balancing a premium matte-gloss black
@@ -105,27 +113,9 @@ export default function SpecsArGlassesPage() {
         </CsBody>
       </CsSection>
 
-      <SpecsInsetImg
-        src="/images/Specs-Table.png"
-        className="mb-10 md:mb-20"
-      />
+      <SpecsInsetVideo src={CASE_INSERTED_VIDEO} className="mb-10 md:mb-20" />
 
-      <CsSection>
-        <CsH2>Packaging</CsH2>
-        <CsBody extrabold>
-          <strong>Responsibilities</strong> Curated design language and structure
-          of packaging. Defined out-of-box experience. Assisted in CAD, CMF,
-          prototypes, and validating proof of concepts.
-          <br />
-          <strong>What Is Inside?</strong> AR Glasses, protective glasses cover,
-          carrying pouch, USB-C cable for charging.
-          <br />
-          <strong>Look &amp; Feel</strong> Premium unboxing experience with
-          considered material choices and brand-forward touch points.
-        </CsBody>
-      </CsSection>
-
-      <SpecsInsetImg src="/images/Specs-Table.png" className="mb-10 md:mb-20" />
+      <SpecsInsetVideo src={FRONTVIEW_LED_VIDEO} className="mb-10 md:mb-20" />
     </CaseStudyShell>
   );
 }
