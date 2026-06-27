@@ -7,6 +7,14 @@ const OUT = "public/images/specs-ar-glasses";
 
 const STILLS = [
   {
+    file: "interface.png",
+    url: "https://images.ctfassets.net/fdtlyqzgdb9e/5aVeFhjq2NdMDxRz1fgpF1/1e63df37405177527280a523176ec10a/Interface.png",
+  },
+  {
+    file: "snapdragon.png",
+    url: "https://images.ctfassets.net/fdtlyqzgdb9e/5knVbVAyrXlx2hevoXurZY/bb58fe8ff31efadec91ef4923f0c4bb4/Snapdragon.png",
+  },
+  {
     file: "260527-front-view-folded-shadow.png",
     url: "https://images.ctfassets.net/fdtlyqzgdb9e/2LAYgy13DTzqPBZcqaKHkN/9d1a3341e256ea58f944f12fa11f3886/260527_Front_View_Folded_Shadow.png",
   },
@@ -25,6 +33,30 @@ const STILLS = [
   {
     file: "2605023-3-4-view-3.png",
     url: "https://images.ctfassets.net/fdtlyqzgdb9e/6JgrgTWB7FjfqtXU82Sk8B/57eb39af80b208beaa5b25ba5d21df8f/2605023_52_3_4_view__3_.png",
+  },
+  {
+    file: "260522-front-case-shadow.png",
+    url: "https://images.ctfassets.net/fdtlyqzgdb9e/4OTTHy3neRsW4dcu8yjavF/b83c6ee29e976db4ff6c33aef0ae1d95/260522_Front_Case_Shadow.png",
+  },
+  {
+    file: "incontext-0010-077.jpg",
+    url: "https://images.ctfassets.net/fdtlyqzgdb9e/2ll85PrQLAmnyH65nAXPHS/eaa39e41fd963280cb8962843492701f/SME_26001_0010_077_v4_11_QC.jpg",
+  },
+  {
+    file: "incontext-0050-069.jpg",
+    url: "https://images.ctfassets.net/fdtlyqzgdb9e/3ibpKyuFxdGUO1qAVEEqmE/d1be2a85ba4fe117eceb7b6a71bd70ae/SME_26001_0050_069_v2_10_QC.jpg",
+  },
+  {
+    file: "incontext-0030-072.jpg",
+    url: "https://images.ctfassets.net/fdtlyqzgdb9e/2E7dvO1ylbnRbEt3d0dhS1/c82a09ab1b104105a496d081b0959cc8/SME_26001_0030_072_v1_12_QC.jpg",
+  },
+  {
+    file: "incontext-0110-039.jpg",
+    url: "https://images.ctfassets.net/fdtlyqzgdb9e/kAKJwCQghQZYDr3SgnGvT/df72e9cf24ade861caf763438138aa53/SME_26001_0110_039_v1_11_QC.jpg",
+  },
+  {
+    file: "incontext-0040-080.jpg",
+    url: "https://images.ctfassets.net/fdtlyqzgdb9e/mDu4owAPxzqld7aUabwFt/5b034cbbfd3074abb2976e5c094c2732/SME_26001_0040_080_v2_09_QC.jpg",
   },
 ];
 

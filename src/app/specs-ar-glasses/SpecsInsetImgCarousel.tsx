@@ -4,20 +4,27 @@ import Image from "next/image";
 import { useState } from "react";
 import { specsInsetShell } from "./SpecsInsetImg";
 
-const IMG_WIDTH = 3805;
-const IMG_HEIGHT = 2378;
+const DEFAULT_IMG_WIDTH = 3805;
+const DEFAULT_IMG_HEIGHT = 2378;
 
 export function SpecsInsetImgCarousel({
   sources,
   labels,
+  dimensions,
   className = "mb-10 md:mb-20",
 }: {
   sources: readonly string[];
   labels?: readonly string[];
+  dimensions?: readonly { width: number; height: number }[];
   className?: string;
 }) {
   const [active, setActive] = useState(0);
   const current = sources[active] ?? sources[0];
+  const { width, height } = dimensions?.[active] ??
+    dimensions?.[0] ?? {
+      width: DEFAULT_IMG_WIDTH,
+      height: DEFAULT_IMG_HEIGHT,
+    };
 
   if (!current) return null;
 
@@ -28,8 +35,8 @@ export function SpecsInsetImgCarousel({
           key={current}
           src={current}
           alt={labels?.[active] ?? `SPECS product view ${active + 1}`}
-          width={IMG_WIDTH}
-          height={IMG_HEIGHT}
+          width={width}
+          height={height}
           sizes="85vw"
           className="block h-auto w-full"
           priority={active === 0}

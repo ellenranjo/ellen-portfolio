@@ -42,8 +42,33 @@ const HERO_STILL_LABELS = [
   "Three-quarter view",
 ] as const;
 const CASE_INSERTED_VIDEO = "/images/specs-ar-glasses/case-inserted.mp4";
+const FRONT_CASE_SHADOW_IMAGE =
+  "/images/specs-ar-glasses/260522-front-case-shadow.png";
 const FRONTVIEW_LED_VIDEO =
   "/images/specs-ar-glasses/frontview-recording-led.mp4";
+const INCONTEXT_STILLS = [
+  "/images/specs-ar-glasses/incontext-0010-077.jpg",
+  "/images/specs-ar-glasses/incontext-0050-069.jpg",
+  "/images/specs-ar-glasses/incontext-0030-072.jpg",
+  "/images/specs-ar-glasses/incontext-0110-039.jpg",
+  "/images/specs-ar-glasses/incontext-0040-080.jpg",
+] as const;
+
+const INCONTEXT_STILL_LABELS = [
+  "In context",
+  "In context",
+  "In context",
+  "In context",
+  "In context",
+] as const;
+
+const INCONTEXT_STILL_DIMENSIONS = [
+  { width: 3858, height: 3000 },
+  { width: 4556, height: 3000 },
+  { width: 4055, height: 3000 },
+  { width: 3302, height: 3000 },
+  { width: 4069, height: 3000 },
+] as const;
 
 export default function SpecsArGlassesPage() {
   return (
@@ -120,14 +145,14 @@ export default function SpecsArGlassesPage() {
       <SpecsInsetVideo src={INSTAGRAM_VIDEO} className="mt-0 mb-10 md:mb-20" />
       <SpecsInsetImg
         src={INTERFACE_IMAGE}
-        width={1024}
-        height={576}
+        width={2880}
+        height={1620}
         className="mb-10 md:mb-20"
       />
       <SpecsInsetImg
         src={SNAPDRAGON_IMAGE}
-        width={1024}
-        height={576}
+        width={2880}
+        height={1620}
         className="mb-10 md:mb-20"
       />
 
@@ -144,8 +169,19 @@ export default function SpecsArGlassesPage() {
       </CsSection>
 
       <SpecsInsetVideo src={CASE_INSERTED_VIDEO} className="mb-10 md:mb-20" />
+      <SpecsInsetImg
+        src={FRONT_CASE_SHADOW_IMAGE}
+        width={2750}
+        height={1719}
+        className="mb-10 md:mb-20"
+      />
 
       <SpecsInsetVideo src={FRONTVIEW_LED_VIDEO} className="mb-10 md:mb-20" />
+      <SpecsInsetImgCarousel
+        sources={INCONTEXT_STILLS}
+        labels={INCONTEXT_STILL_LABELS}
+        dimensions={INCONTEXT_STILL_DIMENSIONS}
+      />
     </CaseStudyShell>
   );
 }
