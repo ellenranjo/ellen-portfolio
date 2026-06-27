@@ -30,7 +30,7 @@ export function SpecsInsetImgCarousel({
           alt={labels?.[active] ?? `SPECS product view ${active + 1}`}
           width={IMG_WIDTH}
           height={IMG_HEIGHT}
-          sizes="70vw"
+          sizes="85vw"
           className="block h-auto w-full"
           priority={active === 0}
           decoding="async"

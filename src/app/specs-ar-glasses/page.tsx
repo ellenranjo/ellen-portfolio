@@ -13,6 +13,7 @@ import {
   SpecsInsetVideo,
   SpecsInsetVideoAfterIntro,
 } from "./SpecsInsetVideo";
+import { SpecsInsetImg } from "./SpecsInsetImg";
 import { SpecsInsetImgCarousel } from "./SpecsInsetImgCarousel";
 
 export const metadata: Metadata = {
@@ -23,7 +24,8 @@ export const metadata: Metadata = {
 const FRONT_FRAME_VIDEO =
   "/images/specs-ar-glasses/front-frame-rotating-view.mp4";
 const INSTAGRAM_VIDEO = "/images/specs-ar-glasses/instagram-video.mp4";
-const INSTAGRAM_VIDEO_2 = "/images/specs-ar-glasses/instagram-video-2.mp4";
+const INTERFACE_IMAGE = "/images/specs-ar-glasses/interface.png";
+const SNAPDRAGON_IMAGE = "/images/specs-ar-glasses/snapdragon.png";
 const HERO_STILLS = [
   "/images/specs-ar-glasses/260527-front-view-folded-shadow.png",
   "/images/specs-ar-glasses/260522-frontview-2.png",
@@ -102,8 +104,8 @@ export default function SpecsArGlassesPage() {
       <CsSection first>
         <CsH2>The Hardware</CsH2>
         <CsBody extrabold>
-          <strong>Responsibilities</strong> Contributed to the industrial design
-          of SPECS AR glasses, guiding product styling, ergonomics, and
+          <strong>Responsibilities</strong>{" "}
+          Contributed to the industrial design of SPECS AR glasses, guiding product styling, ergonomics, and
           wearability from concept through production. Collaborated with product,
           engineering, human factors, and manufacturing to streamline fit studies,
           evaluate hinge concepts, validate comfort across diverse users, and
@@ -116,16 +118,28 @@ export default function SpecsArGlassesPage() {
       </CsSection>
 
       <SpecsInsetVideo src={INSTAGRAM_VIDEO} className="mt-0 mb-10 md:mb-20" />
-      <SpecsInsetVideo src={INSTAGRAM_VIDEO_2} className="mb-10 md:mb-20" />
+      <SpecsInsetImg
+        src={INTERFACE_IMAGE}
+        width={1024}
+        height={576}
+        className="mb-10 md:mb-20"
+      />
+      <SpecsInsetImg
+        src={SNAPDRAGON_IMAGE}
+        width={1024}
+        height={576}
+        className="mb-10 md:mb-20"
+      />
 
       <CsSection className="mt-10">
         <CsH2>Charging Ecosystem</CsH2>
         <CsBody extrabold>
-          <strong>Responsibilities</strong> Led the industrial design of the
-          complete charging ecosystem and accessories for Specs, including the
-          charging case and charging cable/data cable. Defined a cohesive
-          accessory experience that extended the product language while addressing
-          usability, durability, manufacturing, and everyday portability.
+          <strong>Responsibilities</strong>{" "}
+          Led the industrial design of the complete charging ecosystem and
+          accessories for Specs, including the charging case and charging
+          cable/data cable. Defined a cohesive accessory experience that extended
+          the product language while addressing usability, durability,
+          manufacturing, and everyday portability.
         </CsBody>
       </CsSection>
 
