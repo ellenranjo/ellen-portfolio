@@ -1,8 +1,7 @@
 import Image from "next/image";
 
-/** Side margins for SPECS case study media — not full bleed */
-export const specsInsetShell =
-  "mx-auto w-[88%] max-w-[820px] md:w-[82%] lg:w-[72%]";
+/** Side margins for SPECS case study media — 15% inset each side */
+export const specsInsetShell = "mx-auto w-[70%]";
 
 function imageUnoptimized(src: string) {
   return /\.(gif|avif|svg)(\?|$)/i.test(src);
@@ -16,7 +15,7 @@ export function SpecsInsetImgAfterIntro({ src }: { src: string }) {
         alt=""
         width={2400}
         height={1600}
-        sizes="(max-width: 768px) 88vw, 72vw"
+        sizes="70vw"
         className="h-auto w-full"
         priority
         decoding="async"
@@ -40,7 +39,7 @@ export function SpecsInsetImg({
         alt=""
         width={2400}
         height={1600}
-        sizes="(max-width: 768px) 88vw, 72vw"
+        sizes="70vw"
         className="h-auto w-full"
         loading="lazy"
         decoding="async"
