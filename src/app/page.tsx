@@ -15,14 +15,13 @@ type Project = {
 };
 
 const SPECS_AR_VIDEO =
-  "https://web-platform.snap.com/vod/fdtlyqzgdb9e/4taa89INID1xKaNWyRESXJ/dfe0f9e4a5e5536f333f371910b83693/SNAP_SPECS_MEISEL_15s_CGI_4x5_GENERIC.m3u8";
+  "https://web-platform.snap.com/vod/fdtlyqzgdb9e/5SDH54dmIAQux18t0JtoF6/ff107ab0c2a3c8306561f2e1fc52bbf7/SNAP_SPECS_MEISEL_15s_CGI_4k_16x9_GENERIC_Web_2.m3u8";
 
 const projects: Project[] = [
   {
     href: "/specs-ar-glasses",
     image: "/images/Specs-Table.png",
     primaryVideo: SPECS_AR_VIDEO,
-    videoObjectPosition: "center 38%",
     title: "SPECS AR Glasses",
     details: ["Released June 2026", "Industrial Design, CMF, Packaging"],
   },

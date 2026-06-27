@@ -9,6 +9,8 @@ type Project = {
   hoverMedia?: string;
   /** Autoplay loop video (mp4 or HLS) shown in place of the static image */
   primaryVideo?: string;
+  /** Optional poster while primaryVideo loads */
+  videoPoster?: string;
   /** object-position for primaryVideo crop inside aspect-video (default: center) */
   videoObjectPosition?: string;
   title: string;
@@ -30,7 +32,7 @@ function PrimaryVideo({
   className,
 }: {
   src: string;
-  poster: string;
+  poster?: string;
   objectPosition?: string;
   className?: string;
 }) {
@@ -120,7 +122,7 @@ export function ProjectCard({ project }: { project: Project }) {
         {project.primaryVideo ? (
           <PrimaryVideo
             src={project.primaryVideo}
-            poster={project.image}
+            poster={project.videoPoster}
             objectPosition={project.videoObjectPosition}
             className="absolute inset-0 h-full w-full object-cover transition-opacity duration-200 group-hover:opacity-80 group-active:opacity-80"
           />
