@@ -84,7 +84,7 @@ export default function SpecsArGlassesPage() {
 
         <CsIntroRow>
           <CsIntroCol variant="wide">
-            <strong>SPECS - Wireless AR Glasses</strong>
+            <strong>SPECS</strong>
             <br />
             A standalone augmented reality platform that integrates waveguide
             optics, onboard computing, AI, advanced sensing, and hand tracking
