@@ -12,6 +12,7 @@ import {
 import {
   SpecsInsetVideo,
   SpecsInsetVideoAfterIntro,
+  SpecsInsetVideoPair,
 } from "./SpecsInsetVideo";
 import { SpecsInsetImg } from "./SpecsInsetImg";
 import { SpecsInsetImgCarousel } from "./SpecsInsetImgCarousel";
@@ -23,6 +24,10 @@ export const metadata: Metadata = {
 
 const FRONT_FRAME_VIDEO =
   "/images/specs-ar-glasses/front-frame-rotating-view.mp4";
+const CASTING_BROWSER_VIDEOS = [
+  "/images/specs-ar-glasses/1p-casting-fixed-uhd.mp4",
+  "/images/specs-ar-glasses/1p-browser-6-uhd.mp4",
+] as const;
 const INSTAGRAM_VIDEO = "/images/specs-ar-glasses/instagram-video.mp4";
 const INTERFACE_IMAGE = "/images/specs-ar-glasses/interface.png";
 const SNAPDRAGON_IMAGE = "/images/specs-ar-glasses/snapdragon.png";
@@ -123,6 +128,7 @@ export default function SpecsArGlassesPage() {
       </CsMax>
 
       <SpecsInsetVideoAfterIntro src={FRONT_FRAME_VIDEO} />
+      <SpecsInsetVideoPair sources={CASTING_BROWSER_VIDEOS} />
 
       <SpecsInsetImgCarousel
         sources={HERO_STILLS}

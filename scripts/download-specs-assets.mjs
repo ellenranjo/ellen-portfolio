@@ -65,6 +65,14 @@ const DIRECT_MP4 = [
     file: "homepage-meisel-16x9.mp4",
     url: "https://videos.ctfassets.net/fdtlyqzgdb9e/5SDH54dmIAQux18t0JtoF6/ff107ab0c2a3c8306561f2e1fc52bbf7/SNAP_SPECS_MEISEL_15s_CGI_4k_16x9_GENERIC_Web_2.mp4",
   },
+  {
+    file: "1p-casting-fixed-uhd.mp4",
+    url: "https://videos.ctfassets.net/fdtlyqzgdb9e/YTzMmNOJS2uNOr8IvOOfV/a366b5617d6bcab15888765624fc1014/1P_Casting_Fixed_1_UHD.mp4",
+  },
+  {
+    file: "1p-browser-6-uhd.mp4",
+    url: "https://videos.ctfassets.net/fdtlyqzgdb9e/wgCB0cRFEchAAhJbwwzKi/15361171310952c97eecb72c5942f114/1P_Browser_6_UHD.mp4",
+  },
 ];
 
 /** One-time HLS sources — converted to local mp4 for self-hosted playback */

@@ -86,3 +86,29 @@ export function SpecsInsetVideo({
     </div>
   );
 }
+
+export function SpecsInsetVideoPair({
+  sources,
+  className = "mb-10 md:mb-20",
+}: {
+  sources: readonly [string, string];
+  className?: string;
+}) {
+  return (
+    <div className={`${specsInsetShell} ${className}`.trim()}>
+      <div className="grid grid-cols-2 gap-3 md:gap-4">
+        {sources.map((src) => (
+          <div
+            key={src}
+            className="aspect-video w-full overflow-hidden bg-black"
+          >
+            <SpecsInsetVideoPlayer
+              src={src}
+              className="h-full w-full object-cover"
+            />
+          </div>
+        ))}
+      </div>
+    </div>
+  );
+}
