@@ -1,8 +1,9 @@
 "use client";
 
 import Image from "next/image";
-import { useCallback, useId, useState } from "react";
+import { useCallback, useEffect, useId, useState } from "react";
 import { specsInsetShell } from "./SpecsInsetImg";
+import { useLazyViewport } from "./useLazyViewport";
 
 const DEFAULT_IMG_WIDTH = 3805;
 const DEFAULT_IMG_HEIGHT = 2378;
@@ -57,6 +58,7 @@ export function SpecsInsetImgCarousel({
   regionLabel = "Product views carousel",
   prevLabel = "Previous image",
   nextLabel = "Next image",
+  priorityFirstSlide = false,
 }: {
   sources: readonly string[];
   labels?: readonly string[];
@@ -65,9 +67,12 @@ export function SpecsInsetImgCarousel({
   regionLabel?: string;
   prevLabel?: string;
   nextLabel?: string;
+  /** Eager-load the first slide — only for above-the-fold carousels. */
+  priorityFirstSlide?: boolean;
 }) {
   const [active, setActive] = useState(0);
   const carouselId = useId();
+  const { containerRef, isInView } = useLazyViewport(priorityFirstSlide);
   const current = sources[active] ?? sources[0];
   const { width, height } = dimensions?.[active] ??
     dimensions?.[0] ?? {
@@ -82,6 +87,16 @@ export function SpecsInsetImgCarousel({
   const goNext = useCallback(() => {
     setActive((i) => Math.min(sources.length - 1, i + 1));
   }, [sources.length]);
+
+  useEffect(() => {
+    if (!isInView) return;
+
+    for (const index of [active - 1, active + 1]) {
+      if (index < 0 || index >= sources.length) continue;
+      const img = new window.Image();
+      img.src = sources[index] ?? "";
+    }
+  }, [active, isInView, sources]);
 
   const atStart = active <= 0;
   const atEnd = active >= sources.length - 1;
@@ -106,6 +121,7 @@ export function SpecsInsetImgCarousel({
 
   return (
     <div
+      ref={containerRef}
       className={`${specsInsetShell} ${className}`.trim()}
       role="region"
       aria-label={regionLabel}
@@ -119,18 +135,27 @@ export function SpecsInsetImgCarousel({
           aria-label="Carousel image — use arrow keys to change slides"
           onKeyDown={onKeyDown}
         >
-          <Image
-            key={current}
-            src={current}
-            alt={labels?.[active] ?? `SPECS product view ${active + 1}`}
-            width={width}
-            height={height}
-            sizes="85vw"
-            className="block h-auto w-full"
-            priority={active === 0}
-            decoding="async"
-            unoptimized
-          />
+          {isInView ? (
+            <Image
+              key={current}
+              src={current}
+              alt={labels?.[active] ?? `SPECS product view ${active + 1}`}
+              width={width}
+              height={height}
+              sizes="85vw"
+              className="block h-auto w-full"
+              priority={priorityFirstSlide && active === 0}
+              loading={priorityFirstSlide && active === 0 ? "eager" : "lazy"}
+              decoding="async"
+              unoptimized
+            />
+          ) : (
+            <div
+              className="w-full bg-neutral-100"
+              style={{ aspectRatio: `${width} / ${height}` }}
+              aria-hidden
+            />
+          )}
         </div>
 
         <div
@@ -183,14 +208,20 @@ export function SpecsInsetImgCarousel({
                 selected ? "opacity-100" : "opacity-30 hover:opacity-55"
               }`}
             >
-              <Image
-                src={src}
-                alt=""
-                width={48}
-                height={30}
-                className="h-auto max-h-full w-full object-contain"
-                unoptimized
-              />
+              {isInView ? (
+                <Image
+                  src={src}
+                  alt=""
+                  width={48}
+                  height={30}
+                  loading="lazy"
+                  decoding="async"
+                  className="h-auto max-h-full w-full object-contain"
+                  unoptimized
+                />
+              ) : (
+                <span className="block h-full w-full bg-neutral-200" aria-hidden />
+              )}
             </button>
           );
         })}

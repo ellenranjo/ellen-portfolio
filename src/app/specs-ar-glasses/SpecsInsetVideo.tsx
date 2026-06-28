@@ -2,6 +2,7 @@
 
 import { useEffect, useRef } from "react";
 import { specsInsetShell } from "./SpecsInsetImg";
+import { useLazyViewport } from "./useLazyViewport";
 
 function isHls(src: string) {
   return /\.m3u8(\?|$)/i.test(src);
@@ -10,13 +11,21 @@ function isHls(src: string) {
 function SpecsInsetVideoPlayer({
   src,
   className = "block h-auto w-full",
+  priority = false,
+  fill = false,
 }: {
   src: string;
   className?: string;
+  /** Load immediately — use only for the above-the-fold hero clip. */
+  priority?: boolean;
+  fill?: boolean;
 }) {
   const videoRef = useRef<HTMLVideoElement>(null);
+  const { containerRef, isInView } = useLazyViewport(priority);
 
   useEffect(() => {
+    if (!isInView) return;
+
     const video = videoRef.current;
     if (!video) return;
 
@@ -43,32 +52,37 @@ function SpecsInsetVideoPlayer({
       }
     } else {
       video.src = src;
-      video.addEventListener("loadedmetadata", play, { once: true });
+      video.addEventListener("canplay", play, { once: true });
     }
 
     return () => {
       cancelled = true;
       hls?.destroy();
     };
-  }, [src]);
+  }, [src, isInView]);
 
   return (
-    <video
-      ref={videoRef}
-      autoPlay
-      muted
-      loop
-      playsInline
-      preload="auto"
-      className={className}
-    />
+    <div
+      ref={containerRef}
+      className={fill ? "h-full w-full" : "w-full"}
+    >
+      <video
+        ref={videoRef}
+        autoPlay
+        muted
+        loop
+        playsInline
+        preload={isInView ? (priority ? "auto" : "metadata") : "none"}
+        className={className}
+      />
+    </div>
   );
 }
 
 export function SpecsInsetVideoAfterIntro({ src }: { src: string }) {
   return (
     <div className={`${specsInsetShell} mt-10 mb-10 md:mb-20`}>
-      <SpecsInsetVideoPlayer src={src} />
+      <SpecsInsetVideoPlayer src={src} priority />
     </div>
   );
 }
@@ -104,6 +118,7 @@ export function SpecsInsetVideoPair({
           >
             <SpecsInsetVideoPlayer
               src={src}
+              fill
               className="h-full w-full object-cover"
             />
           </div>

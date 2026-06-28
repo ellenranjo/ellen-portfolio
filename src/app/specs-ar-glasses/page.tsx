@@ -24,9 +24,9 @@ export const metadata: Metadata = {
 
 const FRONT_FRAME_VIDEO =
   "/images/specs-ar-glasses/front-frame-rotating-view.mp4";
-const CASTING_BROWSER_VIDEOS = [
+const CASTING_NAV_VIDEOS = [
   "/images/specs-ar-glasses/1p-casting-fixed-uhd.mp4",
-  "/images/specs-ar-glasses/1p-browser-6-uhd.mp4",
+  "/images/specs-ar-glasses/1p-navigation-01-uhd.mp4",
 ] as const;
 const INSTAGRAM_VIDEO = "/images/specs-ar-glasses/instagram-video.mp4";
 const INTERFACE_IMAGE = "/images/specs-ar-glasses/interface.png";
@@ -128,11 +128,12 @@ export default function SpecsArGlassesPage() {
       </CsMax>
 
       <SpecsInsetVideoAfterIntro src={FRONT_FRAME_VIDEO} />
-      <SpecsInsetVideoPair sources={CASTING_BROWSER_VIDEOS} />
+      <SpecsInsetVideoPair sources={CASTING_NAV_VIDEOS} />
 
       <SpecsInsetImgCarousel
         sources={HERO_STILLS}
         labels={HERO_STILL_LABELS}
+        priorityFirstSlide
         regionLabel="Product views carousel"
         prevLabel="Previous product view"
         nextLabel="Next product view"

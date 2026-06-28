@@ -70,8 +70,8 @@ const DIRECT_MP4 = [
     url: "https://videos.ctfassets.net/fdtlyqzgdb9e/YTzMmNOJS2uNOr8IvOOfV/a366b5617d6bcab15888765624fc1014/1P_Casting_Fixed_1_UHD.mp4",
   },
   {
-    file: "1p-browser-6-uhd.mp4",
-    url: "https://videos.ctfassets.net/fdtlyqzgdb9e/wgCB0cRFEchAAhJbwwzKi/15361171310952c97eecb72c5942f114/1P_Browser_6_UHD.mp4",
+    file: "1p-navigation-01-uhd.mp4",
+    url: "https://videos.ctfassets.net/fdtlyqzgdb9e/78TcSmLqUA49o4Z0yzKauu/0c1328454309c1ffb3d3a0b422dbb613/1P_Navigation_01_UHD.mp4",
   },
 ];
 
