@@ -128,6 +128,17 @@ export default function SpecsArGlassesPage() {
       </CsMax>
 
       <SpecsInsetVideoAfterIntro src={FRONT_FRAME_VIDEO} />
+
+      <CsSection first>
+        <CsH2>SPECS</CsH2>
+        <CsBody>
+          Fully standalone, with no puck and no tether. 51° field of view
+          display. Powered by two Snapdragon processors to enable fast hand
+          tracking, low latency, and responsive interactions that help digital
+          content feel anchored in the real world.
+        </CsBody>
+      </CsSection>
+
       <SpecsInsetVideoPair sources={CASTING_NAV_VIDEOS} />
 
       <SpecsInsetImgCarousel
@@ -139,7 +150,7 @@ export default function SpecsArGlassesPage() {
         nextLabel="Next product view"
       />
 
-      <CsSection first>
+      <CsSection className="mt-10">
         <CsH2>The Hardware</CsH2>
         <CsBody extrabold>
           <strong>Responsibilities</strong>{" "}
