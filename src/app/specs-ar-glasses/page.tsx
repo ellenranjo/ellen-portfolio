@@ -177,13 +177,13 @@ export default function SpecsArGlassesPage() {
 
       <SpecsInsetVideo src={INSTAGRAM_VIDEO} className="mt-0 mb-10 md:mb-20" />
       <SpecsInsetImg
-        src={INTERFACE_IMAGE}
+        src={PRESCRIPTION_IMAGE}
         width={2880}
         height={1620}
         className="mb-10 md:mb-20"
       />
       <SpecsInsetImg
-        src={PRESCRIPTION_IMAGE}
+        src={INTERFACE_IMAGE}
         width={2880}
         height={1620}
         className="mb-10 md:mb-20"
