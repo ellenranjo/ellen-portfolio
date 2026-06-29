@@ -135,7 +135,8 @@ export default function SpecsArGlassesPage() {
         <CsH2>SPECS</CsH2>
         <CsBody>
           Fully standalone, with no puck and no tether. 51° field of view
-          display. Powered by two Snapdragon processors to enable fast hand
+          display. Private see-through display with hands free capture and AI
+          assistance. Powered by two Snapdragon processors to enable fast hand
           tracking, low latency, and responsive interactions that help digital
           content feel anchored in the real world.
         </CsBody>
