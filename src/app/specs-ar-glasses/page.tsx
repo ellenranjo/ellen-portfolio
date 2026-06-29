@@ -31,6 +31,7 @@ const CASTING_NAV_VIDEOS = [
 ] as const;
 const INSTAGRAM_VIDEO = "/images/specs-ar-glasses/instagram-video.mp4";
 const INTERFACE_IMAGE = "/images/specs-ar-glasses/interface.png";
+const PRESCRIPTION_IMAGE = "/images/specs-ar-glasses/prescription.png";
 const SNAPDRAGON_IMAGE = "/images/specs-ar-glasses/snapdragon.png";
 const HERO_STILLS = [
   "/images/specs-ar-glasses/260527-front-view-folded-shadow.png",
@@ -52,7 +53,6 @@ const FRONT_CASE_SHADOW_IMAGE =
   "/images/specs-ar-glasses/260522-front-case-shadow.png";
 const FRONTVIEW_LED_VIDEO =
   "/images/specs-ar-glasses/frontview-recording-led.mp4";
-const KEYNOTE_UNVEIL_IMAGE = "/images/specs-ar-glasses/keynote-unveil.png";
 const INCONTEXT_STILLS = [
   "/images/specs-ar-glasses/incontext-0010-077.jpg",
   "/images/specs-ar-glasses/incontext-0050-069.jpg",
@@ -183,6 +183,12 @@ export default function SpecsArGlassesPage() {
         className="mb-10 md:mb-20"
       />
       <SpecsInsetImg
+        src={PRESCRIPTION_IMAGE}
+        width={2880}
+        height={1620}
+        className="mb-10 md:mb-20"
+      />
+      <SpecsInsetImg
         src={SNAPDRAGON_IMAGE}
         width={2880}
         height={1620}
@@ -210,12 +216,6 @@ export default function SpecsArGlassesPage() {
       />
 
       <SpecsInsetVideo src={FRONTVIEW_LED_VIDEO} className="mb-10 md:mb-20" />
-      <SpecsInsetImg
-        src={KEYNOTE_UNVEIL_IMAGE}
-        width={1024}
-        height={576}
-        className="mb-10 md:mb-20"
-      />
       <SpecsInsetImgCarousel
         sources={INCONTEXT_STILLS}
         labels={INCONTEXT_STILL_LABELS}

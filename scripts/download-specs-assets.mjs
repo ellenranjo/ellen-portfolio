@@ -11,6 +11,10 @@ const STILLS = [
     url: "https://images.ctfassets.net/fdtlyqzgdb9e/VrjUrEp6KMrsFGlCviuM2/531062a5fe81e86315ac90dff00b1b62/Wave.png",
   },
   {
+    file: "prescription.png",
+    url: "https://images.ctfassets.net/fdtlyqzgdb9e/1ycjLPYXbrhltQisuVi7mw/f62052812ee60c01ab281e898fb26fd1/Prescription.png",
+  },
+  {
     file: "interface.png",
     url: "https://images.ctfassets.net/fdtlyqzgdb9e/5aVeFhjq2NdMDxRz1fgpF1/1e63df37405177527280a523176ec10a/Interface.png",
   },
