@@ -25,8 +25,9 @@ export default function AboutPage() {
               alt="Ellen Huynh"
               className="min-h-[280px] w-full flex-1 object-cover object-[center_22%] md:min-h-0"
               sizes="(max-width: 767px) 100vw, 34vw"
-              loading="lazy"
+              priority
               decoding="async"
+              quality={100}
             />
           </div>
 

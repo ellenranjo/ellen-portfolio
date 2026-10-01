@@ -82,6 +82,7 @@ export function HostWineFreezeStory({
                 loading="lazy"
                 decoding="async"
                 unoptimized={isAnimated(oldDesignSrc)}
+                quality={100}
               />
             </div>
           </div>
@@ -107,6 +108,7 @@ export function HostWineFreezeStory({
                 loading="lazy"
                 decoding="async"
                 unoptimized={isAnimated(newDesignSrc)}
+                quality={100}
               />
             </div>
           </div>
@@ -165,6 +167,7 @@ export function HostWineFreezeStory({
             decoding="async"
             className="block h-auto w-full max-w-none"
             unoptimized={isAnimated(catalogSrc)}
+            quality={100}
           />
         </div>
         {designLoopSrc ? (
@@ -178,6 +181,7 @@ export function HostWineFreezeStory({
             decoding="async"
             className="mt-0 block h-auto w-full max-w-none"
             unoptimized={isAnimated(designLoopSrc)}
+            quality={100}
           />
         ) : null}
         {postDesignBleedSrc ? (
@@ -191,6 +195,7 @@ export function HostWineFreezeStory({
             decoding="async"
             className="mt-0 block h-auto w-full max-w-none"
             unoptimized={isAnimated(postDesignBleedSrc)}
+            quality={100}
           />
         ) : null}
       </div>

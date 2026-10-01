@@ -45,7 +45,7 @@ export function CustomCursor() {
         !!target?.closest("a.group") ||
         !!target?.closest("a.liquid-glass-button");
 
-      setIsVisible(true);
+      setIsVisible((visible) => (visible ? visible : true));
       setIsInteractive((prev) => (prev === interactive ? prev : interactive));
       updateCursor(event.clientX, event.clientY, interactive);
     };

@@ -5,14 +5,8 @@
  * “Mark” (GraphicRiver). That font is licensed separately—we use Google’s
  * Permanent Marker here as a close free alternative.
  */
-import { Permanent_Marker } from "next/font/google";
+import { markerFont } from "@/lib/marker-font";
 import { useEffect, useRef, useState } from "react";
-
-const marker = Permanent_Marker({
-  weight: "400",
-  subsets: ["latin"],
-  display: "swap",
-});
 
 const MESSAGE =
   "Hey! My name is Ellen. 7+ years in wearables and consumer hardware.";
@@ -24,6 +18,8 @@ const WORDS = MESSAGE.split(" ");
 const INITIAL_DELAY_MS = 35;
 // Slight overlap with glyph stroke duration for smoother continuous flow.
 const STEP_MS = 52;
+/** Don't stall the animation if the font is already cached or slow to report. */
+const FONT_WAIT_MS = 120;
 
 export function HandwrittenPaperMessage() {
   const [drawnCount, setDrawnCount] = useState(0);
@@ -39,18 +35,39 @@ export function HandwrittenPaperMessage() {
     }
 
     let i = 0;
+    let cancelled = false;
 
     const tick = () => {
-      if (i >= TOTAL) return;
+      if (cancelled || i >= TOTAL) return;
       i += 1;
       setDrawnCount(i);
       if (i >= TOTAL) return;
       timersRef.current.push(setTimeout(tick, STEP_MS));
     };
 
-    timersRef.current.push(setTimeout(tick, INITIAL_DELAY_MS));
+    const start = () => {
+      if (cancelled) return;
+      timersRef.current.push(setTimeout(tick, INITIAL_DELAY_MS));
+    };
+
+    const waitForMarkerFont = async () => {
+      try {
+        await Promise.race([
+          document.fonts.load(`400 16px ${markerFont.style.fontFamily}`),
+          new Promise<void>((resolve) => {
+            window.setTimeout(resolve, FONT_WAIT_MS);
+          }),
+        ]);
+      } catch {
+        /* start anyway */
+      }
+      start();
+    };
+
+    void waitForMarkerFont();
 
     return () => {
+      cancelled = true;
       timersRef.current.forEach(clearTimeout);
       timersRef.current = [];
     };
@@ -67,11 +84,11 @@ export function HandwrittenPaperMessage() {
       >
         {/* Was rotate-90; +180° correction for legibility ⇒ 270° (= -90°) */}
         <div
-          className={`flex max-h-[92%] max-w-[92%] origin-center -rotate-90 items-center justify-center ${marker.className}`}
+          className={`flex max-h-[92%] max-w-[92%] origin-center -rotate-90 items-center justify-center ${markerFont.className}`}
         >
           {/* Use div (not p): global `p { font-size: 12px }` overrides Tailwind utilities */}
           <div
-            className={`handwritten-paper-visible ${marker.className} text-balance text-center tracking-wide text-[#1a1a1a] leading-relaxed`}
+            className={`handwritten-paper-visible ${markerFont.className} text-balance text-center tracking-wide text-[#1a1a1a] leading-relaxed`}
           >
             {WORDS.map((word, wordIdx) => {
               const startIndex =

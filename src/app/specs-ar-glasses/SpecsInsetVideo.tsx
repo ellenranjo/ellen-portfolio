@@ -61,6 +61,27 @@ function SpecsInsetVideoPlayer({
     };
   }, [src, isInView]);
 
+  useEffect(() => {
+    if (!isInView) return;
+    const video = videoRef.current;
+    const node = containerRef.current;
+    if (!video || !node) return;
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        const visible = entries.some((entry) => entry.isIntersecting);
+        if (visible) {
+          video.play().catch(() => {});
+        } else {
+          video.pause();
+        }
+      },
+      { threshold: 0.2 },
+    );
+    observer.observe(node);
+    return () => observer.disconnect();
+  }, [isInView]);
+
   return (
     <div
       ref={containerRef}

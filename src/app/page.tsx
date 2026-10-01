@@ -2,6 +2,7 @@ import Image from "next/image";
 import { ResumeButton } from "@/components/about/ResumeButton";
 import { HandwrittenPaperMessage } from "@/components/HandwrittenPaperMessage";
 import { ProjectCard } from "@/components/ProjectCard";
+import { markerFont } from "@/lib/marker-font";
 import { SITE_NAME_GIF_SRC } from "@/lib/site-assets";
 
 type Project = {
@@ -74,7 +75,7 @@ export default function Home() {
       {/* Hero: art lives in the stage; name + nav are in normal flow below (real-device safe). */}
       <section className="homepage-hero relative w-full overflow-visible bg-transparent pb-1">
         <div className="homepage-hero-canvas">
-          <div className="homepage-hero-stage">
+          <div className={`homepage-hero-stage ${markerFont.className}`}>
             <div className="homepage-hero-art">
               <div aria-hidden="true" className="homepage-hero-art-glow" />
               <div className="homepage-hero-art-scene">
@@ -158,8 +159,12 @@ export default function Home() {
         className="homepage-projects mx-auto w-full max-w-[90%] px-5 md:max-w-[85%] md:px-0 lg:max-w-[66%]"
         style={{ marginTop: "var(--hero-projects-after-lockup)" }}
       >
-        {projects.map((project) => (
-          <ProjectCard key={project.href} project={project} />
+        {projects.map((project, index) => (
+          <ProjectCard
+            key={project.href}
+            project={project}
+            priority={index === 0}
+          />
         ))}
       </section>
 

@@ -133,6 +133,7 @@ export default function BarWineAccessoriesPage() {
           className="mt-0 mb-0 block h-auto w-full"
           loading="lazy"
           decoding="async"
+          quality={100}
         />
         <Image
           src={`${W}/5f6a59ab1514cba28f1b0cf5_image%20(7).png`}
@@ -143,6 +144,7 @@ export default function BarWineAccessoriesPage() {
           className="mb-5 mt-0 block h-auto w-full md:mb-6"
           loading="lazy"
           decoding="async"
+          quality={100}
         />
       </div>
     </CaseStudyShell>

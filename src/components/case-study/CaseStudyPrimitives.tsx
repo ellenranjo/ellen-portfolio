@@ -1,5 +1,6 @@
 import type { ReactNode } from "react";
 import Image from "next/image";
+import { RENDER_QUALITY } from "@/lib/image-quality";
 
 /** GIF/AVIF/SVG: skip optimizer (animation, already compressed, or vector). */
 function imageUnoptimized(src: string) {
@@ -96,6 +97,7 @@ export function CsBleedImg({
       priority={priority}
       loading={priority ? undefined : "lazy"}
       decoding="async"
+      quality={RENDER_QUALITY}
       unoptimized={imageUnoptimized(src)}
     />
   );
@@ -120,6 +122,7 @@ export function CsBleedImgBeforeTitle({
       priority={priority}
       loading={priority ? undefined : "lazy"}
       decoding="async"
+      quality={RENDER_QUALITY}
       unoptimized={imageUnoptimized(src)}
     />
   );
@@ -151,6 +154,7 @@ export function CsBleedImgAfterIntro({
       priority={priority}
       loading={priority ? undefined : "lazy"}
       decoding="async"
+      quality={RENDER_QUALITY}
       unoptimized={imageUnoptimized(src)}
     />
   );

@@ -1,7 +1,9 @@
 "use client";
 
 import Image from "next/image";
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
+import { useLazyViewport } from "@/hooks/useLazyViewport";
+import { RENDER_QUALITY } from "@/lib/image-quality";
 
 type Project = {
   href: string;
@@ -30,15 +32,45 @@ function PrimaryVideo({
   poster,
   objectPosition = "center",
   className,
+  priority = false,
 }: {
   src: string;
   poster?: string;
   objectPosition?: string;
   className?: string;
+  priority?: boolean;
 }) {
+  const wrapRef = useRef<HTMLDivElement>(null);
   const videoRef = useRef<HTMLVideoElement>(null);
+  const [shouldLoad, setShouldLoad] = useState(false);
 
   useEffect(() => {
+    if (shouldLoad) return;
+
+    if (priority) {
+      const timer = window.setTimeout(() => setShouldLoad(true), 280);
+      return () => window.clearTimeout(timer);
+    }
+
+    const node = wrapRef.current;
+    if (!node) return;
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        if (entries.some((entry) => entry.isIntersecting)) {
+          setShouldLoad(true);
+          observer.disconnect();
+        }
+      },
+      { rootMargin: "400px 0px" },
+    );
+    observer.observe(node);
+    return () => observer.disconnect();
+  }, [priority, shouldLoad]);
+
+  useEffect(() => {
+    if (!shouldLoad) return;
+
     const video = videoRef.current;
     if (!video) return;
 
@@ -65,27 +97,50 @@ function PrimaryVideo({
       }
     } else {
       video.src = src;
-      video.addEventListener("loadedmetadata", play, { once: true });
+      video.addEventListener("canplay", play, { once: true });
     }
 
     return () => {
       cancelled = true;
       hls?.destroy();
     };
-  }, [src]);
+  }, [src, shouldLoad]);
+
+  useEffect(() => {
+    if (!shouldLoad) return;
+    const video = videoRef.current;
+    const node = wrapRef.current;
+    if (!video || !node) return;
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        const visible = entries.some((entry) => entry.isIntersecting);
+        if (visible) {
+          video.play().catch(() => {});
+        } else {
+          video.pause();
+        }
+      },
+      { threshold: 0.2 },
+    );
+    observer.observe(node);
+    return () => observer.disconnect();
+  }, [shouldLoad]);
 
   return (
-    <video
-      ref={videoRef}
-      poster={poster}
-      muted
-      loop
-      playsInline
-      autoPlay
-      preload="auto"
-      className={className}
-      style={{ objectPosition }}
-    />
+    <div ref={wrapRef} className="absolute inset-0 h-full w-full">
+      <video
+        ref={videoRef}
+        poster={poster}
+        muted
+        loop
+        playsInline
+        autoPlay
+        preload={shouldLoad ? "metadata" : "none"}
+        className={className}
+        style={{ objectPosition }}
+      />
+    </div>
   );
 }
 
@@ -97,10 +152,20 @@ function disciplinePills(detailLine: string | undefined) {
     .filter(Boolean);
 }
 
-export function ProjectCard({ project }: { project: Project }) {
+export function ProjectCard({
+  project,
+  priority = false,
+}: {
+  project: Project;
+  /** Eager-load the first homepage card so the poster is ready without competing full-file video preload. */
+  priority?: boolean;
+}) {
   const videoRef = useRef<HTMLVideoElement>(null);
+  const { containerRef, isInView } = useLazyViewport(priority, "280px 0px");
   const hoverIsVideo = project.hoverMedia && isVideo(project.hoverMedia);
   const disciplines = disciplinePills(project.details[1]);
+  const poster = project.videoPoster ?? project.image;
+  const loadHoverMedia = Boolean(project.hoverMedia) && isInView;
 
   return (
     <a
@@ -118,13 +183,17 @@ export function ProjectCard({ project }: { project: Project }) {
         }
       }}
     >
-      <div className="relative aspect-video w-full overflow-hidden bg-transparent transition-colors duration-200 group-hover:bg-white group-active:bg-white">
+      <div
+        ref={containerRef}
+        className="relative aspect-video w-full overflow-hidden bg-transparent transition-colors duration-200 group-hover:bg-white group-active:bg-white"
+      >
         {project.primaryVideo ? (
           <PrimaryVideo
             src={project.primaryVideo}
-            poster={project.videoPoster}
+            poster={poster}
             objectPosition={project.videoObjectPosition}
-            className="absolute inset-0 h-full w-full object-cover transition-opacity duration-200 group-hover:opacity-80 group-active:opacity-80"
+            priority={priority}
+            className="h-full w-full object-cover transition-opacity duration-200 group-hover:opacity-80 group-active:opacity-80"
           />
         ) : (
           <Image
@@ -133,12 +202,14 @@ export function ProjectCard({ project }: { project: Project }) {
             fill
             sizes="(max-width: 768px) 92vw, 66vw"
             className={`object-cover transition-opacity duration-200 group-hover:opacity-80 group-active:opacity-80 ${project.hoverMedia ? "group-hover:hidden" : ""}`}
-            loading="lazy"
+            loading={priority ? "eager" : "lazy"}
+            fetchPriority={priority ? "high" : "auto"}
             decoding="async"
+            quality={RENDER_QUALITY}
             unoptimized={/\.gif(\?|$)/i.test(project.image)}
           />
         )}
-        {project.hoverMedia &&
+        {loadHoverMedia &&
           (hoverIsVideo ? (
             <video
               ref={videoRef}
@@ -152,14 +223,15 @@ export function ProjectCard({ project }: { project: Project }) {
             />
           ) : (
             <Image
-              src={project.hoverMedia}
+              src={project.hoverMedia!}
               alt={`${project.title} preview animation`}
               fill
               sizes="(max-width: 768px) 92vw, 66vw"
               className="hidden object-cover transition-opacity duration-200 group-hover:block group-hover:opacity-80"
               loading="lazy"
               decoding="async"
-              unoptimized={/\.gif(\?|$)/i.test(project.hoverMedia)}
+              quality={RENDER_QUALITY}
+              unoptimized={/\.gif(\?|$)/i.test(project.hoverMedia!)}
             />
           ))}
       </div>

@@ -203,6 +203,7 @@ export function FannySlingIdeationsCarousel({
                 sizes="(max-width: 479px) 65vw, 50vw"
                 loading={i === 0 ? "eager" : "lazy"}
                 decoding="async"
+                quality={100}
                 style={img.style}
               />
             </div>
