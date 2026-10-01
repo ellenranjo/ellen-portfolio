@@ -7,7 +7,7 @@ import { SITE_NAME_GIF_SRC } from "@/lib/site-assets";
 
 type Project = {
   href: string;
-  image: string;
+  image?: string;
   hoverMedia?: string;
   primaryVideo?: string;
   videoObjectPosition?: string;
@@ -20,7 +20,6 @@ const SPECS_AR_VIDEO = "/images/specs-ar-glasses/homepage-meisel-16x9.mp4";
 const projects: Project[] = [
   {
     href: "/specs-ar-glasses",
-    image: "/images/Specs-Table.png",
     primaryVideo: SPECS_AR_VIDEO,
     title: "SPECS AR Glasses",
     details: ["Released June 2026", "Industrial Design, CMF, Packaging"],

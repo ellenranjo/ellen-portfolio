@@ -7,7 +7,7 @@ import { RENDER_QUALITY } from "@/lib/image-quality";
 
 type Project = {
   href: string;
-  image: string;
+  image?: string;
   hoverMedia?: string;
   /** Autoplay loop video (mp4 or HLS) shown in place of the static image */
   primaryVideo?: string;
@@ -164,7 +164,7 @@ export function ProjectCard({
   const { containerRef, isInView } = useLazyViewport(priority, "280px 0px");
   const hoverIsVideo = project.hoverMedia && isVideo(project.hoverMedia);
   const disciplines = disciplinePills(project.details[1]);
-  const poster = project.videoPoster ?? project.image;
+  const poster = project.videoPoster;
   const loadHoverMedia = Boolean(project.hoverMedia) && isInView;
 
   return (
@@ -197,7 +197,7 @@ export function ProjectCard({
           />
         ) : (
           <Image
-            src={project.image}
+            src={project.image ?? ""}
             alt={project.title}
             fill
             sizes="(max-width: 768px) 92vw, 66vw"
@@ -206,7 +206,7 @@ export function ProjectCard({
             fetchPriority={priority ? "high" : "auto"}
             decoding="async"
             quality={RENDER_QUALITY}
-            unoptimized={/\.gif(\?|$)/i.test(project.image)}
+            unoptimized={/\.gif(\?|$)/i.test(project.image ?? "")}
           />
         )}
         {loadHoverMedia &&
