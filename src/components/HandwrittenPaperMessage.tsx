@@ -15,7 +15,7 @@ const marker = Permanent_Marker({
 });
 
 const MESSAGE =
-  "hey! my name is Ellen. 6+ years in wearables and consumer goods.";
+  "Hey! My name is Ellen. 7+ years in wearables and consumer hardware.";
 
 const CHARS = Array.from(MESSAGE);
 const TOTAL = CHARS.length;

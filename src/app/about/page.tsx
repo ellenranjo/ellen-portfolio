@@ -35,7 +35,7 @@ export default function AboutPage() {
               Hi! I&apos;m Ellen
               <br />
               <br />
-              I&apos;m an Industrial Designer with 6+ years of experience in product
+              I&apos;m an Industrial Designer with 7+ years of experience in product
               design. My journey began with creating kitchen gadgets, wine and bar
               tools, and soft goods. For the past five years, I&apos;ve been designing
               and driving innovation at Snap Inc., where I&apos;ve been developing
